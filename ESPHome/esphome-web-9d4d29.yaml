@@ -1,0 +1,779 @@
+esphome:
+  name: esphome-web-9d4d29
+  friendly_name: alarm-panel-backdoor
+  #libraries:
+    #tobozo/LGFXMeter
+
+esp32:
+  board: nodemcu-32s
+  framework:
+    type: esp-idf
+   # version: recommended
+    # Custom sdkconfig options
+    sdkconfig_options:
+      COMPILER_OPTIMIZATION_SIZE: y    
+
+# Enable logging
+logger:
+  level: debug
+  logs:
+    component: ERROR  # To disable "Component display took a long time for an operation (0.09 s)."
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret esphome-web-9d4d29_api_encryption_key
+
+ota:
+  password: !secret esphome-web-9d4d29_ota_password
+  platform: esphome
+  
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esphome-Web-9D4D29"
+    password: !secret esphome-web-9d4d29_wifi_ap_password
+
+captive_portal:
+    
+globals:
+  - id: g_keypad
+    type: std::string
+    restore_value: no
+    max_restore_data_length: 5
+    initial_value: ''
+
+debug:
+  update_interval: 300s
+
+text_sensor:
+  - platform: debug
+    device:
+      name: "Device Info"
+      id: DeviceInfo
+    reset_reason:
+      name: "Reset Reason"   
+
+  - platform: homeassistant
+    name: "Alarm State"
+    id: homeassistant_alarm
+    entity_id: alarm_control_panel.home_alarm 
+
+  - platform: homeassistant
+    name: "Home Battery Power"
+    id: pool_switch
+    entity_id: switch.sonoff_10001e7f40
+
+  - platform: homeassistant
+    name: "Home Battery Power"
+    id: ryobi_batteries_switch
+    entity_id: switch.sonoff_10001e9d60
+
+  - platform: homeassistant
+    name: "Pool Cloeaner"
+    id: pool_cleaner
+    entity_id: sensor.creepy_status
+
+  - platform: homeassistant
+    name: "Fridge Express Mode"
+    id: refrigerator_express_mode
+    entity_id: switch.refrigerator_express_mode
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time    
+
+output:
+  - id: backlight_output
+    platform: gpio
+    pin: GPIO25
+
+light:
+  - platform: binary
+    name: "Display Backlight"
+    id: Backlight
+    restore_mode: ALWAYS_ON
+    output: backlight_output
+
+
+sensor:
+    # Wifi Signal
+  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+    name: "WiFi Signal dB"
+    id: wifi_signal_db
+    update_interval: 300s
+    entity_category: "diagnostic"
+    internal: true
+  - platform: copy # Reports the WiFi signal strength in %
+    source_id: wifi_signal_db
+    id: wifi_signal_pct
+    name: "WiFi Signal Percent"
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "%"
+    entity_category: "diagnostic" 
+    
+    #debug
+  - platform: debug
+    free:
+      name: "Heap Free"
+      id: HeapFree
+    block:
+      name: "Heap Max Block"
+      id: HeapMaxBlock
+    loop_time:
+      name: "Loop Time"
+      id: LoopTime
+    psram:
+      name: "Free PSRAM"
+      id: freePSRAM     
+  - platform: internal_temperature
+    name: "Internal Temperature" 
+    id: InternalTemp   
+
+  - platform: homeassistant
+    name: "Net Power state"
+    id: net_power
+    entity_id: sensor.net_power
+  - platform: homeassistant
+    name: "Home Battery Power"
+    id: home_battery_power
+    entity_id: sensor.envoy_121731028504_inverter_121627017873        
+  - platform: homeassistant
+    name: "EV Power"
+    id: ev_power
+    entity_id: sensor.sonoff_100155a107_power_2
+  - platform: homeassistant
+    name: "Solar Power"
+    id: solar_power
+    entity_id: sensor.envoy_121731028504_current_power_production
+
+
+#ST7796 display
+spi:
+  - id: display_spi
+    clk_pin: GPIO14
+    mosi_pin: GPIO13
+    miso_pin: GPIO12  
+  - id: touch_spi
+    clk_pin: GPIO18
+    mosi_pin: GPIO23
+    miso_pin: GPIO19 
+
+display:
+  - platform: ili9xxx
+    model: ST7796
+    id: my_display
+    spi_id: display_spi
+    dc_pin: GPIO27
+    reset_pin: GPIO33
+    cs_pin: GPIO15
+    dimensions:  #320x480 only possible with psram
+      width: 320
+      height: 480
+    rotation: 0
+    color_palette: NONE 
+    data_rate: 80MHz
+    pages:
+      - id: pageA
+        lambda: |-
+          // Alarm
+          it.fill(COLOR_OFF);
+
+          // ALARM STATE
+          if (id(homeassistant_alarm).state=="disarmed"){
+            it.image(110, 50, id(img_BellOff));
+            it.print(160, 160, id(roboto_lrg), id(col_green), TextAlign::CENTER_HORIZONTAL, "Disarmed");
+          } else if (id(homeassistant_alarm).state=="arming"){
+            it.image(110, 50, id(img_Bell));
+            it.print(160, 160, id(roboto_lrg), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Arming");
+          } else if (id(homeassistant_alarm).state=="triggered"){
+            it.image(110, 50, id(img_BellRing));
+            it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, "Triggered");
+          } else if (id(homeassistant_alarm).state.substr(0,5)=="armed"){
+            it.image(110, 50, id(img_Bell));
+            it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+          } else {
+            it.print(160, 200, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+          }
+
+          // KEYCODE
+          if (id(g_keypad).length() > 0){
+            it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, id(g_keypad).c_str());
+          } else {
+            if (id(homeassistant_alarm).state=="disarmed"){
+              it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL,"Enter Passcode to ARM");
+            } else {
+              it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL,"Enter Passcode to DISARM");
+            }
+          }
+
+          // TIME
+          it.strftime(0, 468, id(roboto_sml), col_white, "%H:%M:%S", id(homeassistant_time).now());
+      - id: pageB
+        lambda: |-
+          // Solar
+          it.fill(COLOR_OFF); // Turn the whole display off.
+
+          // guage image
+          it.image(5, 50, id(img_gauge));
+
+          // +- range of guage
+          int range = 7000; 
+
+          float elec_rate = 0.000077;
+
+          // get value and apply limits and set dyunamic color
+          int value = id(net_power).state; 
+          esphome::Color col_dynamic;
+          if(value<0)
+          {
+            elec_rate = 0.000351131;
+            col_dynamic = id(col_red);
+            if(value<(0-range))
+            {
+              value = (0-range);
+            }
+          }
+          else
+          {
+            //display items running on solar
+            it.print(160,345, id(roboto) ,col_white, TextAlign::CENTER_HORIZONTAL, "Currently powered by Solar");
+            std::queue<std::pair<int, int>> list_locations;
+            for(int i = 380; i<460; i+=15) //create a list of screen locations for items running on solar
+            {
+              list_locations.push(std::make_pair(90,i));
+              list_locations.push(std::make_pair(230,i));
+            }
+            if(id(home_battery_power).state<-10)
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "House Battery");
+              list_locations.pop();
+            }
+            if(id(pool_switch).state=="on")
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Pump");
+              list_locations.pop();
+            }
+            if(id(ryobi_batteries_switch).state=="on")
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Ryobi Batteries");
+              list_locations.pop();
+            }
+            if(id(ev_power).state>0)
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV Charger");
+              list_locations.pop();
+              if(id(ev_power).state>100){
+                it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV (car)");
+                list_locations.pop();
+              }
+            }
+            if(id(pool_cleaner).state=="Cleaning" || id(pool_cleaner).state=="Checking Environment")
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Cleaner");
+              list_locations.pop();
+            }
+            if(id(refrigerator_express_mode).state=="on")
+            {
+              it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Fridge Express Mode");
+              list_locations.pop();
+            }            
+            
+
+            // get value and apply limits and set dyunamic color
+            if (value<range/10)
+            {
+              col_dynamic = id(col_orange);
+            }   
+            else
+            {
+              col_dynamic = id(col_green);
+              if(value>(range))
+              {
+                value = range;
+              }
+            }  
+          }
+
+          //border color
+          it.rectangle(0, 0, it.get_width(), it.get_height(), col_dynamic);                    
+
+          //draw pointer
+          float radians = M_PI/(range*2)*(value+range);
+          float half_M_PI = M_PI /2;
+          int y_end = 200-(sin(radians) * 130); 
+          int x_end = 160-(cos(radians) * 130);
+          int y_rgt = 200-(sin(radians+(half_M_PI)) * 7); 
+          int x_rgt = 160-(cos(radians+(half_M_PI)) * 7); 
+          int y_left = 200-(sin(radians-(half_M_PI)) * 7); 
+          int x_left = 160-(cos(radians-(half_M_PI)) * 7); 
+
+          it.filled_triangle(x_end,y_end, 160,200, x_rgt,y_rgt,col_white); 
+          it.filled_triangle(x_end,y_end, 160,200, x_left,y_left,col_gray);
+
+          //cost/wh test line
+          float cost = id(net_power).state*elec_rate;
+          if (abs(cost)>0.99){
+            it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, $%.2fph", id(net_power).state, cost) ;
+          } else {
+            it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, %.0f¢/ph", id(net_power).state, cost*100) ;
+          }
+
+          //solar graph
+          it.graph(0, 240, id(solar_power_graph));
+          it.print(160, 242, id(roboto_sml), col_dkgreen, TextAlign::CENTER_HORIZONTAL, "Solar");
+
+          // TIME
+          it.strftime(0, 468, id(roboto_sml), col_white, "%H:%M:%S", id(homeassistant_time).now());
+      - id: pageC
+        lambda: |-
+          // Buttons
+          it.fill(COLOR_OFF); // Turn the whole display off.
+          for(int i=0; i<480; i+=80) 
+          {
+            it.horizontal_line(0,i,320,col_gray);
+          }
+          for(int i=0; i<320; i+=80) 
+          {
+            it.vertical_line(i,0,480,col_gray);
+          }             
+          it.rectangle(0, 0, it.get_width(), it.get_height(),col_gray); 
+      - id: pageD
+        lambda: |-
+          // Weather
+          it.fill(COLOR_OFF); // Turn the whole display off.
+          it.print(10, 10, id(roboto), id(col_red), TextAlign::TOP_LEFT, "Weather");
+
+      - id: pageDebug0
+        lambda: |-
+          int shift_x = (it.get_width()-310)/2;
+          int shift_y = (it.get_height()-470)/2;
+          for(auto i = 0; i<470; i++) {
+            it.horizontal_line(shift_x+  0,i+shift_y,50, col_red.fade_to_white(i));
+            it.horizontal_line(shift_x+ 50,i+shift_y,50, col_red.fade_to_black(i));
+
+            it.horizontal_line(shift_x+105,i+shift_y,50, col_green.fade_to_white(i));
+            it.horizontal_line(shift_x+155,i+shift_y,50, col_green.fade_to_black(i));
+
+            it.horizontal_line(shift_x+210,i+shift_y,50, col_blue.fade_to_white(i));
+            it.horizontal_line(shift_x+260,i+shift_y,50, col_blue.fade_to_black(i));
+          }
+          it.rectangle(0, 0, it.get_width(), it.get_height(), col_yellow);             
+      - id: pageDebug1
+        lambda: |-
+            it.fill(COLOR_OFF); // Turn the whole display off.
+            it.printf(0, 1, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.1f° :Internal Temp", id(InternalTemp).state);  
+            it.printf(0, 25, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0f%% :wifi signal", id(wifi_signal_pct).state);  
+            it.printf(0, 75, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Heap Free", id(HeapFree).state/1024); 
+            it.printf(0, 100, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Heap Max Block", id(HeapMaxBlock).state/1024); 
+            it.printf(0, 125, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fms Loop Time", id(LoopTime).state); 
+            it.printf(0, 50, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Free PSRAM", id(freePSRAM).state/1024); 
+
+            int shift_y = 150;
+            std::string str = id(DeviceInfo).state;
+            std::vector<std::string> v;
+            char * token;
+            char seps[] = "|";
+            token = strtok (&str[0],seps);
+            while (token != NULL)
+            {
+              v.push_back(token);
+              token = strtok (NULL, seps);
+            }
+            for ( std::string s : v ) {
+              shift_y += 12;             
+              it.printf(0, shift_y, id(roboto_sml), id(col_white), TextAlign::TOP_LEFT, "%s", s.c_str());
+            }
+
+            it.strftime(0, 450, id(roboto), "%H:%M:%S", id(homeassistant_time).now());
+      - id: pageDebug2
+        lambda: |-
+            it.fill(COLOR_OFF); // Turn the whole display off.
+            it.print(0,0, roboto, "Temp");
+            it.graph(0, 0, id(InternalTemp_graph));
+            it.print(0,155, roboto, "Wifi");
+            it.graph(0, 155, id(wifi_graph));
+            it.print(0, 310, roboto, "loop time");
+            it.graph(0, 310, id(LoopTime_graph));
+            it.strftime(0, 460, id(roboto_sml), "%H:%M:%S", id(homeassistant_time).now());
+
+color:
+  - id: col_blue
+    hex: 0000ff
+  - id: col_red
+    hex: ff0000
+  - id: col_green
+    hex: 00ff00
+  - id: col_dkgreen
+    hex: 008800    
+  - id: col_white
+    hex: ffffff
+  - id: col_yellow
+    hex: ffff00   
+  - id: col_orange
+    hex: FFA500   
+  - id: col_gray
+    hex: 6f6f6f   
+
+font:
+  - file: "gfonts://Roboto"
+    id: roboto_lrg
+    size: 50
+    glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
+  - file: "gfonts://Roboto"
+    id: roboto
+    size: 25
+    glyphs: '¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'          
+  - file: "gfonts://Roboto"
+    id: roboto_sml
+    size: 12
+    glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'          
+
+binary_sensor: 
+  - platform: gpio
+    pin:
+      number: GPIO0
+      inverted: true
+    name: "Onboard button"
+    id: onboard_button
+    on_press: 
+      then:
+        if:
+          condition:
+            display.is_displaying_page: pageDebug0
+          then:      
+            display.page.show: pageDebug1                    
+          else:
+            if:
+              condition:
+                display.is_displaying_page: pageDebug1
+              then:      
+                display.page.show: pageDebug2
+              else: 
+                display.page.show: pageDebug0
+
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadA
+    name: keypadA
+    internal: true
+    key: A
+    on_press:
+      - display.page.show: pageA
+      - component.update: my_display
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadB
+    name: keypadB  
+    internal: true
+    key: B
+    on_press:
+      - display.page.show: pageB
+      - component.update: my_display
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadC
+    name: keypadC 
+    internal: true
+    key: C
+    on_press:
+      - display.page.show: pageC
+      - component.update: my_display
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadD
+    name: keypadD
+    internal: true
+    key: D
+    on_press:
+      - display.page.show: pageD
+      - component.update: my_display
+
+  - platform: touchscreen
+    name: 1A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1A was touched"
+  - platform: touchscreen
+    name: 1B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1B was touched"
+  - platform: touchscreen
+    name: 1C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1C was touched"
+  - platform: touchscreen
+    name: 1D Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1C was touched"      
+
+  - platform: touchscreen
+    name: 2A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1A was touched"
+  - platform: touchscreen
+    name: 2B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1B was touched"
+  - platform: touchscreen
+    name: 2C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1C was touched"
+  - platform: touchscreen
+    name: 2D Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - logger.log: "touchscreen 1C was touched"      
+
+
+     # width: 320
+     # height: 480
+button:
+  - platform: template
+    name: Debug
+    entity_category: "diagnostic"     
+    on_press:
+      then:
+        if:
+          condition:
+            display.is_displaying_page: pageDebug0
+          then:      
+            display.page.show: pageDebug1                    
+          else:
+            if:
+              condition:
+                display.is_displaying_page: pageDebug1
+              then:      
+                display.page.show: pageDebug2
+              else: 
+                display.page.show: pageDebug0
+  - platform: template
+    name: Page
+    entity_category: "diagnostic"     
+    on_press:
+      then:
+        if:
+          condition:
+            display.is_displaying_page: pageA
+          then:      
+            display.page.show: pageB
+          else: 
+            if:
+              condition:
+                display.is_displaying_page: pageB
+              then:      
+                display.page.show: pageC
+              else: 
+                if:
+                  condition:
+                    display.is_displaying_page: pageC
+                  then:      
+                    display.page.show: pageD
+                  else: 
+                    display.page.show: pageA
+
+graph:
+  - id: InternalTemp_graph
+    duration: 24h
+    width: 320 
+    height: 150
+    x_grid: 6h
+    y_grid: 10 
+    border: false
+    max_range: 65
+    min_range: 40
+    traces:
+      - sensor: InternalTemp
+        color: col_red    
+        continuous: true   
+  - id: wifi_graph
+    duration: 24h
+    width: 320 
+    height: 150
+    x_grid: 6h
+    y_grid: 10 
+    max_range: 100
+    min_range: 1
+    border: false
+    traces:
+      - sensor: wifi_signal_pct
+        color: col_green      
+        continuous: true   
+  - id: LoopTime_graph
+    duration: 24h
+    width: 320 
+    height: 150
+    x_grid: 6h
+    y_grid: 10 
+    border: false
+    traces:
+      - sensor: LoopTime
+        color: col_blue           
+  - id: solar_power_graph
+    duration: 12h
+    width: 320 
+    height: 100
+    x_grid: 2h
+    y_grid: 2500
+    max_range: 10000
+    min_range: 10000    
+    min_value: 0     
+    border: True
+    traces:
+      - sensor: solar_power
+        color: col_green       
+        line_thickness: 1     
+        continuous: true   
+
+
+image:
+  - file: mdi:bell-off 
+    id: img_BellOff 
+    resize: 100x100    
+  - file: mdi:bell
+    id: img_Bell
+    resize: 100x100   
+  - file: mdi:bell-ring
+    id: img_BellRing
+    resize: 100x100             
+  - file: "gauge.png"
+    id: img_gauge
+    type: RGB565
+
+
+touchscreen:
+  platform: xpt2046
+#needs calibration
+  id: my_touchscreen
+  spi_id: touch_spi
+  cs_pin: GPIO22
+  interrupt_pin: GPIO01
+  on_touch:
+  - lambda: |-
+        ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+            touch.x,
+            touch.y,
+            touch.x_raw,
+            touch.y_raw
+            );
+
+matrix_keypad:
+  id: keypad
+  columns:
+    - pin: 
+        number: GPIO35
+        mode: 
+          input: True
+    - pin: 
+        number: GPIO34
+        mode: 
+          input: True
+    - pin: 
+        number: GPIO39
+        mode: 
+          input: True
+    - pin: 
+        number: GPIO36
+        mode: 
+          input: True  
+  rows:
+    - pin: 
+        number: GPIO02
+        mode: 
+          output: True    
+    - pin:  
+        number: GPIO04
+        mode: 
+          output: True 
+    - pin:  
+        number: GPIO21
+        mode: 
+          output: True     
+    - pin:  
+        number: GPIO05
+        mode: 
+          output: True     
+  keys: "123A456B789C*0#D"
+  has_diodes: false  
+  
+key_collector:
+  - id: pincode_reader
+    source_id: keypad
+    end_keys: "#"
+    end_key_required: true 
+    clear_keys: "*"
+    allowed_keys: "0123456789"
+    timeout: 60s
+    on_progress:
+      - logger.log:
+          format: "input progress: '%s', started by '%c'"
+          args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
+      - globals.set:
+          id: g_keypad
+          value: !lambda "return (x.c_str());"          
+    on_result:
+      - logger.log:
+          format: "input result: '%s', started by '%c', ended by '%c'"
+          args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
+      - globals.set:
+          id: g_keypad
+          value: !lambda "return (x.c_str());"    
+      - if:
+          condition:
+            # Checks if "homeassistant_alarm" has state "disarmed" arm else disarm
+            text_sensor.state:
+              id: homeassistant_alarm
+              state: 'disarmed'   
+          then:
+            homeassistant.service: 
+              service: script.alarm_arm
+              data:
+                code: !lambda "return (x.c_str());"   
+          else:
+            homeassistant.service: 
+              service: script.alarm_disarm
+              data:
+                code: !lambda "return (x.c_str());"             
+    
