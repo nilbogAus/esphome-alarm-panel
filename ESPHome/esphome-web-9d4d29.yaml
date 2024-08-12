@@ -38,7 +38,10 @@ wifi:
     password: !secret esphome-web-9d4d29_wifi_ap_password
 
 captive_portal:
-    
+
+packages:
+  assets: !include alarm-panel/assets.yaml   
+
 globals:
   - id: g_keypad
     type: std::string
@@ -63,7 +66,7 @@ text_sensor:
     entity_id: alarm_control_panel.home_alarm 
 
   - platform: homeassistant
-    name: "Home Battery Power"
+    name: "Pool Power"
     id: pool_switch
     entity_id: switch.sonoff_10001e7f40
 
@@ -73,7 +76,7 @@ text_sensor:
     entity_id: switch.sonoff_10001e9d60
 
   - platform: homeassistant
-    name: "Pool Cloeaner"
+    name: "Pool Cleaner"
     id: pool_cleaner
     entity_id: sensor.creepy_status
 
@@ -141,7 +144,7 @@ sensor:
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power
-    entity_id: sensor.envoy_121731028504_inverter_121627017873        
+    entity_id: sensor.encharge_492334007623_power      
   - platform: homeassistant
     name: "EV Power"
     id: ev_power
@@ -149,7 +152,7 @@ sensor:
   - platform: homeassistant
     name: "Solar Power"
     id: solar_power
-    entity_id: sensor.envoy_121731028504_current_power_production
+    entity_id: sensor.envoy_122348003312_current_power_production
 
 
 #ST7796 display
@@ -231,7 +234,7 @@ display:
           esphome::Color col_dynamic;
           if(value<0)
           {
-            elec_rate = 0.000351131;
+            elec_rate = 0.0003115;
             col_dynamic = id(col_red);
             if(value<(0-range))
             {
@@ -342,6 +345,59 @@ display:
             it.vertical_line(i,0,480,col_gray);
           }             
           it.rectangle(0, 0, it.get_width(), it.get_height(),col_gray); 
+
+          // button 1A (0,400-80,480)
+          it.image(20, 430, id(img_LightbulbOff));
+          it.printf(40, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane"); 
+          // button 1B (80,400-160,480)
+          it.image(100, 430, id(img_LightbulbOn));
+          it.printf(120, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");          
+          // button 1C (160,400-240,480)
+          it.image(180, 430, id(img_LightbulbOff));
+          it.printf(200, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");        
+          // button 1D (240,400-360,480)
+          it.image(260, 430, id(img_LightbulbOn));
+          it.printf(280, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");                     
+
+          // button 2A (0,320-80,400)
+          it.image(20, 350, id(img_BlindsHorizontalOpen));
+          it.printf(40, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");
+          // button 2B (80,320-160,400)
+          it.image(100, 350, id(img_BlindsHorizontalClosed));
+          it.printf(120, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");          
+          // button 2C (160,320-240,400)
+          it.image(180, 350, id(img_BlindsHorizontalOpen));
+          it.printf(200, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");       
+          // button 2D (240,320-360,400)
+          it.image(260, 350, id(img_BlindsHorizontalClosed));
+          it.printf(280, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");       
+
+          // button 3A (0,260-80,320)
+          it.image(20, 270, id(img_BlindsHorizontalOpen));
+          it.printf(40, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Study");
+          // button 3B (80,260-160,320)
+          it.image(100, 270, id(img_BlindsHorizontalClosed));
+          it.printf(120, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Study");          
+          // button 3C (160,260-240,320)
+          it.image(180, 270, id(img_BlindsHorizontalOpen));
+          it.printf(200, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");       
+          // button 3D (240,260-360,320)
+          it.image(260, 270, id(img_BlindsHorizontalClosed));
+          it.printf(280, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");                 
+
+          // button 4A (0,180-80,240)
+          it.image(20, 190, id(img_televisionOn));
+          it.printf(40, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Living Room");
+          // button 4B (80,180-160,240)
+          it.image(100, 190, id(img_televisionOff));
+          it.printf(120, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Living Room");          
+          // button 4C (160,180-240,240)
+          it.image(180, 190, id(img_batteryCharging));
+          it.printf(200, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");       
+          // button 4D (240,180-360,240)
+          it.image(260, 190, id(img_batteryOff));
+          it.printf(280, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");                 
+
       - id: pageD
         lambda: |-
           // Weather
@@ -401,43 +457,13 @@ display:
             it.graph(0, 310, id(LoopTime_graph));
             it.strftime(0, 460, id(roboto_sml), "%H:%M:%S", id(homeassistant_time).now());
 
-color:
-  - id: col_blue
-    hex: 0000ff
-  - id: col_red
-    hex: ff0000
-  - id: col_green
-    hex: 00ff00
-  - id: col_dkgreen
-    hex: 008800    
-  - id: col_white
-    hex: ffffff
-  - id: col_yellow
-    hex: ffff00   
-  - id: col_orange
-    hex: FFA500   
-  - id: col_gray
-    hex: 6f6f6f   
-
-font:
-  - file: "gfonts://Roboto"
-    id: roboto_lrg
-    size: 50
-    glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
-  - file: "gfonts://Roboto"
-    id: roboto
-    size: 25
-    glyphs: '¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'          
-  - file: "gfonts://Roboto"
-    id: roboto_sml
-    size: 12
-    glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'          
 
 binary_sensor: 
   - platform: gpio
     pin:
       number: GPIO0
       inverted: true
+      ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
     on_press: 
@@ -501,7 +527,10 @@ binary_sensor:
     y_max: 80
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1A was touched"
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_10007724b9      
   - platform: touchscreen
     name: 1B Touch Button
     x_min: 80
@@ -510,7 +539,10 @@ binary_sensor:
     y_max: 80
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1B was touched"
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_10007724b9      
   - platform: touchscreen
     name: 1C Touch Button
     x_min: 160
@@ -519,54 +551,195 @@ binary_sensor:
     y_max: 80
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1C was touched"
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_10001adcce       
   - platform: touchscreen
     name: 1D Touch Button
-    x_min: 160
-    x_max: 240
+    x_min: 240
+    x_max: 360
     y_min: 0
     y_max: 80
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1C was touched"      
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_10001adcce    
 
   - platform: touchscreen
     name: 2A Touch Button
     x_min: 0
     x_max: 80
-    y_min: 0
-    y_max: 80
+    y_min: 80
+    y_max: 160
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1A was touched"
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.carrington_rd     
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.darri_ave           
   - platform: touchscreen
     name: 2B Touch Button
     x_min: 80
     x_max: 160
-    y_min: 0
-    y_max: 80
+    y_min: 80
+    y_max: 160
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1B was touched"
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.carrington_rd     
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.darri_ave              
   - platform: touchscreen
     name: 2C Touch Button
     x_min: 160
     x_max: 240
-    y_min: 0
-    y_max: 80
+    y_min: 80
+    y_max: 160
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1C was touched"
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: input_boolean.car_charger_override 
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                  
   - platform: touchscreen
     name: 2D Touch Button
-    x_min: 160
-    x_max: 240
-    y_min: 0
-    y_max: 80
+    x_min: 240
+    x_max: 360
+    y_min: 80
+    y_max: 160
     page_id: pageC      
     on_press:
-      - logger.log: "touchscreen 1C was touched"      
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: input_boolean.car_charger_override 
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                             
 
+
+  - platform: touchscreen
+    name: 3A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.study     
+  - platform: touchscreen
+    name: 3B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.study           
+  - platform: touchscreen
+    name: 3C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.tane
+  - platform: touchscreen
+    name: 3D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.tane                           
+
+
+  - platform: touchscreen
+    name: 4A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: media_player.turn_on
+          data_template:
+            entity_id: media_player.lounge_av_reciever
+  - platform: touchscreen
+    name: 4B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: media_player.turn_off
+          data_template:
+            entity_id: media_player.lounge_av_reciever    
+  - platform: touchscreen
+    name: 4C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_100155a107_2
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: input_boolean.car_charger_override
+  - platform: touchscreen
+    name: 4D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                        
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: input_boolean.car_charger_override
 
      # width: 320
      # height: 480
@@ -656,9 +829,9 @@ graph:
     width: 320 
     height: 100
     x_grid: 2h
-    y_grid: 2500
-    max_range: 10000
-    min_range: 10000    
+    y_grid: 2.500
+    max_range: 10.000
+    min_range: 10.000    
     min_value: 0     
     border: True
     traces:
@@ -667,37 +840,27 @@ graph:
         line_thickness: 1     
         continuous: true   
 
-
-image:
-  - file: mdi:bell-off 
-    id: img_BellOff 
-    resize: 100x100    
-  - file: mdi:bell
-    id: img_Bell
-    resize: 100x100   
-  - file: mdi:bell-ring
-    id: img_BellRing
-    resize: 100x100             
-  - file: "gauge.png"
-    id: img_gauge
-    type: RGB565
-
-
 touchscreen:
   platform: xpt2046
 #needs calibration
+  calibration:
+    x_min: 150
+    x_max: 3950
+    y_min: 250
+    y_max: 3960 
   id: my_touchscreen
   spi_id: touch_spi
   cs_pin: GPIO22
   interrupt_pin: GPIO01
   on_touch:
-  - lambda: |-
-        ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-            touch.x,
-            touch.y,
-            touch.x_raw,
-            touch.y_raw
-            );
+    - lambda: |-
+          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+              touch.x,
+              touch.y,
+              touch.x_raw,
+              touch.y_raw
+              );
+
 
 matrix_keypad:
   id: keypad
@@ -722,7 +885,8 @@ matrix_keypad:
     - pin: 
         number: GPIO02
         mode: 
-          output: True    
+          output: True  
+        ignore_strapping_warning: true  
     - pin:  
         number: GPIO04
         mode: 
@@ -734,7 +898,8 @@ matrix_keypad:
     - pin:  
         number: GPIO05
         mode: 
-          output: True     
+          output: True  
+        ignore_strapping_warning: true             
   keys: "123A456B789C*0#D"
   has_diodes: false  
   
