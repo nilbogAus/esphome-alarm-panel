@@ -84,6 +84,22 @@ text_sensor:
     name: "Fridge Express Mode"
     id: refrigerator_express_mode
     entity_id: switch.refrigerator_express_mode
+    
+  - platform: homeassistant
+    name: "Forecast Text"
+    id: forecast_text
+    entity_id: sensor.wahroonga_extended_text_1
+
+  - platform: homeassistant
+    name: "Forecast Rain Chance"
+    id: forecast_rain_chance
+    entity_id: sensor.wahroonga_rain_chance_1
+
+
+  - platform: homeassistant
+    name: "Forecast Icon"
+    id: forecast_icon
+    entity_id: sensor.wahroonga_mdi_icon_1
 
 time:
   - platform: homeassistant
@@ -100,6 +116,7 @@ light:
     id: Backlight
     restore_mode: ALWAYS_ON
     output: backlight_output
+
 
 
 sensor:
@@ -153,7 +170,30 @@ sensor:
     name: "Solar Power"
     id: solar_power
     entity_id: sensor.envoy_122348003312_current_power_production
-
+  - platform: homeassistant
+    name: "Inside Temp"
+    id: inside_temp
+    entity_id: sensor.adjusted_lounge_temperature
+  - platform: homeassistant
+    name: "Outside Temp"
+    id: outside_temp
+    entity_id: sensor.easyweatherv1_6_5_outdoor_temperature
+  - platform: homeassistant
+    name: "Forecast Temp Min"
+    id: forecast_temp_min
+    entity_id: sensor.wahroonga_temp_min_1
+  - platform: homeassistant
+    name: "Forecast Temp Max"
+    id: forecast_temp_max
+    entity_id: sensor.wahroonga_temp_max_1    
+  - platform: homeassistant
+    name: "Forecast Rain Amount Max"
+    id: forecast_rain_amount_max
+    entity_id: sensor.wahroonga_rain_amount_max_1
+  - platform: homeassistant
+    name: "Forecast Rain Amount Min"
+    id: forecast_rain_amount_min
+    entity_id: sensor.wahroonga_rain_amount_min_1       
 
 #ST7796 display
 spi:
@@ -226,7 +266,6 @@ display:
 
           // +- range of guage
           int range = 7000; 
-
           float elec_rate = 0.000077;
 
           // get value and apply limits and set dyunamic color
@@ -285,7 +324,6 @@ display:
               it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Fridge Express Mode");
               list_locations.pop();
             }            
-            
 
             // get value and apply limits and set dyunamic color
             if (value<range/10)
@@ -398,12 +436,93 @@ display:
           it.image(260, 190, id(img_batteryOff));
           it.printf(280, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");                 
 
-      - id: pageD
+      - id: pageD  
         lambda: |-
-          // Weather
+          // Weather    //320x480
           it.fill(COLOR_OFF); // Turn the whole display off.
-          it.print(10, 10, id(roboto), id(col_red), TextAlign::TOP_LEFT, "Weather");
+          it.print(80, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Inside");
+          it.print(240, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Outside");
+          it.printf(80, 50, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.1f°C", id(inside_temp).state) ;
+          it.printf(240, 50, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.1f°C", id(outside_temp).state) ;
+          it.line(0, 105, 320, 105, col_gray);
+          it.line(160, 0, 160, 105, col_gray);
+          // forcast
+          it.print(155, 125, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Tomorrow");
 
+          //image
+          std::hash<std::string> hasher;
+
+          // std::string inp = "mdi:weather-fog";
+          // ESP_LOGD("lambda", "string %s hash %u",inp.c_str(), hasher(inp));
+
+          switch (hasher(id(forecast_icon).state.c_str()))
+          {
+              case 1242744452: // mdi:weather-pouring
+                it.image(80, 160, id(img_weather_pouring));
+                break;
+              case 3309699129: // mdi:weather-cloudy
+                it.image(80, 160, id(img_weather_cloudy));
+                break;                
+              case 2949318122: // mdi:weather-night
+                it.image(80, 160, id(img_weather_night));
+                break;
+              case 345913139: // mdi:weather-hurricane
+                it.image(80, 160, id(img_weather_hurricane));
+                break;     
+              case 1492665726: // mdi:weather-hazy
+                it.image(80, 160, id(img_weather_hazy));
+                break;
+              case 3041611428: // mdi:weather-sunny
+                it.image(80, 160, id(img_weather_sunny));
+                break;     
+              case 2562052155: // mdi:weather-partly-rainy
+              case 3241844169: // mdi:weather-light-showers              
+                it.image(80, 160, id(img_weather_partly_rainy));
+                break;
+              case 3348912596: // mdi:weather-partly-cloudy
+                it.image(80, 160, id(img_weather_partly_cloudy));
+                break;
+              case 3416433233: // mdi:weather-rainy
+                it.image(80, 160, id(img_weather_rainy));
+                break; 
+              case 2453884742: // mdi:weather-windy              
+                it.image(80, 160, id(img_weather_windy));
+                break;
+              case 3996108531: // mdi:weather-snowy
+                it.image(80, 160, id(img_weather_snowy));
+                break;
+              case 344035588: // mdi:weather-lightning-rainy
+                it.image(80, 160, id(img_weather_lightning_rainy));
+                break;                 
+              case 3167514251: // mdi:weather-fog
+                it.image(80, 160, id(img_weather_fog));
+                break;
+              case 1097013394: // mdi:snowflake-melt
+                it.image(80, 160, id(img_weather_snowflake_melt));
+                break;  
+              default:
+                std::string inp = "mdi:weather-fog";
+                ESP_LOGD("lambda", "string %s hash %u",id(forecast_icon).state.c_str(), hasher(id(forecast_icon).state));
+
+          }      
+
+          //text
+          std::string ft = "";
+          int ypos = 340;
+          for(char c : id(forecast_text).state) {
+            ft += c ;
+            if(c == '.' || c == ',')
+            {
+              it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+              ft = "";      
+              ypos += 15;      
+            }
+          }
+          it.printf(70, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min).state, id(forecast_temp_max).state);
+          it.printf(240, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min).state, id(forecast_rain_amount_max).state);
+          it.printf(160, 410, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
+           
+  
       - id: pageDebug0
         lambda: |-
           int shift_x = (it.get_width()-310)/2;
