@@ -1,0 +1,112 @@
+color:
+  - id: col_blue
+    hex: 0000ff
+  - id: col_red
+    hex: ff0000
+  - id: col_green
+    hex: 00ff00
+  - id: col_dkgreen
+    hex: 008800    
+  - id: col_white
+    hex: ffffff
+  - id: col_yellow
+    hex: ffff00   
+  - id: col_orange
+    hex: FFA500   
+  - id: col_gray
+    hex: 6f6f6f   
+
+font:
+  - file: "gfonts://Roboto"
+    id: roboto_lrg
+    size: 50
+    glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
+  - file: "gfonts://Roboto"
+    id: roboto
+    size: 25
+    glyphs: '¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
+  - file: "gfonts://Roboto"
+    id: roboto_sml
+    size: 12
+    glyphs: '–|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'     
+
+
+image:
+  - file: mdi:bell-off 
+    id: img_BellOff 
+    resize: 100x100    
+  - file: mdi:bell
+    id: img_Bell
+    resize: 100x100   
+  - file: mdi:bell-ring
+    id: img_BellRing
+    resize: 100x100             
+  - file: "gauge.png"
+    id: img_gauge
+    type: RGB565
+  - file: mdi:lightbulb-on 
+    id: img_LightbulbOn
+    resize: 40x40      
+  - file: mdi:lightbulb-outline 
+    id: img_LightbulbOff
+    resize: 40x40  
+  - file: mdi:blinds-horizontal
+    id: img_BlindsHorizontalOpen
+    resize: 40x40   
+  - file: mdi:blinds-horizontal-closed
+    id: img_BlindsHorizontalClosed
+    resize: 40x40       
+  - file: mdi:television-off
+    id: img_televisionOff
+    resize: 40x40   
+  - file: mdi:television
+    id: img_televisionOn
+    resize: 40x40     
+  - file: mdi:battery-charging              
+    id: img_batteryCharging
+    resize: 40x40  
+  - file: mdi:battery-off              
+    id: img_batteryOff
+    resize: 40x40     
+  - file: mdi:weather-pouring              
+    id: img_weather_pouring 
+    resize: 160x160  
+  - file: mdi:weather-cloudy              
+    id: img_weather_cloudy
+    resize: 160x160  
+  - file: mdi:weather-night              
+    id: img_weather_night
+    resize: 160x160 
+  - file: mdi:weather-hurricane              
+    id: img_weather_hurricane
+    resize: 160x160 
+  - file: mdi:weather-hazy            
+    id: img_weather_hazy
+    resize: 160x160 
+  - file: mdi:weather-sunny              
+    id: img_weather_sunny
+    resize: 160x160 
+  - file: mdi:weather-partly-rainy            
+    id: img_weather_partly_rainy
+    resize: 160x160 
+  - file: mdi:weather-partly-cloudy
+    id: img_weather_partly_cloudy
+    resize: 160x160 
+  - file: mdi:weather-rainy              
+    id: img_weather_rainy
+    resize: 160x160 
+  - file: mdi:weather-windy            
+    id: img_weather_windy
+    resize: 160x160 
+  - file: mdi:weather-snowy
+    id: img_weather_snowy
+    resize: 160x160 
+  - file: mdi:weather-lightning-rainy              
+    id: img_weather_lightning_rainy
+    resize: 160x160 
+  - file: mdi:weather-fog
+    id: img_weather_fog
+    resize: 160x160 
+  - file: mdi:snowflake_melt            
+    id: img_weather_snowflake_melt
+    resize: 160x160 
