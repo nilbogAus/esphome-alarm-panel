@@ -1,0 +1,87 @@
+
+- id: pageD  
+  lambda: |-
+    // Weather    //320x480
+    it.fill(COLOR_OFF); // Turn the whole display off.
+    it.print(80, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Inside");
+    it.print(240, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Outside");
+    it.printf(80, 50, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.1f°C", id(inside_temp).state) ;
+    it.printf(240, 50, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.1f°C", id(outside_temp).state) ;
+    it.line(0, 105, 320, 105, col_gray);
+    it.line(160, 0, 160, 105, col_gray);
+    // forcast
+    it.print(155, 125, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Tomorrow");
+
+    //image
+    std::hash<std::string> hasher;
+
+    // std::string inp = "mdi:weather-fog";
+    // ESP_LOGD("lambda", "string %s hash %u",inp.c_str(), hasher(inp));
+
+    switch (hasher(id(forecast_icon).state.c_str()))
+    {
+        case 1242744452: // mdi:weather-pouring
+        it.image(80, 160, id(img_weather_pouring));
+        break;
+        case 3309699129: // mdi:weather-cloudy
+        it.image(80, 160, id(img_weather_cloudy));
+        break;                
+        case 2949318122: // mdi:weather-night
+        it.image(80, 160, id(img_weather_night));
+        break;
+        case 345913139: // mdi:weather-hurricane
+        it.image(80, 160, id(img_weather_hurricane));
+        break;     
+        case 1492665726: // mdi:weather-hazy
+        it.image(80, 160, id(img_weather_hazy));
+        break;
+        case 3041611428: // mdi:weather-sunny
+        it.image(80, 160, id(img_weather_sunny));
+        break;     
+        case 2562052155: // mdi:weather-partly-rainy
+        case 3241844169: // mdi:weather-light-showers              
+        it.image(80, 160, id(img_weather_partly_rainy));
+        break;
+        case 3348912596: // mdi:weather-partly-cloudy
+        it.image(80, 160, id(img_weather_partly_cloudy));
+        break;
+        case 3416433233: // mdi:weather-rainy
+        it.image(80, 160, id(img_weather_rainy));
+        break; 
+        case 2453884742: // mdi:weather-windy              
+        it.image(80, 160, id(img_weather_windy));
+        break;
+        case 3996108531: // mdi:weather-snowy
+        it.image(80, 160, id(img_weather_snowy));
+        break;
+        case 344035588: // mdi:weather-lightning-rainy
+        it.image(80, 160, id(img_weather_lightning_rainy));
+        break;                 
+        case 3167514251: // mdi:weather-fog
+        it.image(80, 160, id(img_weather_fog));
+        break;
+        case 1097013394: // mdi:snowflake-melt
+        it.image(80, 160, id(img_weather_snowflake_melt));
+        break;  
+        default:
+        std::string inp = "mdi:weather-fog";
+        ESP_LOGD("lambda", "string %s hash %u",id(forecast_icon).state.c_str(), hasher(id(forecast_icon).state));
+
+    }      
+
+    //text
+    std::string ft = "";
+    int ypos = 340;
+    for(char c : id(forecast_text).state) {
+    ft += c ;
+    if(c == '.' || c == ',')
+    {
+        it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+        ft = "";      
+        ypos += 15;      
+    }
+    }
+    it.printf(70, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min).state, id(forecast_temp_max).state);
+    it.printf(240, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min).state, id(forecast_rain_amount_max).state);
+    it.printf(160, 410, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
+    

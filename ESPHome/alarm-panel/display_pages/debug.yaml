@@ -1,0 +1,53 @@
+
+- id: pageDebug0
+  lambda: |-
+    int shift_x = (it.get_width()-310)/2;
+    int shift_y = (it.get_height()-470)/2;
+    for(auto i = 0; i<470; i++) {
+    it.horizontal_line(shift_x+  0,i+shift_y,50, col_red.fade_to_white(i));
+    it.horizontal_line(shift_x+ 50,i+shift_y,50, col_red.fade_to_black(i));
+
+    it.horizontal_line(shift_x+105,i+shift_y,50, col_green.fade_to_white(i));
+    it.horizontal_line(shift_x+155,i+shift_y,50, col_green.fade_to_black(i));
+
+    it.horizontal_line(shift_x+210,i+shift_y,50, col_blue.fade_to_white(i));
+    it.horizontal_line(shift_x+260,i+shift_y,50, col_blue.fade_to_black(i));
+    }
+    it.rectangle(0, 0, it.get_width(), it.get_height(), col_yellow);             
+- id: pageDebug1
+  lambda: |-
+    it.fill(COLOR_OFF); // Turn the whole display off.
+    it.printf(0, 1, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.1f° :Internal Temp", id(InternalTemp).state);  
+    it.printf(0, 25, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0f%% :wifi signal", id(wifi_signal_pct).state);  
+    it.printf(0, 75, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Heap Free", id(HeapFree).state/1024); 
+    it.printf(0, 100, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Heap Max Block", id(HeapMaxBlock).state/1024); 
+    it.printf(0, 125, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fms Loop Time", id(LoopTime).state); 
+    it.printf(0, 50, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Free PSRAM", id(freePSRAM).state/1024); 
+
+    int shift_y = 150;
+    std::string str = id(DeviceInfo).state;
+    std::vector<std::string> v;
+    char * token;
+    char seps[] = "|";
+    token = strtok (&str[0],seps);
+    while (token != NULL)
+    {
+        v.push_back(token);
+        token = strtok (NULL, seps);
+    }
+    for ( std::string s : v ) {
+        shift_y += 12;             
+        it.printf(0, shift_y, id(roboto_sml), id(col_white), TextAlign::TOP_LEFT, "%s", s.c_str());
+    }
+
+    it.strftime(0, 450, id(roboto), "%H:%M:%S", id(homeassistant_time).now());
+- id: pageDebug2
+  lambda: |-
+    it.fill(COLOR_OFF); // Turn the whole display off.
+    it.print(0,0, roboto, "Temp");
+    it.graph(0, 0, id(InternalTemp_graph));
+    it.print(0,155, roboto, "Wifi");
+    it.graph(0, 155, id(wifi_graph));
+    it.print(0, 310, roboto, "loop time");
+    it.graph(0, 310, id(LoopTime_graph));
+    it.strftime(0, 460, id(roboto_sml), "%H:%M:%S", id(homeassistant_time).now());

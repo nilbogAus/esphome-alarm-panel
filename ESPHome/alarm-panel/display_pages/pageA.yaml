@@ -1,0 +1,36 @@
+
+  - id: pageA
+    lambda: |-
+        // Alarm
+        it.fill(COLOR_OFF);
+
+        // ALARM STATE
+        if (id(homeassistant_alarm).state=="disarmed"){
+        it.image(110, 50, id(img_BellOff));
+        it.print(160, 160, id(roboto_lrg), id(col_green), TextAlign::CENTER_HORIZONTAL, "Disarmed");
+        } else if (id(homeassistant_alarm).state=="arming"){
+        it.image(110, 50, id(img_Bell));
+        it.print(160, 160, id(roboto_lrg), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Arming");
+        } else if (id(homeassistant_alarm).state=="triggered"){
+        it.image(110, 50, id(img_BellRing));
+        it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, "Triggered");
+        } else if (id(homeassistant_alarm).state.substr(0,5)=="armed"){
+        it.image(110, 50, id(img_Bell));
+        it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+        } else {
+        it.print(160, 200, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+        }
+
+        // KEYCODE
+        if (id(g_keypad).length() > 0){
+        it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, id(g_keypad).c_str());
+        } else {
+        if (id(homeassistant_alarm).state=="disarmed"){
+            it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL,"Enter Passcode to ARM");
+        } else {
+            it.print(160, 220, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL,"Enter Passcode to DISARM");
+        }
+        }
+
+        // TIME
+        it.strftime(0, 468, id(roboto_sml), col_white, "%H:%M:%S", id(homeassistant_time).now());

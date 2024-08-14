@@ -1,0 +1,66 @@
+
+- id: pageC
+  lambda: |-
+    // Buttons
+    it.fill(COLOR_OFF); // Turn the whole display off.
+    for(int i=0; i<480; i+=80) 
+    {
+    it.horizontal_line(0,i,320,col_gray);
+    }
+    for(int i=0; i<320; i+=80) 
+    {
+    it.vertical_line(i,0,480,col_gray);
+    }             
+    it.rectangle(0, 0, it.get_width(), it.get_height(),col_gray); 
+
+    // button 1A (0,400-80,480)
+    it.image(20, 430, id(img_LightbulbOff));
+    it.printf(40, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane"); 
+    // button 1B (80,400-160,480)
+    it.image(100, 430, id(img_LightbulbOn));
+    it.printf(120, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");          
+    // button 1C (160,400-240,480)
+    it.image(180, 430, id(img_LightbulbOff));
+    it.printf(200, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");        
+    // button 1D (240,400-360,480)
+    it.image(260, 430, id(img_LightbulbOn));
+    it.printf(280, 410, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");                     
+
+    // button 2A (0,320-80,400)
+    it.image(20, 350, id(img_BlindsHorizontalOpen));
+    it.printf(40, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");
+    // button 2B (80,320-160,400)
+    it.image(100, 350, id(img_BlindsHorizontalClosed));
+    it.printf(120, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");          
+    // button 2C (160,320-240,400)
+    it.image(180, 350, id(img_BlindsHorizontalOpen));
+    it.printf(200, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");       
+    // button 2D (240,320-360,400)
+    it.image(260, 350, id(img_BlindsHorizontalClosed));
+    it.printf(280, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Front room");       
+
+    // button 3A (0,260-80,320)
+    it.image(20, 270, id(img_BlindsHorizontalOpen));
+    it.printf(40, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Study");
+    // button 3B (80,260-160,320)
+    it.image(100, 270, id(img_BlindsHorizontalClosed));
+    it.printf(120, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Study");          
+    // button 3C (160,260-240,320)
+    it.image(180, 270, id(img_BlindsHorizontalOpen));
+    it.printf(200, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");       
+    // button 3D (240,260-360,320)
+    it.image(260, 270, id(img_BlindsHorizontalClosed));
+    it.printf(280, 250, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Tane");                 
+
+    // button 4A (0,180-80,240)
+    it.image(20, 190, id(img_televisionOn));
+    it.printf(40, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Living Room");
+    // button 4B (80,180-160,240)
+    it.image(100, 190, id(img_televisionOff));
+    it.printf(120, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Living Room");          
+    // button 4C (160,180-240,240)
+    it.image(180, 190, id(img_batteryCharging));
+    it.printf(200, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");       
+    // button 4D (240,180-360,240)
+    it.image(260, 190, id(img_batteryOff));
+    it.printf(280, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");                 
