@@ -87,7 +87,8 @@
     }
     else
     {
-      it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f°C", id(forecast_temp_max_today).state);  
+      it.printf(70, 315, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s", id(forecast_label_today).state.c_str()); 
+      it.printf(70, 330, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f°C", id(forecast_temp_max_today).state); 
     }
     it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min_today).state, id(forecast_rain_amount_max_today).state);
     it.printf(160, 420, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance_today).state.c_str());
