@@ -84,20 +84,30 @@ text_sensor:
     entity_id: switch.refrigerator_express_mode
     
   - platform: homeassistant
+    name: "Forecast Today Text"
+    id: forecast_text_today
+    entity_id: sensor.wahroonga_extended_text_0
+  - platform: homeassistant
+    name: "Forecast Today Rain Chance"
+    id: forecast_rain_chance_today
+    entity_id: sensor.wahroonga_rain_chance_0
+  - platform: homeassistant
+    name: "Forecast Today Icon"
+    id: forecast_icon_today
+    entity_id: sensor.wahroonga_mdi_icon_0
+
+  - platform: homeassistant
     name: "Forecast Text"
     id: forecast_text
     entity_id: sensor.wahroonga_extended_text_1
-
   - platform: homeassistant
     name: "Forecast Rain Chance"
     id: forecast_rain_chance
     entity_id: sensor.wahroonga_rain_chance_1
-
-
   - platform: homeassistant
     name: "Forecast Icon"
     id: forecast_icon
-    entity_id: sensor.wahroonga_mdi_icon_1
+    entity_id: sensor.wahroonga_mdi_icon_1    
 
 time:
   - platform: homeassistant
@@ -114,8 +124,6 @@ light:
     id: Backlight
     restore_mode: ALWAYS_ON
     output: backlight_output
-
-
 
 sensor:
     # Wifi Signal
@@ -176,6 +184,7 @@ sensor:
     name: "Outside Temp"
     id: outside_temp
     entity_id: sensor.easyweatherv1_6_5_outdoor_temperature
+
   - platform: homeassistant
     name: "Forecast Temp Min"
     id: forecast_temp_min
@@ -192,6 +201,24 @@ sensor:
     name: "Forecast Rain Amount Min"
     id: forecast_rain_amount_min
     entity_id: sensor.wahroonga_rain_amount_min_1       
+
+  - platform: homeassistant
+    name: "Forecast Today Temp Min"
+    id: forecast_temp_min_today
+    entity_id: sensor.wahroonga_temp_min_0
+  - platform: homeassistant
+    name: "Forecast Today Temp Max"
+    id: forecast_temp_max_today
+    entity_id: sensor.wahroonga_temp_max_0    
+  - platform: homeassistant
+    name: "Forecast Today Rain Amount Max"
+    id: forecast_rain_amount_max_today
+    entity_id: sensor.wahroonga_rain_amount_max_0
+  - platform: homeassistant
+    name: "Forecast Today Rain Amount Min"
+    id: forecast_rain_amount_min_today
+    entity_id: sensor.wahroonga_rain_amount_min_0       
+    
 
 #ST7796 display
 spi:
@@ -280,8 +307,14 @@ binary_sensor:
     internal: true
     key: D
     on_press:
-      - display.page.show: pageD
-      - component.update: my_display
+      then:
+        if:
+          condition:
+            display.is_displaying_page: pageD
+          then:      
+            display.page.show: pageD2                    
+          else:
+            display.page.show: pageD
 
   - platform: touchscreen
     name: 1A Touch Button
