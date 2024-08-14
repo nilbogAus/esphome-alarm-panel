@@ -70,7 +70,7 @@
 
     //text
     std::string ft = "";
-    int ypos = 340;
+    int ypos = 350;
     for(char c : id(forecast_text_today).state) {
     ft += c ;
     if(c == '.' || c == ',')
@@ -80,7 +80,15 @@
         ypos += 15;      
     }
     }
-    it.printf(70, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min_today).state, id(forecast_temp_max_today).state);
-    it.printf(240, 305, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min_today).state, id(forecast_rain_amount_max_today).state);
-    it.printf(160, 410, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance_today).state.c_str());
+    
+    if(!isnan(id(forecast_temp_min_today).state))
+    {
+      it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min_today).state, id(forecast_temp_max_today).state);      
+    }
+    else
+    {
+      it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f°C", id(forecast_temp_max_today).state);  
+    }
+    it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min_today).state, id(forecast_rain_amount_max_today).state);
+    it.printf(160, 420, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance_today).state.c_str());
     
