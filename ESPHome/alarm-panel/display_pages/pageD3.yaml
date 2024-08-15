@@ -1,5 +1,5 @@
 
-- id: pageD  
+- id: pageD3
   lambda: |-
     // Weather    //320x480
     it.fill(COLOR_OFF); // Turn the whole display off.
@@ -10,7 +10,7 @@
     it.line(0, 105, 320, 105, col_gray);
     it.line(160, 0, 160, 105, col_gray);
     // forcast
-    it.print(155, 125, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Tomorrow");
+    it.print(155, 125, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Day After Tomorrow");
 
     //image
     std::hash<std::string> hasher;
@@ -18,7 +18,7 @@
     // std::string inp = "mdi:weather-fog";
     // ESP_LOGD("lambda", "string %s hash %u",inp.c_str(), hasher(inp));
 
-    switch (hasher(id(forecast_icon).state.c_str()))
+    switch (hasher(id(forecast_icon_2).state.c_str()))
     {
         case 1242744452: // mdi:weather-pouring
             it.image(80, 160, id(img_weather_pouring));
@@ -65,14 +65,13 @@
             break;  
         default:
             std::string inp = "mdi:weather-fog";
-            ESP_LOGD("lambda", "string %s hash %u",id(forecast_icon).state.c_str(), hasher(id(forecast_icon).state));
-
+            ESP_LOGD("lambda", "string %s hash %u",id(forecast_icon_2).state.c_str(), hasher(id(forecast_icon_2).state));    
     }      
 
     //text
     std::string ft = "";
     int ypos = 350;
-    for(char c : id(forecast_text).state) {
+    for(char c : id(forecast_text_2).state) {
     ft += c ;
     if(c == '.' || c == ',')
     {
@@ -81,7 +80,8 @@
         ypos += 15;      
     }
     }
-    it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min).state, id(forecast_temp_max).state);
-    it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min).state, id(forecast_rain_amount_max).state);
-    it.printf(160, 440, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
+    
+    it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min_2).state, id(forecast_temp_max_2).state);      
+    it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min_2).state, id(forecast_rain_amount_max_2).state);
+    it.printf(160, 440, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance_2).state.c_str());
     

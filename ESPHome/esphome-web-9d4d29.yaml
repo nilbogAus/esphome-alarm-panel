@@ -114,6 +114,20 @@ text_sensor:
     id: forecast_icon
     entity_id: sensor.wahroonga_mdi_icon_1    
 
+  - platform: homeassistant
+    name: "Forecast Text"
+    id: forecast_text_2
+    entity_id: sensor.wahroonga_extended_text_2
+  - platform: homeassistant
+    name: "Forecast Rain Chance"
+    id: forecast_rain_chance_2
+    entity_id: sensor.wahroonga_rain_chance_2
+  - platform: homeassistant
+    name: "Forecast Icon"
+    id: forecast_icon_2
+    entity_id: sensor.wahroonga_mdi_icon_2  
+
+
 time:
   - platform: homeassistant
     id: homeassistant_time    
@@ -223,7 +237,24 @@ sensor:
     name: "Forecast Today Rain Amount Min"
     id: forecast_rain_amount_min_today
     entity_id: sensor.wahroonga_rain_amount_min_0       
-    
+
+  - platform: homeassistant
+    name: "Forecast Temp Min"
+    id: forecast_temp_min_2
+    entity_id: sensor.wahroonga_temp_min_2
+  - platform: homeassistant
+    name: "Forecast Temp Max"
+    id: forecast_temp_max_2
+    entity_id: sensor.wahroonga_temp_max_2   
+  - platform: homeassistant
+    name: "Forecast Rain Amount Max"
+    id: forecast_rain_amount_max_2
+    entity_id: sensor.wahroonga_rain_amount_max_2
+  - platform: homeassistant
+    name: "Forecast Rain Amount Min"
+    id: forecast_rain_amount_min_2
+    entity_id: sensor.wahroonga_rain_amount_min_2       
+
 
 #ST7796 display
 spi:
@@ -319,7 +350,13 @@ binary_sensor:
           then:      
             display.page.show: pageD2                    
           else:
-            display.page.show: pageD
+            if:
+              condition:
+                display.is_displaying_page: pageD2
+              then:      
+                display.page.show: pageD3                  
+              else:
+                display.page.show: pageD
 
   - platform: touchscreen
     name: 1A Touch Button
