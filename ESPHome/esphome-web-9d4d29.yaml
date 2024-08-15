@@ -40,6 +40,7 @@ captive_portal:
 packages:
   assets: !include alarm-panel/assets.yaml   
   matrix_keypad: !include alarm-panel/matrix_keypad.yaml
+  my_scripts: !include alarm-panel/scripts.yaml
 
 globals:
   - id: g_keypad

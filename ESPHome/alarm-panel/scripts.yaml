@@ -1,0 +1,20 @@
+script:
+  - id: script_page_carousel
+    mode: restart
+    then:
+      - delay: 60s  
+      - while:
+            condition:
+                wifi.connected:
+            then:
+                - display.page.show: pageB
+                - delay: 10s
+                - display.page.show: pageC
+                - delay: 10s
+                - display.page.show: pageD
+                - delay: 5s      
+                - display.page.show: pageD2
+                - delay: 5s  
+                - display.page.show: pageD3
+                - delay: 5s              
+
