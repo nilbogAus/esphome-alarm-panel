@@ -49,6 +49,10 @@ globals:
     max_restore_data_length: 5
     initial_value: ''
 
+on_boot:
+  then:    
+    - script.execute: script_page_carousel
+
 debug:
   update_interval: 300s
 
@@ -319,6 +323,7 @@ binary_sensor:
     on_press:
       - display.page.show: pageA
       - component.update: my_display
+      - script.execute: script_page_carousel
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadB
@@ -328,6 +333,7 @@ binary_sensor:
     on_press:
       - display.page.show: pageB
       - component.update: my_display
+      - script.execute: script_page_carousel
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadC
@@ -337,6 +343,7 @@ binary_sensor:
     on_press:
       - display.page.show: pageC
       - component.update: my_display
+      - script.execute: script_page_carousel
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadD
@@ -349,15 +356,18 @@ binary_sensor:
           condition:
             display.is_displaying_page: pageD
           then:      
-            display.page.show: pageD2                    
+            - display.page.show: pageD2       
+            - script.execute: script_page_carousel             
           else:
             if:
               condition:
                 display.is_displaying_page: pageD2
               then:      
-                display.page.show: pageD3                  
+                - display.page.show: pageD3     
+                - script.execute: script_page_carousel             
               else:
-                display.page.show: pageD
+                - display.page.show: pageD
+                - script.execute: script_page_carousel
 
   - platform: touchscreen
     name: 1A Touch Button

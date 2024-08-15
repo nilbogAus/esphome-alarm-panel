@@ -2,7 +2,7 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-      - delay: 60s  
+      - delay: 5 min  
       - while:
             condition:
                 wifi.connected:
