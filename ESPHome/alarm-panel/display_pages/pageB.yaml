@@ -3,6 +3,9 @@
     // Solar
     it.fill(COLOR_OFF); // Turn the whole display off.
 
+    it.print(160, 10, id(roboto), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Electricity");
+    it.print(320, 10, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page B");    
+
     // guage image
     it.image(5, 50, id(img_gauge));
 
@@ -108,7 +111,7 @@
 
     //solar graph
     it.graph(0, 240, id(solar_power_graph));
-    it.print(160, 242, id(roboto_sml), col_dkgreen, TextAlign::CENTER_HORIZONTAL, "Solar");
+    it.print(160, 242, id(roboto_sml), col_dkgreen, TextAlign::CENTER_HORIZONTAL, "Solar Generation");
 
     // TIME
     it.strftime(0, 468, id(roboto_sml), col_white, "%H:%M:%S", id(homeassistant_time).now());

@@ -2,7 +2,7 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - delay: 10s
+        - delay: 30s    #wait for boot
         - if:
             condition:
                 # Checks if "homeassistant_alarm" has state "disarmed" 
