@@ -83,5 +83,5 @@
     }
     it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min).state, id(forecast_temp_max).state);
     it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min).state, id(forecast_rain_amount_max).state);
-    it.printf(160, 420, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
+    it.printf(160, 430, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
     
