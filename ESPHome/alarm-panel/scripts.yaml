@@ -2,19 +2,30 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-      - delay: 5 min  
-      - while:
+        - delay: 10s
+        - if:
             condition:
-                wifi.connected:
+                # Checks if "homeassistant_alarm" has state "disarmed" 
+                text_sensor.state:
+                    id: homeassistant_alarm
+                    state: 'disarmed'   
             then:
-                - display.page.show: pageB
-                - delay: 10s
-                - display.page.show: pageC
-                - delay: 10s
-                - display.page.show: pageD
-                - delay: 5s      
-                - display.page.show: pageD2
-                - delay: 5s  
-                - display.page.show: pageD3
-                - delay: 5s              
+                - delay: 5 min  
+                - while:
+                    condition:
+                        wifi.connected:
+                    then:
+                        - display.page.show: pageB
+                        - delay: 10s
+                        - display.page.show: pageC
+                        - delay: 10s
+                        - display.page.show: pageD
+                        - delay: 5s      
+                        - display.page.show: pageD2
+                        - delay: 5s  
+                        - display.page.show: pageD3
+                        - delay: 5s 
+            else:
+                - display.page.show: pageA           
+
 
