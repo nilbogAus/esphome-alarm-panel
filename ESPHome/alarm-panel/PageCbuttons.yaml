@@ -1,0 +1,272 @@
+binary_sensor: 
+  - platform: touchscreen
+    name: 1A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_10007724b9      
+  - platform: touchscreen
+    name: 1B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_10007724b9      
+  - platform: touchscreen
+    name: 1C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_10001adcce       
+  - platform: touchscreen
+    name: 1D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 0
+    y_max: 80
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_10001adcce    
+
+  - platform: touchscreen
+    name: 2A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 80
+    y_max: 160
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.carrington_rd     
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.darri_ave           
+  - platform: touchscreen
+    name: 2B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 80
+    y_max: 160
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.carrington_rd     
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.darri_ave              
+  - platform: touchscreen
+    name: 2C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 80
+    y_max: 160
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: input_boolean.car_charger_override 
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                  
+  - platform: touchscreen
+    name: 2D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 80
+    y_max: 160
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: input_boolean.car_charger_override 
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                             
+
+
+  - platform: touchscreen
+    name: 3A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.study     
+  - platform: touchscreen
+    name: 3B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.study           
+  - platform: touchscreen
+    name: 3C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.tane
+  - platform: touchscreen
+    name: 3D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 160
+    y_max: 240
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.tane                           
+
+
+  - platform: touchscreen
+    name: 4A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: media_player.turn_on
+          data_template:
+            entity_id: media_player.lounge_av_reciever
+  - platform: touchscreen
+    name: 4B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: media_player.turn_off
+          data_template:
+            entity_id: media_player.lounge_av_reciever    
+  - platform: touchscreen
+    name: 4C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: switch.sonoff_100155a107_2
+      - homeassistant.service:
+          service: switch.turn_on
+          data_template:
+            entity_id: input_boolean.car_charger_override
+  - platform: touchscreen
+    name: 4D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 240
+    y_max: 320
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: switch.sonoff_100155a107_2                        
+      - homeassistant.service:
+          service: switch.turn_off
+          data_template:
+            entity_id: input_boolean.car_charger_override
+
+
+  - platform: touchscreen
+    name: 5A Touch Button
+    x_min: 0
+    x_max: 80
+    y_min: 320
+    y_max: 400
+    page_id: pageC      
+    on_press:
+      - homeassistant.service:
+          service: light.turn_on
+          data_template:
+            entity_id: light.lucy_top_bunk
+            brightness_pct: '10' 
+  - platform: touchscreen
+    name: 5B Touch Button
+    x_min: 80
+    x_max: 160
+    y_min: 320
+    y_max: 400
+    page_id: pageC      
+    on_press:
+     - homeassistant.service:
+        service: light.turn_on
+        data:
+          brightness_step_pct: '100'
+          entity_id: light.lucy_top_bunk
+  - platform: touchscreen
+    name: 5C Touch Button
+    x_min: 160
+    x_max: 240
+    y_min: 320
+    y_max: 400
+    page_id: pageC    
+    on_press:
+      - homeassistant.service:
+          service: light.turn_off
+          data_template:
+            entity_id: light.lucy_top_bunk
+ 
+  - platform: touchscreen
+    name: 5D Touch Button
+    x_min: 240
+    x_max: 360
+    y_min: 320
+    y_max: 400
+    page_id: pageC      
+    #on_press:
+         

@@ -12,7 +12,7 @@ esp32:
    # version: recommended
     # Custom sdkconfig options
     sdkconfig_options:
-      COMPILER_OPTIMIZATION_SIZE: y    
+      COMPILER_OPTIMIZATION_PERFORMANCE: y    
 
 # Enable logging
 logger:
@@ -44,6 +44,7 @@ packages:
   assets: !include alarm-panel/assets.yaml   
   matrix_keypad: !include alarm-panel/matrix_keypad.yaml
   my_scripts: !include alarm-panel/scripts.yaml
+  PageC: !include alarm-panel/PageCbuttons.yaml  
 
 globals:
   - id: g_keypad
@@ -288,9 +289,9 @@ display:
     data_rate: 80MHz
     pages: !include_dir_merge_list alarm-panel/display_pages/
 
-
-
 binary_sensor: 
+
+
   - platform: gpio
     pin:
       number: GPIO0
@@ -369,228 +370,8 @@ binary_sensor:
                 - display.page.show: pageD
                 - script.execute: script_page_carousel
 
-  - platform: touchscreen
-    name: 1A Touch Button
-    x_min: 0
-    x_max: 80
-    y_min: 0
-    y_max: 80
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: switch.sonoff_10007724b9      
-  - platform: touchscreen
-    name: 1B Touch Button
-    x_min: 80
-    x_max: 160
-    y_min: 0
-    y_max: 80
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: switch.sonoff_10007724b9      
-  - platform: touchscreen
-    name: 1C Touch Button
-    x_min: 160
-    x_max: 240
-    y_min: 0
-    y_max: 80
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: switch.sonoff_10001adcce       
-  - platform: touchscreen
-    name: 1D Touch Button
-    x_min: 240
-    x_max: 360
-    y_min: 0
-    y_max: 80
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: switch.sonoff_10001adcce    
 
-  - platform: touchscreen
-    name: 2A Touch Button
-    x_min: 0
-    x_max: 80
-    y_min: 80
-    y_max: 160
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.open_cover
-          data_template:
-            entity_id: cover.carrington_rd     
-      - homeassistant.service:
-          service: cover.open_cover
-          data_template:
-            entity_id: cover.darri_ave           
-  - platform: touchscreen
-    name: 2B Touch Button
-    x_min: 80
-    x_max: 160
-    y_min: 80
-    y_max: 160
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.close_cover
-          data_template:
-            entity_id: cover.carrington_rd     
-      - homeassistant.service:
-          service: cover.close_cover
-          data_template:
-            entity_id: cover.darri_ave              
-  - platform: touchscreen
-    name: 2C Touch Button
-    x_min: 160
-    x_max: 240
-    y_min: 80
-    y_max: 160
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: input_boolean.car_charger_override 
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: switch.sonoff_100155a107_2                  
-  - platform: touchscreen
-    name: 2D Touch Button
-    x_min: 240
-    x_max: 360
-    y_min: 80
-    y_max: 160
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: input_boolean.car_charger_override 
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: switch.sonoff_100155a107_2                             
-
-
-  - platform: touchscreen
-    name: 3A Touch Button
-    x_min: 0
-    x_max: 80
-    y_min: 160
-    y_max: 240
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.open_cover
-          data_template:
-            entity_id: cover.study     
-  - platform: touchscreen
-    name: 3B Touch Button
-    x_min: 80
-    x_max: 160
-    y_min: 160
-    y_max: 240
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.close_cover
-          data_template:
-            entity_id: cover.study           
-  - platform: touchscreen
-    name: 3C Touch Button
-    x_min: 160
-    x_max: 240
-    y_min: 160
-    y_max: 240
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.open_cover
-          data_template:
-            entity_id: cover.tane
-  - platform: touchscreen
-    name: 3D Touch Button
-    x_min: 240
-    x_max: 360
-    y_min: 160
-    y_max: 240
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: cover.close_cover
-          data_template:
-            entity_id: cover.tane                           
-
-
-  - platform: touchscreen
-    name: 4A Touch Button
-    x_min: 0
-    x_max: 80
-    y_min: 240
-    y_max: 320
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: media_player.turn_on
-          data_template:
-            entity_id: media_player.lounge_av_reciever
-  - platform: touchscreen
-    name: 4B Touch Button
-    x_min: 80
-    x_max: 160
-    y_min: 240
-    y_max: 320
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: media_player.turn_off
-          data_template:
-            entity_id: media_player.lounge_av_reciever    
-  - platform: touchscreen
-    name: 4C Touch Button
-    x_min: 160
-    x_max: 240
-    y_min: 240
-    y_max: 320
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: switch.sonoff_100155a107_2
-      - homeassistant.service:
-          service: switch.turn_on
-          data_template:
-            entity_id: input_boolean.car_charger_override
-  - platform: touchscreen
-    name: 4D Touch Button
-    x_min: 240
-    x_max: 360
-    y_min: 240
-    y_max: 320
-    page_id: pageC      
-    on_press:
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: switch.sonoff_100155a107_2                        
-      - homeassistant.service:
-          service: switch.turn_off
-          data_template:
-            entity_id: input_boolean.car_charger_override
-
+ 
      # width: 320
      # height: 480
 button:

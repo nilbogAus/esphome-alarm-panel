@@ -50,6 +50,9 @@ image:
   - file: mdi:lightbulb-outline 
     id: img_LightbulbOff
     resize: 40x40  
+  - file: mdi:lightbulb-on-20
+    id: img_LightbulbOn10
+    resize: 40x40      
   - file: mdi:blinds-horizontal
     id: img_BlindsHorizontalOpen
     resize: 40x40   
