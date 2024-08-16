@@ -1,7 +1,7 @@
 
   - id: pageA
     lambda: |-
-        it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page A");
+        it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page A ");
 
         // ALARM STATE
         if (id(homeassistant_alarm).state=="disarmed"){

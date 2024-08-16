@@ -1,7 +1,7 @@
 - id: pageB
   lambda: |-
     it.print(160, 10, id(roboto), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Electricity");
-    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page B");    
+    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page B ");    
     
     // Solar
     // guage image
