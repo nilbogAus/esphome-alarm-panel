@@ -1,8 +1,9 @@
 
 - id: pageC
   lambda: |-
+    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page C"); 
+
     // Buttons
-    it.fill(COLOR_OFF); // Turn the whole display off.
     for(int i=0; i<480; i+=80) 
     {
     it.horizontal_line(0,i,320,col_gray);

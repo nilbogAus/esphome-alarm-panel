@@ -1,8 +1,9 @@
 
 - id: pageD2
   lambda: |-
+    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page D");
+     
     // Weather    //320x480
-    it.fill(COLOR_OFF); // Turn the whole display off.
     it.print(80, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Inside");
     it.print(240, 10, id(roboto), id(col_blue), TextAlign::CENTER_HORIZONTAL, "Outside");
     it.printf(80, 50, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.1f°C", id(inside_temp).state) ;
