@@ -1,7 +1,7 @@
 
 - id: pageC
   lambda: |-
-    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page C"); 
+    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page C "); 
 
     // Buttons
     for(int i=0; i<480; i+=80) 
