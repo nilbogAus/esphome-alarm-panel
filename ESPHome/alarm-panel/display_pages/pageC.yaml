@@ -68,13 +68,13 @@
 
     // button 5A (0,120-80,180)
     it.image(20, 110, id(img_LightbulbOn10));
-    it.printf(40, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed 10%%");
+    it.printf(40, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy 10%%");
     // button 5B (80,120-160,180)
     it.image(100, 110, id(img_LightbulbOn));
-    it.printf(120, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed 100%%");          
+    it.printf(120, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy 100%%");          
     // button 5C (160,120-240,180)
     it.image(180, 110, id(img_LightbulbOff));
-    it.printf(200, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed");       
+    it.printf(200, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");       
     // button 5D (240,120-360,180)
     //it.image(260, 190, id(img_batteryOff));
     //it.printf(280, 170, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "EV Charger");           

@@ -73,15 +73,21 @@
     //text
     std::string ft = "";
     int ypos = 350;
+    int tcount = 0;
+    const int tmax = 40;
     for(char c : id(forecast_text).state) {
-    ft += c ;
-    if(c == '.' || c == ',')
-    {
-        it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
-        ft = "";      
-        ypos += 15;      
+        ft += c ;
+        tcount++;
+        if(tcount > tmax && c == ' ')
+        {
+            it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+            ft = "";  
+            tcount = 0;    
+            ypos += 15;      
+        }
     }
-    }
+    it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+
     it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min).state, id(forecast_temp_max).state);
     it.printf(240, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0fmm", id(forecast_rain_amount_min).state, id(forecast_rain_amount_max).state);
     it.printf(160, 440, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%s%% chance of rain", id(forecast_rain_chance).state.c_str());
