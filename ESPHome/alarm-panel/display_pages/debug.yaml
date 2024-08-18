@@ -16,7 +16,6 @@
     it.rectangle(0, 0, it.get_width(), it.get_height(), col_yellow);             
 - id: pageDebug1
   lambda: |-
-    it.fill(COLOR_OFF); // Turn the whole display off.
     it.printf(0, 1, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.1f° :Internal Temp", id(InternalTemp).state);  
     it.printf(0, 25, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0f%% :wifi signal", id(wifi_signal_pct).state);  
     it.printf(0, 75, id(roboto), id(col_white), TextAlign::TOP_LEFT, "%.0fKb Heap Free", id(HeapFree).state/1024); 
@@ -43,7 +42,6 @@
     it.strftime(0, 450, id(roboto), "%H:%M:%S", id(homeassistant_time).now());
 - id: pageDebug2
   lambda: |-
-    it.fill(COLOR_OFF); // Turn the whole display off.
     it.print(0,0, roboto, "Temp");
     it.graph(0, 0, id(InternalTemp_graph));
     it.print(0,155, roboto, "Wifi");

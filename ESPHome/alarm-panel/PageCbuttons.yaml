@@ -224,6 +224,7 @@ binary_sensor:
 
   - platform: touchscreen
     name: 5A Touch Button
+    id: touch_button_5a
     x_min: 0
     x_max: 80
     y_min: 320
@@ -237,6 +238,7 @@ binary_sensor:
             brightness_pct: '10' 
   - platform: touchscreen
     name: 5B Touch Button
+    id: touch_button_5b
     x_min: 80
     x_max: 160
     y_min: 320
@@ -250,6 +252,7 @@ binary_sensor:
           entity_id: light.lucy_top_bunk
   - platform: touchscreen
     name: 5C Touch Button
+    id: touch_button_5c
     x_min: 160
     x_max: 240
     y_min: 320
@@ -263,6 +266,7 @@ binary_sensor:
  
   - platform: touchscreen
     name: 5D Touch Button
+    id: touch_button_5d
     x_min: 240
     x_max: 360
     y_min: 320
