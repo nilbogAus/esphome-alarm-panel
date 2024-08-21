@@ -85,15 +85,15 @@
     // button 5A
     if (id(touch_button_5a).state==true){ it.filled_rectangle(2, 82, 76, 76, id(col_dkgreen)); }    
     it.image(20, 110, id(img_LightbulbOn10));
-    it.printf(40, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed 10%%");
+    it.printf(40, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy 10%%");
     // button 5B
     if (id(touch_button_5b).state==true){ it.filled_rectangle(82, 82, 76, 76, id(col_dkgreen)); }
     it.image(100, 110, id(img_LightbulbOn));
-    it.printf(120, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed 100%%");          
+    it.printf(120, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy 100%%");          
     // button 5C 
     if (id(touch_button_5c).state==true){ it.filled_rectangle(162, 82, 76, 76, id(col_dkgreen)); }
     it.image(180, 110, id(img_LightbulbOff));
-    it.printf(200, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy Bed");       
+    it.printf(200, 90, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Lucy");       
     // button 5D 
     if (id(touch_button_5d).state==true){ it.filled_rectangle(242, 82, 76, 76, id(col_dkgreen)); } 
     //it.image(260, 110, id(img_batteryOff));

@@ -72,16 +72,21 @@
     //text
     std::string ft = "";
     int ypos = 350;
+    int tcount = 0;
+    const int tmax = 40;
     for(char c : id(forecast_text_today).state) {
-    ft += c ;
-    if(c == '.' || c == ',')
-    {
-        it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
-        ft = "";      
-        ypos += 15;      
+        ft += c ;
+        tcount++;
+        if(tcount > tmax && c == ' ')
+        {
+            it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+            ft = "";  
+            tcount = 0;    
+            ypos += 15;      
+        }
     }
-    }
-    
+    it.printf(160, ypos, id(roboto_sml), id(col_green), TextAlign::CENTER_HORIZONTAL, ft.c_str() ); 
+   
     if(!isnan(id(forecast_temp_min_today).state))
     {
       it.printf(70, 315, id(roboto), id(col_white), TextAlign::CENTER_HORIZONTAL, "%.0f to %.0f°C", id(forecast_temp_min_today).state, id(forecast_temp_max_today).state);      
