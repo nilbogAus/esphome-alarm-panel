@@ -19,6 +19,7 @@ esp32:
 # Enable logging
 logger:
   level: debug
+#  level: WARN
   logs:
     component: ERROR  # To disable "Component display took a long time for an operation (0.09 s)."
 
