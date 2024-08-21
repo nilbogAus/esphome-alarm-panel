@@ -4,6 +4,8 @@ esphome:
   on_boot:
     then:    
       - script.execute: script_page_carousel
+  includes:
+    - alarm-panel/functions.h   
 
 esp32:
   board: nodemcu-32s
@@ -17,6 +19,7 @@ esp32:
 # Enable logging
 logger:
   level: debug
+#  level: WARN
   logs:
     component: ERROR  # To disable "Component display took a long time for an operation (0.09 s)."
 
@@ -267,7 +270,9 @@ spi:
   - id: display_spi
     clk_pin: GPIO14
     mosi_pin: GPIO13
-    miso_pin: GPIO12  
+    miso_pin: 
+      number: GPIO12
+      ignore_strapping_warning: true 
   - id: touch_spi
     clk_pin: GPIO18
     mosi_pin: GPIO23
@@ -280,7 +285,9 @@ display:
     spi_id: display_spi
     dc_pin: GPIO27
     reset_pin: GPIO33
-    cs_pin: GPIO15
+    cs_pin: 
+      number: GPIO15
+      ignore_strapping_warning: true 
     dimensions:  #320x480 only possible with psram
       width: 320
       height: 480
@@ -301,19 +308,20 @@ binary_sensor:
     id: onboard_button
     on_press: 
       then:
-        if:
-          condition:
-            display.is_displaying_page: pageDebug0
-          then:      
-            display.page.show: pageDebug1                    
-          else:
-            if:
-              condition:
-                display.is_displaying_page: pageDebug1
-              then:      
-                display.page.show: pageDebug2
-              else: 
-                display.page.show: pageDebug0
+        - script.stop: script_page_carousel      
+        - if:
+            condition:
+              display.is_displaying_page: pageDebug0
+            then:      
+              display.page.show: pageDebug1                    
+            else:
+              if:
+                condition:
+                  display.is_displaying_page: pageDebug1
+                then:      
+                  display.page.show: pageDebug2
+                else: 
+                  display.page.show: pageDebug0
 
   - platform: matrix_keypad
     keypad_id: keypad
@@ -380,19 +388,20 @@ button:
     entity_category: "diagnostic"     
     on_press:
       then:
-        if:
-          condition:
-            display.is_displaying_page: pageDebug0
-          then:      
-            display.page.show: pageDebug1                    
-          else:
-            if:
-              condition:
-                display.is_displaying_page: pageDebug1
-              then:      
-                display.page.show: pageDebug2
-              else: 
-                display.page.show: pageDebug0
+        - script.stop: script_page_carousel      
+        - if:
+            condition:
+              display.is_displaying_page: pageDebug0
+            then:      
+              display.page.show: pageDebug1                    
+            else:
+              if:
+                condition:
+                  display.is_displaying_page: pageDebug1
+                then:      
+                  display.page.show: pageDebug2
+                else: 
+                  display.page.show: pageDebug0
   - platform: template
     name: Page
     entity_category: "diagnostic"     

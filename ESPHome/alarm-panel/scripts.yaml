@@ -18,7 +18,7 @@ script:
                         - display.page.show: pageB
                         - delay: 10s
                         - display.page.show: pageC
-                        - delay: 10s
+                        - delay: 2s
                         - display.page.show: pageD
                         - delay: 5s      
                         - display.page.show: pageD2
