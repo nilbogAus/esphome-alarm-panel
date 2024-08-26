@@ -1,5 +1,5 @@
 
-- id: pageD2
+- id: pageD
   lambda: |-
     it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page D ");
      

@@ -20,11 +20,11 @@ script:
                         - display.page.show: pageC
                         - delay: 2s
                         - display.page.show: pageD
-                        - delay: 5s      
+                        - delay: 8s      
                         - display.page.show: pageD2
-                        - delay: 5s  
+                        - delay: 7s  
                         - display.page.show: pageD3
-                        - delay: 5s 
+                        - delay: 7s 
             else:
                 - display.page.show: pageA           
 

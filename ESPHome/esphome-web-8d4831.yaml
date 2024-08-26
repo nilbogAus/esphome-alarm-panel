@@ -1,11 +1,12 @@
+substitutions:
+  name: esphome-web-8d4831
+  friendly_name: alarm-panel-master
+
 esphome:
-  name: esphome-web-9d4d29
-  friendly_name: alarm-panel-backdoor
-  on_boot:
-    then:    
-      - script.execute: script_page_carousel
-  includes:
-    - alarm-panel/functions.h   
+  name: ${name}
+  friendly_name: ${friendly_name}
+  min_version: 2024.6.0
+  name_add_mac_suffix: false
 
 esp32:
   board: nodemcu-32s
@@ -27,7 +28,13 @@ logger:
 api:
   encryption:
     key: !secret esphome-web-9d4d29_api_encryption_key
-
+  on_client_connected:
+    - logger.log:
+        format: "Client %s connected to API with IP %s"
+        args: ["client_info.c_str()", "client_address.c_str()"]   
+    - script.execute: script_page_carousel
+    
+# Allow Over-The-Air updates
 ota:
   password: !secret esphome-web-9d4d29_ota_password
   platform: esphome
@@ -38,7 +45,6 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Esphome-Web-9D4D29"
     password: !secret esphome-web-9d4d29_wifi_ap_password
 
 captive_portal:
@@ -500,6 +506,3 @@ touchscreen:
               touch.x_raw,
               touch.y_raw
               );
-
-
-
