@@ -72,6 +72,15 @@ switch:
     id: pool_switch
     entity_id: switch.sonoff_10001e7f40
 
+  - platform: homeassistant
+    id: ryobi_batteries_switch
+    entity_id: switch.sonoff_10001e9d60
+
+  - platform: homeassistant
+    id: refrigerator_express_mode
+    entity_id: switch.refrigerator_express_mode
+
+
 text_sensor:
   - platform: debug
     device:
@@ -85,22 +94,11 @@ text_sensor:
     id: homeassistant_alarm
     entity_id: alarm_control_panel.home_alarm 
 
-
-  - platform: homeassistant
-    name: "Home Battery Power"
-    id: ryobi_batteries_switch
-    entity_id: switch.sonoff_10001e9d60
-
   - platform: homeassistant
     name: "Pool Cleaner"
     id: pool_cleaner
     entity_id: sensor.creepy_status
 
-  - platform: homeassistant
-    name: "Fridge Express Mode"
-    id: refrigerator_express_mode
-    entity_id: switch.refrigerator_express_mode
-    
   - platform: homeassistant
     name: "Forecast Today Text"
     id: forecast_text_today

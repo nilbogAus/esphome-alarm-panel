@@ -43,7 +43,7 @@
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Pump");
         list_locations.pop();
     }
-    if(id(ryobi_batteries_switch).state=="on")
+    if(id(ryobi_batteries_switch).state)
     {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Ryobi Batteries");
         list_locations.pop();
@@ -62,7 +62,7 @@
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Cleaner");
         list_locations.pop();
     }
-    if(id(refrigerator_express_mode).state=="on")
+    if(id(refrigerator_express_mode).state)
     {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Fridge Express Mode");
         list_locations.pop();
