@@ -38,7 +38,7 @@
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "House Battery");
         list_locations.pop();
     }
-    if(id(pool_switch).state=="on")
+    if(id(pool_switch).state)
     {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Pump");
         list_locations.pop();

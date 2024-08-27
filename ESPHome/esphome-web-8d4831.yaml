@@ -66,6 +66,12 @@ globals:
 debug:
   update_interval: 300s
 
+
+switch:
+  - platform: homeassistant
+    id: pool_switch
+    entity_id: switch.sonoff_10001e7f40
+
 text_sensor:
   - platform: debug
     device:
@@ -79,10 +85,6 @@ text_sensor:
     id: homeassistant_alarm
     entity_id: alarm_control_panel.home_alarm 
 
-  - platform: homeassistant
-    name: "Pool Power"
-    id: pool_switch
-    entity_id: switch.sonoff_10001e7f40
 
   - platform: homeassistant
     name: "Home Battery Power"
