@@ -10,12 +10,23 @@
         } else if (id(homeassistant_alarm).state=="arming"){
             it.image(110, 50, id(img_Bell));
             it.print(160, 160, id(roboto_lrg), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Arming");
+        } else if (id(homeassistant_alarm).state=="pending"){
+            it.image(110, 50, id(img_Bell));
+            it.print(160, 160, id(roboto_lrg), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Pending");            
         } else if (id(homeassistant_alarm).state=="triggered"){
             it.image(110, 50, id(img_BellRing));
             it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, "Triggered");
         } else if (id(homeassistant_alarm).state.substr(0,5)=="armed"){
             it.image(110, 50, id(img_Bell));
-            it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+            if(id(homeassistant_alarm).state=="armed_home"){
+                it.print(160, 160, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Cats Home");
+                it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, "Armed");
+            } else if (id(homeassistant_alarm).state=="armed_away"){
+                it.print(160, 160, id(roboto_sml), id(col_white), TextAlign::CENTER_HORIZONTAL, "Cats Away");
+                it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, "Armed");            
+            } else {
+                it.print(160, 160, id(roboto_lrg), id(col_red), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
+            }
         } else {
             it.print(160, 200, id(roboto_lrg), id(col_white), TextAlign::CENTER_HORIZONTAL, id(homeassistant_alarm).state.c_str());
         }
