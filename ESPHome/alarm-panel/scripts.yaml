@@ -2,18 +2,18 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - delay: 30s    #wait for boot
-        - if:
+        - delay: 30s    #wait for sensors etc to be ready 
+        - while:
             condition:
-                # Checks if "homeassistant_alarm" has state "disarmed" 
-                text_sensor.state:
-                    id: homeassistant_alarm
-                    state: 'disarmed'   
+                - wifi.connected:
             then:
-                - delay: 5 min  
+                - display.page.show: pageA                     
+                - delay: 5 min              
                 - while:
                     condition:
-                        wifi.connected:
+                        - text_sensor.state:
+                            id: homeassistant_alarm
+                            state: 'disarmed'                        
                     then:
                         - display.page.show: pageB
                         - delay: 10s
@@ -25,7 +25,4 @@ script:
                         - delay: 7s  
                         - display.page.show: pageD3
                         - delay: 7s 
-            else:
-                - display.page.show: pageA           
-
-
+        - display.page.show: pageA           
