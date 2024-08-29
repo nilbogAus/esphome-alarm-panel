@@ -7,7 +7,6 @@ script:
             condition:
                 - wifi.connected:
             then:
-                - display.page.show: pageA                     
                 - delay: 5 min              
                 - while:
                     condition:
