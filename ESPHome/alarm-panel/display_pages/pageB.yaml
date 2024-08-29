@@ -1,110 +1,119 @@
 - id: pageB
   lambda: |-
     it.print(160, 10, id(roboto), id(col_yellow), TextAlign::CENTER_HORIZONTAL, "Electricity");
-    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page B ");    
-    
+    it.print(320, 0, id(roboto_sml), id(col_gray), TextAlign::TOP_RIGHT, "Page B ");
+
     // Solar
     // guage image
     it.image(5, 50, id(img_gauge));
 
     // +- range of guage
-    int range = 7000; 
+    int range = 7000;
     float elec_rate = 0.000077;
 
     // get value and apply limits and set dyunamic color
-    int value = id(net_power).state; 
+    int value = id(net_power).state;
     esphome::Color col_dynamic;
     if(value<0)
     {
-    elec_rate = 0.0003115;
-    col_dynamic = id(col_red);
-    if(value<(0-range))
-    {
+      elec_rate = 0.0003115;
+      col_dynamic = id(col_red);
+      if(value<(0-range))
+      {
         value = (0-range);
-    }
+      }
     }
     else
     {
-    //display items running on solar
-    it.print(160,345, id(roboto) ,col_white, TextAlign::CENTER_HORIZONTAL, "Currently powered by Solar");
-    std::queue<std::pair<int, int>> list_locations;
-    for(int i = 380; i<460; i+=15) //create a list of screen locations for items running on solar
-    {
+      //display items running on solar
+      it.print(160,345, id(roboto) ,col_white, TextAlign::CENTER_HORIZONTAL, "Currently powered by Solar");
+      std::queue<std::pair<int, int>> list_locations;
+      for(int i = 380; i<460; i+=15) //create a list of screen locations for items running on solar
+      {
         list_locations.push(std::make_pair(90,i));
         list_locations.push(std::make_pair(230,i));
-    }
-    if(id(home_battery_power).state<-10)
-    {
+      }
+      if(id(home_battery_power).state<-10)
+      {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "House Battery");
         list_locations.pop();
-    }
-    if(id(pool_switch).state)
-    {
+      }
+      if(id(pool_switch).state)
+      {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Pump");
         list_locations.pop();
-    }
-    if(id(ryobi_batteries_switch).state)
-    {
+      }
+      if(id(ryobi_batteries_switch).state)
+      {
         it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Ryobi Batteries");
         list_locations.pop();
-    }
-    if(id(ev_power).state>0)
-    {
-        it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV Charger");
-        list_locations.pop();
+      }
+      if(id(ev_power).state>0)
+      {
         if(id(ev_power).state>100){
-        it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV (car)");
-        list_locations.pop();
+          it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV Charger (Charging)");
+          list_locations.pop();
         }
-    }
-    if(id(pool_cleaner).state=="Cleaning" || id(pool_cleaner).state=="Checking Environment")
-    {
-        it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Cleaner");
+        else
+        {
+          it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "EV Charger (Idle)");
+          list_locations.pop();
+        }
+      }
+      if(id(pool_cleaner).state=="Cleaning" || id(pool_cleaner).state=="Checking Environment")
+      {
+          it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Pool Cleaner");
+          list_locations.pop();
+      }
+      if(id(refrigerator_express_mode).state)
+      {
+          it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Fridge Express Mode");
+          list_locations.pop();
+      }
+      float housesPowered = static_cast<float>(value) / 879.1;
+      if(housesPowered>0.1)
+      {
+        it.printf(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "and %.1f other houses ", housesPowered);
         list_locations.pop();
-    }
-    if(id(refrigerator_express_mode).state)
-    {
-        it.print(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "Fridge Express Mode");
-        list_locations.pop();
-    }            
+      }
 
-    // get value and apply limits and set dyunamic color
-    if (value<range/10)
-    {
+      // get value and apply limits and set dyunamic color
+      if (value<range/10)
+      {
         col_dynamic = id(col_orange);
-    }   
-    else
-    {
+      }
+      else
+      {
         col_dynamic = id(col_green);
         if(value>(range))
         {
-        value = range;
+         value = range;
         }
-    }  
+      }
     }
 
     //border color
-    it.rectangle(0, 0, it.get_width(), it.get_height(), col_dynamic);                    
+    it.rectangle(0, 0, it.get_width(), it.get_height(), col_dynamic);
 
     //draw pointer
     float radians = M_PI/(range*2)*(value+range);
     float half_M_PI = M_PI /2;
-    int y_end = 200-(sin(radians) * 130); 
+    int y_end = 200-(sin(radians) * 130);
     int x_end = 160-(cos(radians) * 130);
-    int y_rgt = 200-(sin(radians+(half_M_PI)) * 7); 
-    int x_rgt = 160-(cos(radians+(half_M_PI)) * 7); 
-    int y_left = 200-(sin(radians-(half_M_PI)) * 7); 
-    int x_left = 160-(cos(radians-(half_M_PI)) * 7); 
+    int y_rgt = 200-(sin(radians+(half_M_PI)) * 7);
+    int x_rgt = 160-(cos(radians+(half_M_PI)) * 7);
+    int y_left = 200-(sin(radians-(half_M_PI)) * 7);
+    int x_left = 160-(cos(radians-(half_M_PI)) * 7);
 
-    it.filled_triangle(x_end,y_end, 160,200, x_rgt,y_rgt,col_white); 
+    it.filled_triangle(x_end,y_end, 160,200, x_rgt,y_rgt,col_white);
     it.filled_triangle(x_end,y_end, 160,200, x_left,y_left,col_gray);
 
     //cost/wh test line
     float cost = id(net_power).state*elec_rate;
     if (abs(cost)>0.99){
-    it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, $%.2fph", id(net_power).state, cost) ;
+      it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, $%.2fph", id(net_power).state, cost) ;
     } else {
-    it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, %.0f¢/ph", id(net_power).state, cost*100) ;
+      it.printf(160, 205, id(roboto), col_dynamic, TextAlign::CENTER_HORIZONTAL, "%.0f watts, %.0f¢/ph", id(net_power).state, cost*100) ;
     }
 
     //solar graph
