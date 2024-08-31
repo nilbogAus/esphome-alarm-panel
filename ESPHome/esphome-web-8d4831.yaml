@@ -28,12 +28,7 @@ logger:
 api:
   encryption:
     key: !secret esphome-web-9d4d29_api_encryption_key
-  on_client_connected:
-    - logger.log:
-        format: "Client %s connected to API with IP %s"
-        args: ["client_info.c_str()", "client_address.c_str()"]   
-    - script.execute: script_page_carousel
-    
+
 # Allow Over-The-Air updates
 ota:
   password: !secret esphome-web-9d4d29_ota_password
@@ -52,8 +47,8 @@ captive_portal:
 packages:
   assets: !include alarm-panel/assets.yaml   
   matrix_keypad: !include alarm-panel/matrix_keypad.yaml
-  my_scripts: !include alarm-panel/scripts.yaml
-  PageC: !include alarm-panel/PageCbuttons.yaml  
+  #my_scripts: !include alarm-panel/scripts.yaml
+ # PageC: !include alarm-panel/PageCbuttons.yaml  
 
 globals:
   - id: g_keypad
@@ -298,11 +293,38 @@ display:
     rotation: 0
     color_palette: NONE 
     data_rate: 80MHz
-    pages: !include_dir_merge_list alarm-panel/display_pages/
+    auto_clear_enabled: false
+    update_interval: never
+    # pages: !include_dir_merge_list alarm-panel/display_pages/
+
+lvgl:
+  displays:
+    - my_display
+  touchscreens:
+    - my_touchscreen
+  pages:
+    - id: pageA
+      widgets:
+        - label:
+            align: CENTER
+            text: 'Hello World!a'    
+    - id: pageB
+      widgets:
+        - label:
+            align: CENTER
+            text: 'Hello World!b'    
+    - id: pageC
+      widgets:
+        - label:
+            align: CENTER
+            text: 'Hello World!c'                            
+    - id: pageD
+      widgets:
+        - label:
+            align: CENTER
+            text: 'Hello World!d'    
 
 binary_sensor: 
-
-
   - platform: gpio
     pin:
       number: GPIO0
@@ -310,126 +332,6 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
-    on_press: 
-      then:
-        - script.stop: script_page_carousel      
-        - if:
-            condition:
-              display.is_displaying_page: pageDebug0
-            then:      
-              display.page.show: pageDebug1                    
-            else:
-              if:
-                condition:
-                  display.is_displaying_page: pageDebug1
-                then:      
-                  display.page.show: pageDebug2
-                else: 
-                  display.page.show: pageDebug0
-
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadA
-    name: keypadA
-    internal: true
-    key: A
-    on_press:
-      - display.page.show: pageA
-      - component.update: my_display
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadB
-    name: keypadB  
-    internal: true
-    key: B
-    on_press:
-      - display.page.show: pageB
-      - component.update: my_display
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadC
-    name: keypadC 
-    internal: true
-    key: C
-    on_press:
-      - display.page.show: pageC
-      - component.update: my_display
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadD
-    name: keypadD
-    internal: true
-    key: D
-    on_press:
-      then:
-        if:
-          condition:
-            display.is_displaying_page: pageD
-          then:      
-            - display.page.show: pageD2       
-            - script.execute: script_page_carousel             
-          else:
-            if:
-              condition:
-                display.is_displaying_page: pageD2
-              then:      
-                - display.page.show: pageD3     
-                - script.execute: script_page_carousel             
-              else:
-                - display.page.show: pageD
-                - script.execute: script_page_carousel
-
-
- 
-     # width: 320
-     # height: 480
-button:
-  - platform: template
-    name: Debug
-    entity_category: "diagnostic"     
-    on_press:
-      then:
-        - script.stop: script_page_carousel      
-        - if:
-            condition:
-              display.is_displaying_page: pageDebug0
-            then:      
-              display.page.show: pageDebug1                    
-            else:
-              if:
-                condition:
-                  display.is_displaying_page: pageDebug1
-                then:      
-                  display.page.show: pageDebug2
-                else: 
-                  display.page.show: pageDebug0
-  - platform: template
-    name: Page
-    entity_category: "diagnostic"     
-    on_press:
-      then:
-        if:
-          condition:
-            display.is_displaying_page: pageA
-          then:      
-            display.page.show: pageB
-          else: 
-            if:
-              condition:
-                display.is_displaying_page: pageB
-              then:      
-                display.page.show: pageC
-              else: 
-                if:
-                  condition:
-                    display.is_displaying_page: pageC
-                  then:      
-                    display.page.show: pageD
-                  else: 
-                    display.page.show: pageA
 
 graph:
   - id: InternalTemp_graph
