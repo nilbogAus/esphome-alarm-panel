@@ -73,7 +73,7 @@
       float housesPowered = static_cast<float>(value) / 879.1;
       if(housesPowered>0.1)
       {
-        it.printf(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "and %.1f other houses ", housesPowered);
+        it.printf(list_locations.front().first ,list_locations.front().second, id(roboto_sml), col_white, TextAlign::CENTER_HORIZONTAL, "and %.1f other homes", housesPowered);
         list_locations.pop();
       }
 
