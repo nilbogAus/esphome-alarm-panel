@@ -302,27 +302,28 @@ lvgl:
     - my_display
   touchscreens:
     - my_touchscreen
+  text_font: roboto
   pages:
     - id: pageA
       widgets:
         - label:
             align: CENTER
-            text: 'Hello World!a'    
+            text: 'Hello World!aaaa'    
     - id: pageB
       widgets:
         - label:
             align: CENTER
-            text: 'Hello World!b'    
+            text: 'Hello World!bbbb'    
     - id: pageC
       widgets:
         - label:
             align: CENTER
-            text: 'Hello World!c'                            
+            text: 'Hello World!cccc'                            
     - id: pageD
       widgets:
         - label:
             align: CENTER
-            text: 'Hello World!d'    
+            text: 'Hello World!dddd'    
 
 binary_sensor: 
   - platform: gpio
@@ -332,6 +333,32 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
+
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadA
+    key: A
+    on_press:
+      - lvgl.page.show: pageA
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadB
+    key: B
+    on_press:
+      - lvgl.page.show: pageB
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadC
+    key: C
+    on_press:
+      - lvgl.page.show: pageC
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadD
+    key: D
+    on_press:
+      - lvgl.page.show: pageD
+
 
 graph:
   - id: InternalTemp_graph
