@@ -1,0 +1,5 @@
+- id: pageA
+  widgets:
+    - label:
+        align: CENTER
+        text: 'Hello World!aaaa'   

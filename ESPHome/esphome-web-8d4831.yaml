@@ -303,27 +303,10 @@ lvgl:
   touchscreens:
     - my_touchscreen
   text_font: roboto
-  pages:
-    - id: pageA
-      widgets:
-        - label:
-            align: CENTER
-            text: 'Hello World!aaaa'    
-    - id: pageB
-      widgets:
-        - label:
-            align: CENTER
-            text: 'Hello World!bbbb'    
-    - id: pageC
-      widgets:
-        - label:
-            align: CENTER
-            text: 'Hello World!cccc'                            
-    - id: pageD
-      widgets:
-        - label:
-            align: CENTER
-            text: 'Hello World!dddd'    
+  pages: !include_dir_merge_list alarm-panel/LVGL_pages/
+ 
+
+ 
 
 binary_sensor: 
   - platform: gpio

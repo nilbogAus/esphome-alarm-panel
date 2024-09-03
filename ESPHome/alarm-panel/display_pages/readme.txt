@@ -1,0 +1,1 @@
+this folders files not used in LVGL display
