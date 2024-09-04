@@ -16,6 +16,8 @@ esp32:
     # Custom sdkconfig options
     sdkconfig_options:
       COMPILER_OPTIMIZATION_PERFORMANCE: y    
+      CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
+      CONFIG_SPIRAM_RODATA: y
 
 # Enable logging
 logger:
@@ -191,6 +193,11 @@ sensor:
     name: "Net Power state"
     id: net_power
     entity_id: sensor.net_power
+    on_value:
+      then:
+        - lvgl.indicator.update:
+            id: power_needle
+            value: !lambda "return x;"
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power

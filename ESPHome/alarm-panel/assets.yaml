@@ -16,7 +16,11 @@ color:
   - id: col_gray
     hex: 6f6f6f   
   - id: col_black
-    hex: '000000'
+    red:   0.0000
+    green: 0.0000
+    blue:  0.0000
+    white: 0.0000
+
 
 font:
   - file: "gfonts://Roboto"

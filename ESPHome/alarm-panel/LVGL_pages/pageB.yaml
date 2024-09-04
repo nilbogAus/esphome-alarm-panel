@@ -1,5 +1,22 @@
 - id: pageB
+  bg_color: col_black
   widgets:
-    - label:
-        align: CENTER
-        text: 'Hello World!bbbb'    
+    - meter:
+        align: center
+        scales:
+          range_from: -7000
+          range_to: 7000
+          angle_range: 270
+          ticks:
+            count: 14
+          indicators:
+            - line:
+                id: power_needle
+                width: 2
+                color: 0xFF0000
+                r_mod: -4
+            - tick_style:
+                start_value: -10
+                end_value: 40
+                color_start: 0x0000bd #FF0000
+                color_end: 0xbd0000 #0000FF  
