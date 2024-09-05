@@ -1,22 +1,59 @@
 - id: pageB
   bg_color: col_black
+  pad_bottom: 10
   widgets:
+    - label:
+        id: lbl_tittle
+        text_color: col_yellow
+        text_font: roboto
+        text: "Electricity"
+        align: TOP_MID
+
     - meter:
-        align: center
+        id: meter_power
+        width: 270
+        height: 270
+        align_to: 
+          id: lbl_tittle
+          align: OUT_BOTTOM_MID
+        bg_color: 0
         scales:
-          range_from: -7000
-          range_to: 7000
+          range_from: -9000
+          range_to: 9000
           angle_range: 270
           ticks:
-            count: 14
+            count: 19
+            length: 20
           indicators:
             - line:
                 id: power_needle
-                width: 2
-                color: 0xFF0000
-                r_mod: -4
-            - tick_style:
-                start_value: -10
-                end_value: 40
-                color_start: 0x0000bd #FF0000
-                color_end: 0xbd0000 #0000FF  
+                width: 4
+                color: col_white
+            - arc:
+                color: col_red
+                start_value: -9000
+                end_value: 0    
+                width: 8   
+            - arc:
+                color: col_yellow
+                start_value: 0
+                end_value: 450                           
+                width: 8   
+            - arc:
+                color: col_dkgreen
+                start_value: 450
+                end_value: 9000                  
+                width: 8   
+
+    - label:
+        id: cost_wh
+        recolor: true
+        width: 100%
+        text_font: roboto
+        text_align: CENTER
+        text: "Loading"
+        align_to: 
+          id: meter_power
+          align: OUT_BOTTOM_MID                
+
+  

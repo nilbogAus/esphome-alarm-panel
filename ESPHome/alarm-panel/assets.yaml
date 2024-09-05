@@ -47,9 +47,6 @@ image:
   - file: mdi:bell-ring
     id: img_BellRing
     resize: 100x100             
-  - file: "gauge.png"
-    id: img_gauge
-    type: RGB565
   - file: mdi:lightbulb-on 
     id: img_LightbulbOn
     resize: 40x40      

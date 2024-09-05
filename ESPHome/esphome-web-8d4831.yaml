@@ -198,6 +198,13 @@ sensor:
         - lvgl.indicator.update:
             id: power_needle
             value: !lambda "return x;"
+        - lvgl.label.update:
+            id: cost_wh
+            text: 
+              format: "#FF0000 %.0f watts, $%.2fph"
+              args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*0.0003115']
+
+
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power
