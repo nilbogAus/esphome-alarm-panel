@@ -1,11 +1,10 @@
 - id: pageB
   bg_color: col_black
-  pad_bottom: 10
   widgets:
     - label:
         id: lbl_tittle
         text_color: col_yellow
-        text_font: roboto
+        text_font: roboto_lrg
         text: "Electricity"
         align: TOP_MID
 
@@ -17,13 +16,21 @@
           id: lbl_tittle
           align: OUT_BOTTOM_MID
         bg_color: 0
+        text_color: col_white
+        text_font: roboto_sml
         scales:
           range_from: -9000
           range_to: 9000
           angle_range: 270
           ticks:
             count: 19
-            length: 20
+            length: 16
+            major:
+              stride: 3
+              length: 13
+              label_gap: 13
+              width: 1
+              color: col_white
           indicators:
             - line:
                 id: power_needle
@@ -54,6 +61,7 @@
         text: "Loading"
         align_to: 
           id: meter_power
-          align: OUT_BOTTOM_MID                
+          align: OUT_BOTTOM_MID         
+
 
   

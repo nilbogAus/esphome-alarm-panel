@@ -49,6 +49,8 @@ captive_portal:
 packages:
   assets: !include alarm-panel/assets.yaml   
   matrix_keypad: !include alarm-panel/matrix_keypad.yaml
+  #ctrls: !include_dir_merge_list alarm-panel/LVGL_ctrl/
+  ctrls: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
   #my_scripts: !include alarm-panel/scripts.yaml
  # PageC: !include alarm-panel/PageCbuttons.yaml  
 
@@ -189,20 +191,7 @@ sensor:
     name: "Internal Temperature" 
     id: InternalTemp   
 
-  - platform: homeassistant
-    name: "Net Power state"
-    id: net_power
-    entity_id: sensor.net_power
-    on_value:
-      then:
-        - lvgl.indicator.update:
-            id: power_needle
-            value: !lambda "return x;"
-        - lvgl.label.update:
-            id: cost_wh
-            text: 
-              format: "#FF0000 %.0f watts, $%.2fph"
-              args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*0.0003115']
+
 
 
   - platform: homeassistant
