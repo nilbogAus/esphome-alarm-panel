@@ -63,5 +63,16 @@
           id: meter_power
           align: OUT_BOTTOM_MID         
 
+    - textarea:
+        id: textarea_poweredby
+        text_color: col_green
+        text_font: roboto_sml
+        border_side: none
+        bg_color: 0               
+        one_line: false
+        placeholder_text: "Powered by"
+        align_to: 
+          id: cost_wh
+          align: OUT_BOTTOM_MID    
 
   

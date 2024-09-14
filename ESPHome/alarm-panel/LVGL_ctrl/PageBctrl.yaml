@@ -7,6 +7,9 @@ globals:
     type: float
     restore_value: no
     initial_value: '0.07'    
+  - id: g_poweredby
+    type: std::string
+    initial_value: ''      
 
 sensor:
   - platform: homeassistant
@@ -43,3 +46,18 @@ sensor:
                         text: 
                           format: "#FF0000 %.0fW, costing $%.2fph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
+
+            
+switch:
+  - platform: homeassistant
+    id: pool_switch
+    entity_id: switch.sonoff_10001e7f40
+    on_turn_on:
+      - lvgl.textarea.update:
+          id: textarea_poweredby
+          text: "Switch Turned pool On!"
+    on_turn_off:
+      - lvgl.textarea.update:
+          id: textarea_poweredby
+          text: "Switch Turned Off!"
+

@@ -66,10 +66,6 @@ debug:
 
 switch:
   - platform: homeassistant
-    id: pool_switch
-    entity_id: switch.sonoff_10001e7f40
-
-  - platform: homeassistant
     id: ryobi_batteries_switch
     entity_id: switch.sonoff_10001e9d60
 
