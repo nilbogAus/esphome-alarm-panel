@@ -190,10 +190,7 @@ sensor:
 
 
 
-  - platform: homeassistant
-    name: "Home Battery Power"
-    id: home_battery_power
-    entity_id: sensor.encharge_492334007623_power      
+  
   - platform: homeassistant
     name: "EV Power"
     id: ev_power
@@ -283,6 +280,7 @@ display:
     spi_id: display_spi
     dc_pin: GPIO27
     reset_pin: GPIO33
+    invert_colors: false
     cs_pin: 
       number: GPIO15
       ignore_strapping_warning: true 

@@ -21,31 +21,46 @@ sensor:
         - lvgl.indicator.update:
             id: power_needle
             value: !lambda "return x;"
-        - if:
-            condition:
-              lambda: "return (x > 450); "
-            then:
-              - lvgl.label.update:
-                  id: cost_wh
-                  text: 
-                    format: "#00FF00 %.0fW, earning %.0f¢/ph"
-                    args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
-            else:
-              - if:
-                  condition:
-                    lambda: "return (x > 0); "
-                  then:
-                    - lvgl.label.update:
-                        id: cost_wh
-                        text: 
-                          format: "#FFFF00 %.0fW, earning %.0f¢/ph"
-                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
-                  else:           
-                    - lvgl.label.update:
-                        id: cost_wh
-                        text: 
-                          format: "#FF0000 %.0fW, costing $%.2fph"
-                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
+    on_value_range:
+      - above: 450
+        then:
+          - lvgl.label.update:
+              id: cost_wh
+              text: 
+                format: "#00FF00 %.0fW, earning %.0f¢/ph"
+                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
+      - above: 0
+        below: 450
+        then:
+          - lvgl.label.update:
+              id: cost_wh
+              text: 
+                format: "#FFFF00 %.0fW, earning %.0f¢/ph"
+                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
+      - below: 0
+        then:
+          - lvgl.label.update:
+              id: cost_wh
+              text: 
+                format: "#FF0000 %.0fW, costing $%.2fph"
+                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']   
+  
+ 
+  - platform: homeassistant
+    name: "Home Battery Power"
+    id: home_battery_power
+    entity_id: sensor.encharge_492334007623_power       
+    on_value_range:
+      - below: -10
+        then:
+          - globals.set:
+              id: g_poweredby
+              value: 'id(g_poweredby) + "Enphase (house) battery"'
+          - lvgl.textarea.update:
+              id: textarea_poweredby
+              text: 
+                format: "%s"
+                args: [ 'id(g_poweredby).c_str()']                     
 
             
 switch:
@@ -53,11 +68,21 @@ switch:
     id: pool_switch
     entity_id: switch.sonoff_10001e7f40
     on_turn_on:
+      - globals.set:
+          id: g_poweredby
+          value: 'id(g_poweredby) + "Pool"'
       - lvgl.textarea.update:
           id: textarea_poweredby
-          text: "Switch Turned pool On!"
+          text: 
+            format: "%s"
+            args: [ 'id(g_poweredby).c_str()']
     on_turn_off:
+      - globals.set:
+          id: g_poweredby
+          value: 'id(g_poweredby) + "pool Off"'
       - lvgl.textarea.update:
           id: textarea_poweredby
-          text: "Switch Turned Off!"
+          text: 
+            format: "%s"
+            args: [ 'id(g_poweredby).c_str()']    
 

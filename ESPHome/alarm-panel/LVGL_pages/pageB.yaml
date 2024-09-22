@@ -12,6 +12,7 @@
         id: meter_power
         width: 270
         height: 270
+        border_side: none        
         align_to: 
           id: lbl_tittle
           align: OUT_BOTTOM_MID
@@ -61,7 +62,7 @@
         text: "Loading"
         align_to: 
           id: meter_power
-          align: OUT_BOTTOM_MID         
+          align: BOTTOM_MID         
 
     - textarea:
         id: textarea_poweredby
