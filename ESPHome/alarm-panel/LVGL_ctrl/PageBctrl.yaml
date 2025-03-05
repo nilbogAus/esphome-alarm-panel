@@ -21,31 +21,31 @@ sensor:
         - lvgl.indicator.update:
             id: power_needle
             value: !lambda "return x;"
-    on_value_range:
-      - above: 450
-        then:
-          - lvgl.label.update:
-              id: cost_wh
-              text: 
-                format: "#00FF00 %.0fW, earning %.0f¢/ph"
-                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
-      - above: 0
-        below: 450
-        then:
-          - lvgl.label.update:
-              id: cost_wh
-              text: 
-                format: "#FFFF00 %.0fW, earning %.0f¢/ph"
-                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
-      - below: 0
-        then:
-          - lvgl.label.update:
-              id: cost_wh
-              text: 
-                format: "#FF0000 %.0fW, costing $%.2fph"
-                args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']   
-  
- 
+        - if:
+            condition:
+              lambda: "return (x > 450); "
+            then:
+              - lvgl.label.update:
+                  id: cost_wh
+                  text: 
+                    format: "#00FF00 %.0fW, earning %.0f¢/ph"
+                    args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
+            else:
+              - if:
+                  condition:
+                    lambda: "return (x > 0); "
+                  then:
+                    - lvgl.label.update:
+                        id: cost_wh
+                        text: 
+                          format: "#FFFF00 %.0fW, earning %.0f¢/ph"
+                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
+                  else:           
+                    - lvgl.label.update:
+                        id: cost_wh
+                        text: 
+                          format: "#FF0000 %.0fW, costing $%.2fph"
+                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power

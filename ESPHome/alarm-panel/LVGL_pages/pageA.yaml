@@ -1,5 +1,28 @@
 - id: pageA
+  bg_color: col_black
   widgets:
     - label:
-        align: CENTER
-        text: 'Hello World!aaaa'   
+        id: lbl_title_pgA
+        text_color: col_yellow
+        text_font: roboto_lrg
+        text: "Alarm"
+        align: TOP_MID
+    - image:
+        src: img_Bell
+        id: img_alarm_icon        
+        width: 270
+        height: 270
+        bg_color: col_yellow
+        align_to: 
+          id: lbl_tittle
+          align: OUT_BOTTOM_MID
+    - label:
+        id: lbl_alarm_status
+        recolor: true
+        text_font: roboto_lrg
+        text: "Alarm"
+        align_to: 
+          id: img_alarm_icon
+          align: OUT_BOTTOM_MID      
+    
+

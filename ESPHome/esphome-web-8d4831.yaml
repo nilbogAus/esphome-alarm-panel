@@ -49,8 +49,9 @@ captive_portal:
 packages:
   assets: !include alarm-panel/assets.yaml   
   matrix_keypad: !include alarm-panel/matrix_keypad.yaml
-  #ctrls: !include_dir_merge_list alarm-panel/LVGL_ctrl/
-  ctrls: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
+  #ctrls: !include_dir_list alarm-panel/LVGL_ctrl/
+  ctrlsA: !include alarm-panel/LVGL_ctrl/PageActrl.yaml
+  ctrlsB: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
   #my_scripts: !include alarm-panel/scripts.yaml
  # PageC: !include alarm-panel/PageCbuttons.yaml  
 
@@ -81,11 +82,6 @@ text_sensor:
       id: DeviceInfo
     reset_reason:
       name: "Reset Reason"   
-
-  - platform: homeassistant
-    name: "Alarm State"
-    id: homeassistant_alarm
-    entity_id: alarm_control_panel.home_alarm 
 
   - platform: homeassistant
     name: "Pool Cleaner"
