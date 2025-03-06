@@ -39,80 +39,106 @@ font:
 
 image:
   - file: mdi:bell-off 
+    type: binary  
     id: img_BellOff 
     resize: 100x100    
   - file: mdi:bell
+    type: binary  
     id: img_Bell
     resize: 100x100   
   - file: mdi:bell-ring
+    type: binary  
     id: img_BellRing
     resize: 100x100             
   - file: mdi:lightbulb-on 
+    type: binary  
     id: img_LightbulbOn
     resize: 40x40      
   - file: mdi:lightbulb-outline 
+    type: binary  
     id: img_LightbulbOff
     resize: 40x40  
   - file: mdi:lightbulb-on-20
+    type: binary  
     id: img_LightbulbOn10
     resize: 40x40      
   - file: mdi:blinds-horizontal
+    type: binary  
     id: img_BlindsHorizontalOpen
     resize: 40x40   
   - file: mdi:blinds-horizontal-closed
+    type: binary  
     id: img_BlindsHorizontalClosed
     resize: 40x40       
   - file: mdi:television-off
+    type: binary  
     id: img_televisionOff
     resize: 40x40   
   - file: mdi:television
+    type: binary  
     id: img_televisionOn
     resize: 40x40     
   - file: mdi:battery-charging              
+    type: binary  
     id: img_batteryCharging
     resize: 40x40  
   - file: mdi:battery-off              
+    type: binary  
     id: img_batteryOff
     resize: 40x40     
   - file: mdi:weather-pouring              
+    type: binary  
     id: img_weather_pouring 
     resize: 160x160  
   - file: mdi:weather-cloudy              
+    type: binary  
     id: img_weather_cloudy
     resize: 160x160  
   - file: mdi:weather-night              
+    type: binary  
     id: img_weather_night
     resize: 160x160 
   - file: mdi:weather-hurricane              
+    type: binary  
     id: img_weather_hurricane
     resize: 160x160 
   - file: mdi:weather-hazy            
+    type: binary  
     id: img_weather_hazy
     resize: 160x160 
   - file: mdi:weather-sunny              
+    type: binary  
     id: img_weather_sunny
     resize: 160x160 
   - file: mdi:weather-partly-rainy            
+    type: binary  
     id: img_weather_partly_rainy
     resize: 160x160 
   - file: mdi:weather-partly-cloudy
+    type: binary  
     id: img_weather_partly_cloudy
     resize: 160x160 
   - file: mdi:weather-rainy              
+    type: binary  
     id: img_weather_rainy
     resize: 160x160 
   - file: mdi:weather-windy            
+    type: binary  
     id: img_weather_windy
     resize: 160x160 
   - file: mdi:weather-snowy
+    type: binary  
     id: img_weather_snowy
     resize: 160x160 
   - file: mdi:weather-lightning-rainy              
+    type: binary  
     id: img_weather_lightning_rainy
     resize: 160x160 
   - file: mdi:weather-fog
+    type: binary  
     id: img_weather_fog
     resize: 160x160 
   - file: mdi:snowflake_melt            
+    type: binary  
     id: img_weather_snowflake_melt
     resize: 160x160 

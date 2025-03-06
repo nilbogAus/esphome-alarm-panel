@@ -19,6 +19,8 @@ esp32:
       CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
       CONFIG_SPIRAM_RODATA: y
 
+psram:      
+
 # Enable logging
 logger:
   level: debug
@@ -273,6 +275,7 @@ display:
   - platform: ili9xxx
     model: ST7796
     id: my_display
+    invert_colors: false    
     spi_id: display_spi
     dc_pin: GPIO27
     reset_pin: GPIO33
