@@ -5,21 +5,25 @@
         id: lbl_title_pgA
         text_color: col_yellow
         text_font: roboto_lrg
-        text: "Alarm!"
+        text: "Alarm"
         align: TOP_MID
-        border_width: 2    
-        border_side: INTERNAL            
     - label:
         id: img_alarm_icon        
-        width: 270
-        height: 270
         text_color: col_white
         text_font: icons_200
-        text: "\U000F009A"
+        text: "\U000F02D6"
         align: TOP_MID        
         align_to: 
           id: lbl_tittle
           align: OUT_BOTTOM_MID
-     
+    - label:
+        id: lbl_status
+        text_color: col_gray
+        text_font: roboto_lrg
+        text: "Loading..."
+        align: TOP_MID    
+        align_to: 
+          id: img_alarm_icon
+          align: OUT_BOTTOM_MID         
     
 

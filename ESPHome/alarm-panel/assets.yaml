@@ -40,7 +40,10 @@ font:
     size: 200
     bpp: 4
     glyphs: [
-      "\U000F009A", # bell      
+      "\U000F02D6", # help (?)
+      "\U000F009A", # bell  
+      "\U000F009B", # bell-off  
+      "\U000F009E", # bell-ring
       "\U000F0594", # clear-night
       "\U000F0590", # cloudy
       "\U000F0F2F", # exceptional

@@ -3,3 +3,73 @@ text_sensor:
     name: "Alarm State"
     id: homeassistant_alarm
     entity_id: alarm_control_panel.home_alarm 
+    on_value: 
+      - lvgl.label.update:
+          id: lbl_status
+          text: !lambda 'return x.c_str();'         
+      - if:
+          condition:
+            text_sensor.state:
+              id: homeassistant_alarm
+              state: 'disarmed'
+          then:
+            - lvgl.label.update:
+                id: img_alarm_icon
+                text: "\U000F009B" # disarmed
+            - lvgl.label.update:                
+                id: lbl_status
+                text_color: col_green               
+          else:
+            - if:
+                condition:
+                  or:
+                    - text_sensor.state:
+                        id: homeassistant_alarm
+                        state: 'arming'
+                    - text_sensor.state:
+                        id: homeassistant_alarm
+                        state: 'pending'                        
+                then:
+                  - lvgl.label.update:
+                      id: img_alarm_icon
+                      text: "\U000F009A" # bell 
+                  - lvgl.label.update:                
+                      id: lbl_status
+                      text_color: col_yellow              
+                else:          
+                  - if:
+                      condition:
+                        - text_sensor.state:
+                            id: homeassistant_alarm
+                            state: 'triggered'                              
+                      then:
+                        - lvgl.label.update:
+                            id: img_alarm_icon
+                            text: "\U000F009E" # bell-ring
+                        - lvgl.label.update:                
+                            id: lbl_status
+                            text_color: col_red             
+                      else:          
+                        - if:
+                            condition:
+                              or:
+                                - text_sensor.state:
+                                    id: homeassistant_alarm
+                                    state: 'armed_home'
+                                - text_sensor.state:
+                                    id: homeassistant_alarm
+                                    state: 'armed_away'                        
+                            then:
+                              - lvgl.label.update:
+                                  id: img_alarm_icon
+                                  text: "\U000F009A" # bell 
+                              - lvgl.label.update:                
+                                  id: lbl_status
+                                  text_color: col_orange             
+                            else:          
+                              - lvgl.label.update:
+                                  id: img_alarm_icon
+                                  text: "\U000F02D6" # unknown
+                              - lvgl.label.update:                
+                                  id: lbl_status
+                                  text_color: col_gray                
