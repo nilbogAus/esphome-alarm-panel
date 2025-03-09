@@ -34,111 +34,134 @@ font:
   - file: "gfonts://Roboto"
     id: roboto_sml
     size: 12
-    glyphs: '/–|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'     
+    glyphs: '/–|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'    
+  - file: "fonts/materialdesignicons-webfont.ttf"
+    id: icons_200
+    size: 200
+    bpp: 4
+    glyphs: [
+      "\U000F009A", # bell      
+      "\U000F0594", # clear-night
+      "\U000F0590", # cloudy
+      "\U000F0F2F", # exceptional
+      "\U000F0591", # fog
+      "\U000F0592", # hail
+      "\U000F0593", # lightning
+      "\U000F067E", # lightning-rainy
+      "\U000F0595", # partlycloudy
+      "\U000F0596", # pouring
+      "\U000F0597", # rainy
+      "\U000F0598", # snowy
+      "\U000F067F", # snowy-rainy
+      "\U000F0599", # sunny
+      "\U000F059D", # windy
+      "\U000F059E", # windy-variant
+      "\U000F14E4", # sunny-off
+      ]     
 
 
-image:
-  - file: mdi:bell-off 
-    type: binary  
-    id: img_BellOff 
-    resize: 100x100    
-  - file: mdi:bell
-    type: binary  
-    id: img_Bell
-    resize: 100x100   
-  - file: mdi:bell-ring
-    type: binary  
-    id: img_BellRing
-    resize: 100x100             
-  - file: mdi:lightbulb-on 
-    type: binary  
-    id: img_LightbulbOn
-    resize: 40x40      
-  - file: mdi:lightbulb-outline 
-    type: binary  
-    id: img_LightbulbOff
-    resize: 40x40  
-  - file: mdi:lightbulb-on-20
-    type: binary  
-    id: img_LightbulbOn10
-    resize: 40x40      
-  - file: mdi:blinds-horizontal
-    type: binary  
-    id: img_BlindsHorizontalOpen
-    resize: 40x40   
-  - file: mdi:blinds-horizontal-closed
-    type: binary  
-    id: img_BlindsHorizontalClosed
-    resize: 40x40       
-  - file: mdi:television-off
-    type: binary  
-    id: img_televisionOff
-    resize: 40x40   
-  - file: mdi:television
-    type: binary  
-    id: img_televisionOn
-    resize: 40x40     
-  - file: mdi:battery-charging              
-    type: binary  
-    id: img_batteryCharging
-    resize: 40x40  
-  - file: mdi:battery-off              
-    type: binary  
-    id: img_batteryOff
-    resize: 40x40     
-  - file: mdi:weather-pouring              
-    type: binary  
-    id: img_weather_pouring 
-    resize: 160x160  
-  - file: mdi:weather-cloudy              
-    type: binary  
-    id: img_weather_cloudy
-    resize: 160x160  
-  - file: mdi:weather-night              
-    type: binary  
-    id: img_weather_night
-    resize: 160x160 
-  - file: mdi:weather-hurricane              
-    type: binary  
-    id: img_weather_hurricane
-    resize: 160x160 
-  - file: mdi:weather-hazy            
-    type: binary  
-    id: img_weather_hazy
-    resize: 160x160 
-  - file: mdi:weather-sunny              
-    type: binary  
-    id: img_weather_sunny
-    resize: 160x160 
-  - file: mdi:weather-partly-rainy            
-    type: binary  
-    id: img_weather_partly_rainy
-    resize: 160x160 
-  - file: mdi:weather-partly-cloudy
-    type: binary  
-    id: img_weather_partly_cloudy
-    resize: 160x160 
-  - file: mdi:weather-rainy              
-    type: binary  
-    id: img_weather_rainy
-    resize: 160x160 
-  - file: mdi:weather-windy            
-    type: binary  
-    id: img_weather_windy
-    resize: 160x160 
-  - file: mdi:weather-snowy
-    type: binary  
-    id: img_weather_snowy
-    resize: 160x160 
-  - file: mdi:weather-lightning-rainy              
-    type: binary  
-    id: img_weather_lightning_rainy
-    resize: 160x160 
-  - file: mdi:weather-fog
-    type: binary  
-    id: img_weather_fog
-    resize: 160x160 
-  - file: mdi:snowflake_melt            
-    type: binary  
-    id: img_weather_snowflake_melt
-    resize: 160x160 
+# image:
+#   - file: mdi:bell-off 
+#     type: binary  
+#     id: img_BellOff 
+#     resize: 100x100    
+#   - file: mdi:bell
+#     id: img_Bell
+#     resize: 300x300
+#     type: RGB565    
+#   - file: mdi:bell-ring
+#     type: binary  
+#     id: img_BellRing
+#     resize: 100x100             
+#   - file: mdi:lightbulb-on 
+#     type: binary  
+#     id: img_LightbulbOn
+#     resize: 40x40      
+#   - file: mdi:lightbulb-outline 
+#     type: binary  
+#     id: img_LightbulbOff
+#     resize: 40x40  
+#   - file: mdi:lightbulb-on-20
+#     type: binary  
+#     id: img_LightbulbOn10
+#     resize: 40x40      
+#   - file: mdi:blinds-horizontal
+#     type: binary  
+#     id: img_BlindsHorizontalOpen
+#     resize: 40x40   
+#   - file: mdi:blinds-horizontal-closed
+#     type: binary  
+#     id: img_BlindsHorizontalClosed
+#     resize: 40x40       
+#   - file: mdi:television-off
+#     type: binary  
+#     id: img_televisionOff
+#     resize: 40x40   
+#   - file: mdi:television
+#     type: binary  
+#     id: img_televisionOn
+#     resize: 40x40     
+#   - file: mdi:battery-charging              
+#     type: binary  
+#     id: img_batteryCharging
+#     resize: 40x40  
+#   - file: mdi:battery-off              
+#     type: binary  
+#     id: img_batteryOff
+#     resize: 40x40     
+#   - file: mdi:weather-pouring              
+#     type: binary  
+#     id: img_weather_pouring 
+#     resize: 160x160  
+#   - file: mdi:weather-cloudy              
+#     type: binary  
+#     id: img_weather_cloudy
+#     resize: 160x160  
+#   - file: mdi:weather-night              
+#     type: binary  
+#     id: img_weather_night
+#     resize: 160x160 
+#   - file: mdi:weather-hurricane              
+#     type: binary  
+#     id: img_weather_hurricane
+#     resize: 160x160 
+#   - file: mdi:weather-hazy            
+#     type: binary  
+#     id: img_weather_hazy
+#     resize: 160x160 
+#   - file: mdi:weather-sunny              
+#     type: binary  
+#     id: img_weather_sunny
+#     resize: 160x160 
+#   - file: mdi:weather-partly-rainy            
+#     type: binary  
+#     id: img_weather_partly_rainy
+#     resize: 160x160 
+#   - file: mdi:weather-partly-cloudy
+#     type: binary  
+#     id: img_weather_partly_cloudy
+#     resize: 160x160 
+#   - file: mdi:weather-rainy              
+#     type: binary  
+#     id: img_weather_rainy
+#     resize: 160x160 
+#   - file: mdi:weather-windy            
+#     type: binary  
+#     id: img_weather_windy
+#     resize: 160x160 
+#   - file: mdi:weather-snowy
+#     type: binary  
+#     id: img_weather_snowy
+#     resize: 160x160 
+#   - file: mdi:weather-lightning-rainy              
+#     type: binary  
+#     id: img_weather_lightning_rainy
+#     resize: 160x160 
+#   - file: mdi:weather-fog
+#     type: binary  
+#     id: img_weather_fog
+#     resize: 160x160 
+#   - file: mdi:snowflake_melt            
+#     type: binary  
+#     id: img_weather_snowflake_melt
+#     resize: 160x160 

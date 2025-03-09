@@ -68,6 +68,8 @@
         id: textarea_poweredby
         text_color: col_green
         text_font: roboto_sml
+        cursor:
+          bg_opa: transp        
         border_side: none
         bg_color: 0               
         one_line: false
