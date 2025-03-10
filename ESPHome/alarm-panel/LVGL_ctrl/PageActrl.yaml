@@ -69,7 +69,53 @@ text_sensor:
                             else:          
                               - lvgl.label.update:
                                   id: img_alarm_icon
-                                  text: "\U000F02D6" # unknown
+                                  text: "\U000F02D6" # help (?)
                               - lvgl.label.update:                
                                   id: lbl_status
                                   text_color: col_gray                
+
+key_collector:
+  - id: pincode_reader
+    source_id: keypad
+    end_keys: "#"
+    end_key_required: true 
+    clear_keys: "*"
+    allowed_keys: "0123456789"
+    timeout: 60s
+    on_progress:
+      - logger.log:
+          format: "input progress: '%s', started by '%c'"
+          args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
+      - globals.set:
+          id: g_keypad
+          value: !lambda "return (x.c_str());"     
+      - lvgl.textarea.update:
+          id: txt_passcode
+          text: !lambda "return (x);"  
+
+    on_result:
+      - logger.log:
+          format: "input result: '%s', started by '%c', ended by '%c'"
+          args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
+      - globals.set:
+          id: g_keypad
+          value: !lambda "return (x.c_str());" 
+
+#add pwd code check          
+
+      - if:
+          condition:
+            # Checks if "homeassistant_alarm" has state "disarmed" arm else disarm
+            text_sensor.state:
+              id: homeassistant_alarm
+              state: 'disarmed'   
+          then:
+            homeassistant.service: 
+              service: script.alarm_arm
+              data:
+                code: !lambda "return (x.c_str());"   
+          else:
+            homeassistant.service: 
+              service: script.alarm_disarm
+              data:
+                code: !lambda "return (x.c_str());"   

@@ -25,5 +25,12 @@
         align_to: 
           id: img_alarm_icon
           align: OUT_BOTTOM_MID         
-    
+    - textarea:
+        id: txt_passcode
+        one_line: true       
+        placeholder_text: "Enter code"   
+        width: 50%
+        align_to:         
+          id: lbl_status
+          align: OUT_BOTTOM_MID         
 
