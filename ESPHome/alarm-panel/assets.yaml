@@ -30,7 +30,7 @@ font:
   - file: "gfonts://Roboto"
     id: roboto
     size: 25
-    glyphs: '¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
+    glyphs: '*#¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
   - file: "gfonts://Roboto"
     id: roboto_sml
     size: 12

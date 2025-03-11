@@ -1,5 +1,52 @@
 - id: pageC
   widgets:
-    - label:
-        align: CENTER
-        text: 'Hello World!cccc'   
+    - buttonmatrix:
+        id: lvgl_keypad
+        width: 100%
+        height: 100%
+        items:
+          pressed:
+            bg_color: 0xFFFF00
+        rows:
+          - buttons:
+              - text: 1
+                control:
+                  no_repeat: true
+              - text: 2
+                control:
+                  no_repeat: true
+              - text: 3
+                control:
+                  no_repeat: true
+          - buttons:
+              - text: 4
+                control:
+                  no_repeat: true
+              - text: 5
+                control:
+                  no_repeat: true
+              - text: 6
+                control:
+                  no_repeat: true
+          - buttons:
+              - text: 7
+                control:
+                  no_repeat: true
+              - text: 8
+                control:
+                  no_repeat: true
+              - text: 9
+                control:
+                  no_repeat: true
+          - buttons:
+              - text: "*"
+                key_code: "*"
+                control:
+                  no_repeat: true
+              - text: 0
+                control:
+                  no_repeat: true
+              - text: "#"
+                key_code: "#"
+                control:
+                  no_repeat: true
