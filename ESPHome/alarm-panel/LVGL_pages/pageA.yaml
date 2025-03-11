@@ -16,12 +16,19 @@
         align_to: 
           id: lbl_tittle
           align: OUT_BOTTOM_MID
-    - label:
+    - textarea:
         id: lbl_status
         text_color: col_gray
         text_font: roboto_lrg
+        bg_color: col_black
+        one_line: true   
+        text_align: CENTER
         text: "Loading..."
         align: TOP_MID    
+        border_width: 0
+        cursor:
+          bg_opa: transp       
+          opa: transp 
         align_to: 
           id: img_alarm_icon
           align: OUT_BOTTOM_MID         
@@ -29,6 +36,7 @@
         id: txt_passcode
         one_line: true       
         placeholder_text: "Enter code"   
+        text_align: CENTER
         width: 45%
         align_to:         
           id: lbl_status

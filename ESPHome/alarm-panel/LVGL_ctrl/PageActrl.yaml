@@ -4,7 +4,7 @@ text_sensor:
     id: homeassistant_alarm
     entity_id: alarm_control_panel.home_alarm 
     on_value: 
-      - lvgl.label.update:
+      - lvgl.textarea.update:
           id: lbl_status
           text: !lambda 'return x.c_str();'         
       - if:
@@ -16,7 +16,7 @@ text_sensor:
             - lvgl.label.update:
                 id: img_alarm_icon
                 text: "\U000F009B" # disarmed
-            - lvgl.label.update:                
+            - lvgl.textarea.update:                
                 id: lbl_status
                 text_color: col_green               
           else:
@@ -33,7 +33,7 @@ text_sensor:
                   - lvgl.label.update:
                       id: img_alarm_icon
                       text: "\U000F009A" # bell 
-                  - lvgl.label.update:                
+                  - lvgl.textarea.update:                
                       id: lbl_status
                       text_color: col_yellow              
                 else:          
@@ -46,7 +46,7 @@ text_sensor:
                         - lvgl.label.update:
                             id: img_alarm_icon
                             text: "\U000F009E" # bell-ring
-                        - lvgl.label.update:                
+                        - lvgl.textarea.update:                
                             id: lbl_status
                             text_color: col_red             
                       else:          
@@ -63,14 +63,14 @@ text_sensor:
                               - lvgl.label.update:
                                   id: img_alarm_icon
                                   text: "\U000F009A" # bell 
-                              - lvgl.label.update:                
+                              - lvgl.textarea.update:                
                                   id: lbl_status
                                   text_color: col_orange             
                             else:          
                               - lvgl.label.update:
                                   id: img_alarm_icon
                                   text: "\U000F02D6" # help (?)
-                              - lvgl.label.update:                
+                              - lvgl.textarea.update:                
                                   id: lbl_status
                                   text_color: col_gray                
 
