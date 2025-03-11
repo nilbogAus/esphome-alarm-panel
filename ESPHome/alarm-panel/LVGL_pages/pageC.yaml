@@ -1,4 +1,5 @@
 - id: pageC
+  bg_color: col_black
   widgets:
     - buttonmatrix:
         id: lvgl_keypad
