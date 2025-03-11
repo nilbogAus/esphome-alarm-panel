@@ -100,9 +100,6 @@ key_collector:
       - globals.set:
           id: g_keypad
           value: !lambda "return (x.c_str());" 
-
-#add pwd code check          
-
       - if:
           condition:
             # Checks if "homeassistant_alarm" has state "disarmed" arm else disarm
