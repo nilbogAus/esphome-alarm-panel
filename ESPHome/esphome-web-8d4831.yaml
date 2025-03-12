@@ -354,6 +354,8 @@ binary_sensor:
     id: keypadA
     key: A
     on_press:
+  #    - key_collector.clear: pincode_reader
+
       - lvgl.page.show: pageA
   - platform: matrix_keypad
     keypad_id: keypad

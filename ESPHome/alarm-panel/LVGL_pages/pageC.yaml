@@ -13,41 +13,53 @@
               - text: 1
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 2
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 3
                 control:
                   no_repeat: true
+                  checkable: true
           - buttons:
               - text: 4
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 5
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 6
                 control:
                   no_repeat: true
+                  checkable: true
           - buttons:
               - text: 7
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 8
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 9
                 control:
                   no_repeat: true
+                  checkable: true
           - buttons:
               - text: "*"
                 key_code: "*"
                 control:
                   no_repeat: true
+                  checkable: true
               - text: 0
                 control:
                   no_repeat: true
+                  checkable: true
               - text: "#"
                 key_code: "#"
                 control:
                   no_repeat: true
+                  checkable: true

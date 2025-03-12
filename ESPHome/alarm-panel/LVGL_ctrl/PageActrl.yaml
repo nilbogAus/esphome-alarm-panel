@@ -86,33 +86,41 @@ key_collector:
       - logger.log:
           format: "input progress: '%s', started by '%c'"
           args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
-      - globals.set:
-          id: g_keypad
-          value: !lambda "return (x.c_str());"     
-      - lvgl.textarea.update:
-          id: txt_passcode
-          text: !lambda "return (x);"  
+      - if:
+          condition:
+            lvgl.page.is_showing: pageA
+          then:
+            - globals.set:
+                id: g_keypad
+                value: !lambda "return (x.c_str());"     
+            - lvgl.textarea.update:
+                id: txt_passcode
+                text: !lambda "return (x);"  
 
     on_result:
       - logger.log:
           format: "input result: '%s', started by '%c', ended by '%c'"
           args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
-      - globals.set:
-          id: g_keypad
-          value: !lambda "return (x.c_str());" 
       - if:
           condition:
-            # Checks if "homeassistant_alarm" has state "disarmed" arm else disarm
-            text_sensor.state:
-              id: homeassistant_alarm
-              state: 'disarmed'   
-          then:
-            homeassistant.service: 
-              service: script.alarm_arm
-              data:
-                code: !lambda "return (x.c_str());"   
-          else:
-            homeassistant.service: 
-              service: script.alarm_disarm
-              data:
-                code: !lambda "return (x.c_str());"   
+            lvgl.page.is_showing: pageA
+          then:          
+            - globals.set:
+                id: g_keypad
+                value: !lambda "return (x.c_str());" 
+            - if:
+                condition:
+                  # Checks if "homeassistant_alarm" has state "disarmed" arm else disarm
+                  text_sensor.state:
+                    id: homeassistant_alarm
+                    state: 'disarmed'   
+                then:
+                  homeassistant.service: 
+                    service: script.alarm_arm
+                    data:
+                      code: !lambda "return (x.c_str());"   
+                else:
+                  homeassistant.service: 
+                    service: script.alarm_disarm
+                    data:
+                      code: !lambda "return (x.c_str());"   
