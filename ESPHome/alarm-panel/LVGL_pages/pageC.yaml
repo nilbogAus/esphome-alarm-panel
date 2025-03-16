@@ -10,15 +10,18 @@
             bg_color: 0xFFFF00
         rows:
           - buttons:
-              - text: 1
+              - text: "1\n\U000F0335\nTanes"
+                id: lvgl_keypad_button1
                 control:
                   no_repeat: true
                   checkable: true
               - text: 2
+                id: lvgl_keypad_button2
                 control:
                   no_repeat: true
                   checkable: true
               - text: 3
+                id: lvgl_keypad_button3
                 control:
                   no_repeat: true
                   checkable: true

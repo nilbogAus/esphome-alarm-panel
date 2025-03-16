@@ -10,7 +10,7 @@ binary_sensor:
       - homeassistant.service:
           service: switch.turn_off
           data_template:
-            entity_id: switch.sonoff_10007724b9      
+            entity_id: switch.sonoff_10007724b9      #Tanes Room
   - platform: touchscreen
     id: touch_button_1b
     x_min: 80

@@ -54,6 +54,8 @@ packages:
   #ctrls: !include_dir_list alarm-panel/LVGL_ctrl/
   ctrlsA: !include alarm-panel/LVGL_ctrl/PageActrl.yaml
   ctrlsB: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
+  ctrlsC: !include alarm-panel/LVGL_ctrl/PageCctrl.yaml
+
   #my_scripts: !include alarm-panel/scripts.yaml
  # PageC: !include alarm-panel/PageCbuttons.yaml  
 
@@ -335,7 +337,7 @@ lvgl:
         checked:
           bg_color: 0x1d5f96
           bg_grad_color: 0x03324A
-          text_color: 0x005580  
+          text_color: 0x001015  
  
 
  
@@ -375,7 +377,34 @@ binary_sensor:
     key: D
     on_press:
       - lvgl.page.show: pageD
-
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad1
+    key: 1
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: tanes_lights
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad2
+    key: 2
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            # if:       
+            #   condition:
+            #     lvgl.matrix.button.is_checked: 
+            #       id: lvgl_keypad_button1
+            #   then:
+            - lvgl.widget.update:
+                id: lvgl_keypad_button1
+                state: 
+                  checked: false
 
 graph:
   - id: InternalTemp_graph

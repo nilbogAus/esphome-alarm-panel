@@ -31,6 +31,11 @@ font:
     id: roboto
     size: 25
     glyphs: '*#¢$/|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'
+    extras:
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0335", # mdi-lightbulb
+          ]
   - file: "gfonts://Roboto"
     id: roboto_sml
     size: 12
