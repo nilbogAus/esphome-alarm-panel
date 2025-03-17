@@ -15,12 +15,12 @@
                 control:
                   no_repeat: true
                   checkable: true
-              - text: 2
+              - text: "2\n\U000F0335\nFront"
                 id: lvgl_keypad_button2
                 control:
                   no_repeat: true
                   checkable: true
-              - text: 3
+              - text: "3\n\U000F0335\nKitchen"
                 id: lvgl_keypad_button3
                 control:
                   no_repeat: true

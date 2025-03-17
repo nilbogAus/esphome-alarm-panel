@@ -377,34 +377,6 @@ binary_sensor:
     key: D
     on_press:
       - lvgl.page.show: pageD
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypad1
-    key: 1
-    on_press:
-      - if:
-          condition:
-            lvgl.page.is_showing: pageC
-          then:
-            switch.toggle: tanes_lights
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypad2
-    key: 2
-    on_press:
-      - if:
-          condition:
-            lvgl.page.is_showing: pageC
-          then:
-            # if:       
-            #   condition:
-            #     lvgl.matrix.button.is_checked: 
-            #       id: lvgl_keypad_button1
-            #   then:
-            - lvgl.widget.update:
-                id: lvgl_keypad_button1
-                state: 
-                  checked: false
 
 graph:
   - id: InternalTemp_graph
