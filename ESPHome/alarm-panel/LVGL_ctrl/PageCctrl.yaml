@@ -38,12 +38,47 @@ switch:
           id: lvgl_keypad_button3
           state: 
             checked: true  
+  - platform: homeassistant
+    entity_id: switch.sonoff_10001744f0
+    id: kids_ac
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button7
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button7
+          state: 
+            checked: true              
+  - platform: homeassistant
+    entity_id: switch.sonoff_10001e7e08
+    id: master_ac
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button8
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button8
+          state: 
+            checked: true  
+            
 
 globals:
   - id: blinds_study_open
     type: bool
     restore_value: no
     initial_value: 'true'
+  - id: blinds_lucy_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'    
+  - id: blinds_tane_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'     
 
 binary_sensor: 
   - platform: matrix_keypad
@@ -80,6 +115,38 @@ binary_sensor:
     keypad_id: keypad
     id: keypad4
     key: 4
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            - if:
+                condition:
+                  lambda: 'return id(blinds_tane_open) == false;'
+                then:
+                  - homeassistant.service:
+                      service: cover.open_cover
+                      data_template:
+                        entity_id: cover.tane  
+                  - globals.set:
+                      id: blinds_tane_open
+                      value: 'true'  
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button4
+                      state: 
+                        checked: false                           
+                else:
+                  - homeassistant.service:
+                      service: cover.close_cover
+                      data_template:
+                        entity_id: cover.tane  
+                  - globals.set:
+                      id: blinds_tane_open
+                      value: 'false'   
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button4
+                      state: 
+                        checked: true       
 
   - platform: matrix_keypad
     keypad_id: keypad
@@ -90,10 +157,41 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            - homeassistant.service:
-                service: cover.close_cover
-                data_template:
-                  entity_id: cover.study  
+            - if:
+                condition:
+                  lambda: 'return id(blinds_lucy_open) == false;'
+                then:               
+                  - homeassistant.service:
+                      service: cover.open_cover
+                      data_template:
+                        entity_id: cover.carrington_rd  
+                  - homeassistant.service:
+                      service: cover.open_cover
+                      data_template:
+                        entity_id: cover.darri_ave                          
+                  - globals.set:
+                      id: blinds_lucy_open
+                      value: 'true'  
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button5
+                      state: 
+                        checked: false                           
+                else:
+                  - homeassistant.service:
+                      service: cover.close_cover
+                      data_template:
+                        entity_id: cover.carrington_rd  
+                  - homeassistant.service:
+                      service: cover.close_cover
+                      data_template:
+                        entity_id: cover.darri_ave                          
+                  - globals.set:
+                      id: blinds_lucy_open
+                      value: 'false'   
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button5
+                      state: 
+                        checked: true   
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypad6
@@ -130,3 +228,23 @@ binary_sensor:
                       id: lvgl_keypad_button6
                       state: 
                         checked: true    
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad7
+    key: 7
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: kids_ac             
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad8
+    key: 8
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: master_ac                            
