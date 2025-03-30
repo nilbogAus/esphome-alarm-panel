@@ -37,7 +37,13 @@ switch:
       - lvgl.widget.update:
           id: lvgl_keypad_button3
           state: 
-            checked: true                
+            checked: true  
+
+globals:
+  - id: blinds_study_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'
 
 binary_sensor: 
   - platform: matrix_keypad
@@ -70,4 +76,57 @@ binary_sensor:
             lvgl.page.is_showing: pageC
           then:
             switch.toggle: kitchen_lights
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad4
+    key: 4
 
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad5
+    key: 5
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            - homeassistant.service:
+                service: cover.close_cover
+                data_template:
+                  entity_id: cover.study  
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad6
+    key: 6
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            - if:
+                condition:
+                  lambda: 'return id(blinds_study_open) == false;'
+                then:
+                  - homeassistant.service:
+                      service: cover.open_cover
+                      data_template:
+                        entity_id: cover.study  
+                  - globals.set:
+                      id: blinds_study_open
+                      value: 'true'  
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button6
+                      state: 
+                        checked: false                           
+                else:
+                  - homeassistant.service:
+                      service: cover.close_cover
+                      data_template:
+                        entity_id: cover.study  
+                  - globals.set:
+                      id: blinds_study_open
+                      value: 'false'   
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button6
+                      state: 
+                        checked: true    

@@ -15,35 +15,46 @@
                 control:
                   no_repeat: true
                   checkable: true
+                on_press:
+                  switch.toggle: tanes_lights                
               - text: "2\n\U000F0335\nFront"
                 id: lvgl_keypad_button2
                 control:
                   no_repeat: true
                   checkable: true
+                on_press:
+                  switch.toggle: front_lights                  
               - text: "3\n\U000F0335\nKitchen"
                 id: lvgl_keypad_button3
                 control:
                   no_repeat: true
                   checkable: true
+                on_press:
+                  switch.toggle: kitchen_lights                      
           - buttons:
-              - text: 4
+              - text: "4\n\U000F1A2B\nTanes"
+                id: lvgl_keypad_button4
                 control:
                   no_repeat: true
                   checkable: true
-              - text: 5
+              - text: "5\n\U000F1A2B\nLucys"
+                id: lvgl_keypad_button5
                 control:
                   no_repeat: true
                   checkable: true
-              - text: 6
+              - text: "6\n\U000F1A2B\nStudy"
+                id: lvgl_keypad_button6
                 control:
                   no_repeat: true
                   checkable: true
           - buttons:
-              - text: 7
+              - text: "7\n\U000F001B\nKids"
+                id: lvgl_keypad_button7
                 control:
                   no_repeat: true
                   checkable: true
-              - text: 8
+              - text: "8\n\U000F001B\nMaster"
+                id: lvgl_keypad_button8
                 control:
                   no_repeat: true
                   checkable: true

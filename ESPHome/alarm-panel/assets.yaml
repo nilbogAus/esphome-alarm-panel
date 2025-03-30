@@ -24,6 +24,7 @@ color:
 
 font:
   - file: "gfonts://Roboto"
+
     id: roboto_lrg
     size: 50
     glyphs: '|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
@@ -35,6 +36,8 @@ font:
       - file: "fonts/materialdesignicons-webfont.ttf"
         glyphs: [
           "\U000F0335", # mdi-lightbulb
+          "\U000F1A2B", # mdi-blinds-horizontal
+          "\U000F001B", # mdi-air-conditioner
           ]
   - file: "gfonts://Roboto"
     id: roboto_sml

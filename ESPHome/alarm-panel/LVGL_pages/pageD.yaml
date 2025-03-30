@@ -1,5 +1,13 @@
 - id: pageD
   widgets:
     - label:
+        id: firstline
         align: CENTER
-        text: 'Hello World!dddd'   
+        text: 'Hello World!'   
+    - label:
+        id: secondline        
+        text: "second line"
+        align: TOP_MID        
+        align_to: 
+          id: firstline
+          align: OUT_BOTTOM_MID        
