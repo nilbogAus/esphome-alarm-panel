@@ -1,0 +1,22 @@
+sensor:
+  - platform: homeassistant
+    name: "Inside Temp"
+    id: inside_temp
+    entity_id: sensor.sensibo_Master_Bedroom_Temperature
+    on_value:
+      - lvgl.label.update:
+          id: lbl_inside_temp
+          text: 
+            format: "%.1f°C"
+            args: ['id(inside_temp).get_state()']
+  - platform: homeassistant
+    name: "Outside Temp"
+    id: outside_temp
+    entity_id: sensor.easyweatherv1_6_5_outdoor_temperature
+    on_value:
+      - lvgl.label.update:
+          id: lbl_outside_temp
+          text: 
+            format: "%.1f°C"
+            args: ['id(outside_temp).get_state()']    
+    

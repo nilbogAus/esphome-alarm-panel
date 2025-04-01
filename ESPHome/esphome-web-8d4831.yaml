@@ -55,7 +55,7 @@ packages:
   ctrlsA: !include alarm-panel/LVGL_ctrl/PageActrl.yaml
   ctrlsB: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
   ctrlsC: !include alarm-panel/LVGL_ctrl/PageCctrl.yaml
-
+  ctrlsd: !include alarm-panel/LVGL_ctrl/PageDctrl.yaml
   #my_scripts: !include alarm-panel/scripts.yaml
  # PageC: !include alarm-panel/PageCbuttons.yaml  
 
@@ -199,14 +199,6 @@ sensor:
     name: "Solar Power"
     id: solar_power
     entity_id: sensor.envoy_122348003312_current_power_production
-  - platform: homeassistant
-    name: "Inside Temp"
-    id: inside_temp
-    entity_id: sensor.adjusted_lounge_temperature
-  - platform: homeassistant
-    name: "Outside Temp"
-    id: outside_temp
-    entity_id: sensor.easyweatherv1_6_5_outdoor_temperature
 
   - platform: homeassistant
     name: "Forecast Temp Min"

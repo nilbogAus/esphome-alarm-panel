@@ -3,6 +3,9 @@
   widgets:
     - obj: # a properly placed coontainer object for all these controls
         bg_color: col_black
+        border_color: col_black
+        border_width: 0
+        radius: 0
         width: 100%
         height: 100%
         layout: # enable the GRID layout for the children widgets
@@ -18,9 +21,35 @@
               grid_cell_x_align: CENTER
               grid_cell_y_align: CENTER      
           - label:
+              id: lbl_inside_temp
+              text: "Loading"
+              text_color: col_white
+              border_width: 1
+              border_color: col_green
+              radius: 6          
+              grid_cell_column_pos: 0 # place the widget in
+              grid_cell_row_pos: 1 # the corresponding cell
+              text_font: roboto_lrg
+              text_align: CENTER              
+              grid_cell_x_align: CENTER
+              grid_cell_y_align: CENTER                
+          - label:
               text: "Outside"
               text_color: col_blue
               grid_cell_column_pos: 1 # place the widget in
               grid_cell_row_pos: 0 # the corresponding cell
               grid_cell_x_align: CENTER
               grid_cell_y_align: CENTER                  
+          - label:
+              id: lbl_outside_temp
+              text: "Loading"
+              text_color: col_white
+              border_width: 1
+              border_color: col_green
+              radius: 6           
+              grid_cell_column_pos: 1 # place the widget in
+              grid_cell_row_pos: 1 # the corresponding cell
+              text_font: roboto_lrg
+              text_align: CENTER              
+              grid_cell_x_align: CENTER
+              grid_cell_y_align: CENTER  
