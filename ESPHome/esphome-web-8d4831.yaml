@@ -90,24 +90,7 @@ text_sensor:
   - platform: homeassistant
     name: "Pool Cleaner"
     id: pool_cleaner
-    entity_id: sensor.creepy_status
-
-  - platform: homeassistant
-    name: "Forecast Today Text"
-    id: forecast_text_today
-    entity_id: sensor.wahroonga_extended_text_0
-  - platform: homeassistant
-    name: "Forecast Today Rain Chance"
-    id: forecast_rain_chance_today
-    entity_id: sensor.wahroonga_rain_chance_0
-  - platform: homeassistant
-    name: "Forecast Today Icon"
-    id: forecast_icon_today
-    entity_id: sensor.wahroonga_mdi_icon_0
-  - platform: homeassistant
-    name: "Forecast Today label"
-    id: forecast_label_today
-    entity_id: sensor.wahroonga_now_now_label    
+    entity_id: sensor.creepy_status 
 
   - platform: homeassistant
     name: "Forecast Text"

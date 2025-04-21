@@ -1,4 +1,5 @@
 sensor:
+  # Tempreature
   - platform: homeassistant
     name: "Inside Temp"
     id: inside_temp
@@ -19,4 +20,28 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
+
+  # Forcast Icon
+
     
+  - platform: homeassistant
+    name: "Forecast Today Rain Chance"
+    id: forecast_rain_chance_today
+    entity_id: sensor.wahroonga_rain_chance_0
+  - platform: homeassistant
+    name: "Forecast Today Icon"
+    id: forecast_icon_today
+    entity_id: sensor.wahroonga_mdi_icon_0
+  - platform: homeassistant
+    name: "Forecast Today label"
+    id: forecast_label_today
+    entity_id: sensor.wahroonga_now_now_label       
+
+text_sensor:
+  - platform: homeassistant
+    id: forecast_text_today
+    entity_id: sensor.wahroonga_extended_text_0
+    on_value:
+      - lvgl.label.update:
+          id: lbl_weather_longtext
+          text: !lambda "return (x);"  

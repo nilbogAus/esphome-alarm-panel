@@ -1,55 +1,202 @@
 - id: pageD
-  
   widgets:
+    
     - obj: # a properly placed coontainer object for all these controls
         bg_color: col_black
-        border_color: col_black
-        border_width: 0
         radius: 0
         width: 100%
         height: 100%
-        layout: # enable the GRID layout for the children widgets
-          type: GRID # split the rows and the columns proportionally
-          grid_columns: [FR(1), FR(1)] # equal
-          grid_rows: [FR(10), FR(20), FR(10), FR(30), FR(20), FR(30), FR(20)] 
+        scrollbar_mode: "OFF"
+        pad_all: 0
+        border_width: 0
         widgets:  
-          - label:
-              text: "Inside"
-              text_color: col_blue
-              grid_cell_column_pos: 0 # place the widget in
-              grid_cell_row_pos: 0 # the corresponding cell
-              grid_cell_x_align: CENTER
-              grid_cell_y_align: CENTER      
-          - label:
-              id: lbl_inside_temp
-              text: "Loading"
-              text_color: col_white
-              border_width: 1
-              border_color: col_green
-              radius: 6          
-              grid_cell_column_pos: 0 # place the widget in
-              grid_cell_row_pos: 1 # the corresponding cell
-              text_font: roboto_lrg
-              text_align: CENTER              
-              grid_cell_x_align: CENTER
-              grid_cell_y_align: CENTER                
-          - label:
-              text: "Outside"
-              text_color: col_blue
-              grid_cell_column_pos: 1 # place the widget in
-              grid_cell_row_pos: 0 # the corresponding cell
-              grid_cell_x_align: CENTER
-              grid_cell_y_align: CENTER                  
-          - label:
-              id: lbl_outside_temp
-              text: "Loading"
-              text_color: col_white
-              border_width: 1
-              border_color: col_green
-              radius: 6           
-              grid_cell_column_pos: 1 # place the widget in
-              grid_cell_row_pos: 1 # the corresponding cell
-              text_font: roboto_lrg
-              text_align: CENTER              
-              grid_cell_x_align: CENTER
-              grid_cell_y_align: CENTER  
+            - obj:
+                pad_all: 0
+                id: wg_Tempreatures
+                width: 100%
+                align: TOP_MID
+                height: SIZE_CONTENT
+                border_width: 0    
+                scrollbar_mode: "OFF"
+                widgets:
+                    # Tempreature
+                    - obj:
+                        pad_all: 1
+                        width: 50%
+                        height: SIZE_CONTENT
+                        id: wg_Tempreatures_Inside
+                        align_to:         
+                            id: wg_Tempreatures
+                            align: TOP_LEFT 
+                        border_color: col_blue
+                        bg_color: 0x000000   
+                        bg_grad_color: 0x0000BB
+                        bg_grad_dir: ver        
+                        scrollbar_mode: "OFF"         
+                        widgets:
+                            - label:
+                                id: wg_Tempreatures_Inside_Title
+                                align_to:         
+                                    id: wg_Tempreatures_Inside
+                                    align: TOP_MID                                  
+                                text: "Inside"
+                                text_color: col_blue
+                            - label:
+                                id: lbl_inside_temp
+                                pad_right: 6
+                                scrollbar_mode: "OFF"
+                                align_to:         
+                                    id: wg_Tempreatures_Inside_Title
+                                    align: OUT_BOTTOM_MID                                  
+                                text: "??.?°C"
+                                text_color: col_white
+                                border_width: 0
+                                radius: 10         
+                                text_font: roboto_lrg
+                                text_align: CENTER      
+                    - obj:
+                        pad_all: 1
+                        width: 50%
+                        height: SIZE_CONTENT
+                        id: wg_Tempreatures_Outside
+                        align_to:         
+                            id: wg_Tempreatures
+                            align: TOP_RIGHT 
+                        border_color: col_blue
+                        bg_color: 0x000000   
+                        bg_grad_color: 0x000077
+                        bg_grad_dir: ver    
+                        scrollbar_mode: "OFF"                
+                        widgets:                                  
+                            - label:
+                                id: wg_Tempreatures_Outside_Title
+                                align_to:         
+                                    id: wg_Tempreatures_Outside
+                                    align: TOP_MID                     
+                                text: "Outside"
+                                text_color: col_blue
+                            - label:
+                                id: lbl_outside_temp
+                                pad_right: 6
+                                scrollbar_mode: "OFF"
+                                align_to:         
+                                    id: wg_Tempreatures_Outside_Title
+                                    align: OUT_BOTTOM_MID                               
+                                text: "??.?°C"
+                                text_color: col_white
+                                border_width: 0
+                                radius: 10          
+                                text_font: roboto_lrg
+                                text_align: CENTER  
+
+            - obj:
+                id: wg_Weather
+                bg_color: col_black
+                height: SIZE_CONTENT
+                width: 100%
+                align_to:         
+                    id: wg_Tempreatures
+                    align: OUT_BOTTOM_MID   
+                border_width: 1
+                border_color: col_green
+                pad_all: 0
+                scrollbar_mode: "OFF"
+                widgets:
+                    # Forcast Icon
+                    - label:
+                        id: lbl_weather_day
+                        text: "Today"
+                        border_width: 1
+                        text_color: col_blue
+                        text_align: CENTER     
+                        align_to:         
+                            id: wg_Weather
+                            align: TOP_MID   
+                    - label:
+                        id: lbl_weather_icon
+                        text_font: icons_200
+                        text: "\U000F02D6"
+                        text_color: col_white
+                        border_width: 1
+                        border_color: col_green
+                        text_align: CENTER   
+                        height: SIZE_CONTENT
+                        pad_all: 0   
+                        align_to:         
+                            id: lbl_weather_day
+                            align: OUT_BOTTOM_MID 
+                    - obj:
+                        id: wg_weather_text
+                        bg_color: col_black
+                        height: SIZE_CONTENT
+                        width: 100%
+                        align_to:         
+                            id: lbl_weather_icon
+                            align: OUT_BOTTOM_MID   
+                        border_width: 1
+                        border_color: col_green
+                        pad_all: 0
+
+                        widgets:                
+                            - label:
+                                id: lbl_weather_text_temp
+                                text: "Loading"
+                                width: 50%
+                                text_color: col_white
+                                text_align: CENTER
+                                border_width: 1
+                                border_color: col_green
+                                pad_all: 1 
+                                align_to:         
+                                    id: wg_weather_text
+                                    align: TOP_LEFT   
+                            - label:
+                                id: lbl_weather_text_rain
+                                text: "Loading"
+                                width: 50%
+                                text_color: col_white
+                                text_align: CENTER
+                                border_width: 1
+                                border_color: col_green
+                                pad_all: 1 
+                                align_to:         
+                                    id: wg_weather_text
+                                    align: TOP_RIGHT                                     
+                    - label:
+                        id: lbl_weather_longtext
+                        text: "What’s the worst type of weather to hire?\nLightning, it’s always on strike."
+                        text_color: col_green
+                        border_width: 1
+                        border_color: col_green
+                        pad_all: 1 
+                        text_font: roboto_sml
+                        text_align: CENTER  
+                        height: SIZE_CONTENT
+                        scrollbar_mode: "OFF"
+                        width: 100%
+                        align_to:         
+                            id: wg_weather_text
+                            align: OUT_BOTTOM_MID   
+            - obj:
+                id: wg_rain
+                bg_color: col_black
+                height: SIZE_CONTENT
+                width: 100%
+                align: BOTTOM_MID
+                border_width: 1
+                border_color: col_green
+                pad_all: 0
+
+                widgets:
+                    - label:
+                        id: lbl_rain
+                        text: "Loading"
+                        border_width: 1
+                        width: 100%
+                        text_color: col_white
+                        border_color: col_blue
+                        text_align: CENTER     
+                        align_to:         
+                            id: wg_rain
+                            align: BOTTOM_MID  
+                          
