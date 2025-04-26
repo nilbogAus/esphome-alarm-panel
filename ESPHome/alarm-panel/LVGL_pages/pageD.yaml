@@ -1,6 +1,5 @@
 - id: pageD
   widgets:
-    
     - obj: # a properly placed coontainer object for all these controls
         bg_color: col_black
         radius: 0
@@ -13,6 +12,7 @@
             - obj:
                 pad_all: 0
                 id: wg_Tempreatures
+                bg_color: 0x000000   
                 width: 100%
                 align: TOP_MID
                 height: SIZE_CONTENT
@@ -88,7 +88,6 @@
                                 radius: 10          
                                 text_font: roboto_lrg
                                 text_align: CENTER  
-
             - obj:
                 id: wg_Weather
                 bg_color: col_black
@@ -136,7 +135,6 @@
                         border_width: 1
                         border_color: col_green
                         pad_all: 0
-
                         widgets:                
                             - label:
                                 id: lbl_weather_text_temp
@@ -166,8 +164,6 @@
                         id: lbl_weather_longtext
                         text: "What’s the worst type of weather to hire?\nLightning, it’s always on strike."
                         text_color: col_green
-                        border_width: 1
-                        border_color: col_green
                         pad_all: 1 
                         text_font: roboto_sml
                         text_align: CENTER  
@@ -186,7 +182,6 @@
                 border_width: 1
                 border_color: col_green
                 pad_all: 0
-
                 widgets:
                     - label:
                         id: lbl_rain
