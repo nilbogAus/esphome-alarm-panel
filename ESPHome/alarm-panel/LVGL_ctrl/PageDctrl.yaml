@@ -74,8 +74,8 @@ text_sensor:
       - lvgl.label.update:
           id: lbl_rain
           text:
-            format: "%s chance of rain"
-            args: [ 'id(forecast_rain_chance_today).state.c_str()' ]  
+            format: "%s%s chance of rain"
+            args: [ 'id(forecast_rain_chance_today).state.c_str()', '"%"' ]  
   - platform: homeassistant
     name: "Forecast Today label"
     id: forecast_label_today
