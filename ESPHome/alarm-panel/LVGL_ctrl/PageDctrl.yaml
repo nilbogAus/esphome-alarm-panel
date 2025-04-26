@@ -32,8 +32,6 @@ sensor:
           text:
             format: "%s %.0f°C"
             args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state' ]      
-      # - lvgl.widget.redraw:   
-      #     id: wg_Weather
 
 
   - platform: homeassistant

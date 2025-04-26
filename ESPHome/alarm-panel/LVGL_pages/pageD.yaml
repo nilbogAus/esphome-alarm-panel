@@ -28,7 +28,7 @@
                         align_to:         
                             id: wg_Tempreatures
                             align: TOP_LEFT 
-                        border_color: col_blue
+                        border_color: col_black
                         bg_color: 0x000000   
                         bg_grad_color: 0x0000BB
                         bg_grad_dir: ver        
@@ -62,7 +62,7 @@
                         align_to:         
                             id: wg_Tempreatures
                             align: TOP_RIGHT 
-                        border_color: col_blue
+                        border_color: col_black
                         bg_color: 0x000000   
                         bg_grad_color: 0x0000BB
                         bg_grad_dir: ver    
@@ -136,43 +136,37 @@
                         align_to:         
                             id: lbl_weather_icon
                             align: OUT_BOTTOM_MID   
+                        text_color: col_white
+                        text_align: CENTER
+                        text_font: roboto_sml
                         border_width: 0
-                        border_color: col_green
                         pad_all: 0
                         widgets:                
                             - label:
                                 id: lbl_weather_text_temp
-                                text: "Loading"
+                                text: "Loading\n..."
                                 width: 50%
-                                text_color: col_white
-                                text_align: CENTER
-                                border_width: 0
-                                border_color: col_green
-                                pad_all: 1 
+                                pad_all: 2
                                 align_to:         
                                     id: wg_weather_text
-                                    align: TOP_LEFT   
+                                    align: LEFT_MID
                             - label:
                                 id: lbl_weather_text_rain
-                                text: "Loading"
+                                text: "Loading\n..."
                                 width: 50%
-                                text_color: col_white
-                                text_align: CENTER
-                                border_width: 0
-                                border_color: col_green
-                                pad_all: 1 
+                                pad_all: 2
                                 align_to:         
                                     id: wg_weather_text
-                                    align: TOP_RIGHT                                     
+                                    align: RIGHT_MID                               
                     - label:
                         id: lbl_weather_longtext
-                        text: "What’s the worst type of weather to hire?\nLightning, it’s always on strike."
+                        text: "What’s the worst type of weather to hire?\nLightning, it’s always on strike.\nWhat did one raindrop say to the other?\nTwo’s company, three’s a cloud!"
                         text_color: col_green
                         pad_all: 5 
                         border_width: 0
                         text_font: roboto_sml
                         text_align: CENTER  
-                        height: SIZE_CONTENT
+                        height: 100
                         scrollbar_mode: "OFF"
                         width: 100%
                         align_to:         
