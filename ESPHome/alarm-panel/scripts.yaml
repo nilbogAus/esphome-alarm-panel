@@ -2,11 +2,13 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
+        - lvgl.page.show: pageA 
         - delay: 30s    #wait for sensors etc to be ready 
         - while:
             condition:
                 - wifi.connected:
             then:
+                - lvgl.page.show: pageA 
                 - delay: 5 min              
                 - while:
                     condition:
@@ -14,14 +16,10 @@ script:
                             id: homeassistant_alarm
                             state: 'disarmed'                        
                     then:
-                        - display.page.show: pageB
+                        - lvgl.page.show: pageB
                         - delay: 10s
-                        - display.page.show: pageC
-                        - delay: 2s
-                        - display.page.show: pageD
+                        - lvgl.page.show: pageC
+                        - delay: 1s
+                        - lvgl.page.show: pageD
                         - delay: 8s      
-                        - display.page.show: pageD2
-                        - delay: 7s  
-                        - display.page.show: pageD3
-                        - delay: 7s 
-        - display.page.show: pageA           
+        - lvgl.page.show: pageA           

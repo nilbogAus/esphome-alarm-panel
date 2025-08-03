@@ -7,6 +7,11 @@ esphome:
   friendly_name: ${friendly_name}
   min_version: 2024.6.0
   name_add_mac_suffix: false
+  on_boot:
+    - priority: 800
+      then:
+        - logger.log: "Device ready"
+        - script.execute: script_page_carousel 
 
 esp32:
   board: nodemcu-32s
@@ -23,7 +28,7 @@ psram:
 
 # Enable logging
 logger:
-  level: debug
+  level: DEBUG
 #  level: WARN
   logs:
     component: ERROR  # To disable "Component display took a long time for an operation (0.09 s)."
@@ -56,7 +61,7 @@ packages:
   ctrlsB: !include alarm-panel/LVGL_ctrl/PageBctrl.yaml
   ctrlsC: !include alarm-panel/LVGL_ctrl/PageCctrl.yaml
   ctrlsd: !include alarm-panel/LVGL_ctrl/PageDctrl.yaml
-  #my_scripts: !include alarm-panel/scripts.yaml
+  my_scripts: !include alarm-panel/scripts.yaml
  # PageC: !include alarm-panel/PageCbuttons.yaml  
 
 globals:
@@ -324,7 +329,7 @@ binary_sensor:
     id: keypadB
     key: B
     on_press:
-      - lvgl.page.show: pageB
+    - lvgl.page.show: pageB
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadC

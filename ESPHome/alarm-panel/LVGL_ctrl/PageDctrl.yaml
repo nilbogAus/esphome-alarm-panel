@@ -22,6 +22,9 @@ sensor:
             args: ['id(outside_temp).get_state()']    
 
    
+
+
+   
   - platform: homeassistant
     name: "Forecast Today Temp Min"
     id: forecast_temp_today
