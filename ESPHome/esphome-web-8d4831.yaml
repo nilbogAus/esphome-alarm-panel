@@ -80,12 +80,12 @@ switch:
 
 
 text_sensor:
-  - platform: debug
-    device:
-      name: "Device Info"
-      id: DeviceInfo
-    reset_reason:
-      name: "Reset Reason"   
+  # - platform: debug
+  #   device:
+  #     name: "Device Info"
+  #     id: DeviceInfo
+  #   reset_reason:
+  #     name: "Reset Reason"   
 
   - platform: homeassistant
     name: "Pool Cleaner"
