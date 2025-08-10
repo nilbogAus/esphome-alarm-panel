@@ -5,3 +5,53 @@ globals:
     restore_value: no
     max_restore_data_length: 5
     initial_value: ''
+
+
+switch:
+  - platform: homeassistant
+    id: ryobi_batteries_switch
+    entity_id: switch.sonoff_10001e9d60
+
+  - platform: homeassistant
+    id: refrigerator_express_mode
+    entity_id: switch.refrigerator_express_mode
+
+
+text_sensor:
+  # - platform: debug
+  #   device:
+  #     name: "Device Info"
+  #     id: DeviceInfo
+  #   reset_reason:
+  #     name: "Reset Reason"   
+
+  - platform: homeassistant
+    name: "Pool Cleaner"
+    id: pool_cleaner
+    entity_id: sensor.creepy_status 
+
+  - platform: homeassistant
+    name: "Forecast Text"
+    id: forecast_text
+    entity_id: sensor.wahroonga_extended_text_1
+  - platform: homeassistant
+    name: "Forecast Rain Chance"
+    id: forecast_rain_chance
+    entity_id: sensor.wahroonga_rain_chance_1
+  - platform: homeassistant
+    name: "Forecast Icon"
+    id: forecast_icon
+    entity_id: sensor.wahroonga_mdi_icon_1    
+
+  - platform: homeassistant
+    name: "Forecast Text"
+    id: forecast_text_2
+    entity_id: sensor.wahroonga_extended_text_2
+  - platform: homeassistant
+    name: "Forecast Rain Chance"
+    id: forecast_rain_chance_2
+    entity_id: sensor.wahroonga_rain_chance_2
+  - platform: homeassistant
+    name: "Forecast Icon"
+    id: forecast_icon_2
+    entity_id: sensor.wahroonga_mdi_icon_2  
