@@ -3,7 +3,7 @@ sensor:
   - platform: homeassistant
     name: "Inside Temp"
     id: inside_temp
-    entity_id: sensor.sensibo_Master_Bedroom_Temperature
+    entity_id: sensor.${inside_temp}
     on_value:
       - lvgl.label.update:
           id: lbl_inside_temp
