@@ -157,3 +157,65 @@ sensor:
     id: forecast_rain_amount_min_2
     entity_id: sensor.wahroonga_rain_amount_min_2       
 
+     
+
+binary_sensor: 
+  - platform: gpio
+    pin:
+      number: GPIO0
+      inverted: true
+      ignore_strapping_warning: true
+    name: "Onboard button"
+    id: onboard_button
+
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadA
+    key: A
+    on_press:
+  #    - key_collector.clear: pincode_reader
+
+      - lvgl.page.show: pageA
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadB
+    key: B
+    on_press:
+    - lvgl.page.show: pageB
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadC
+    key: C
+    on_press:
+      - lvgl.page.show: pageC
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadD
+    key: D
+    on_press:
+      - lvgl.page.show: pageD
+
+
+touchscreen:
+  platform: xpt2046
+#needs calibration
+  calibration:
+    x_min: 150
+    x_max: 3950
+    y_min: 250
+    y_max: 3960 
+  id: my_touchscreen
+  spi_id: touch_spi
+  cs_pin: GPIO22
+  interrupt_pin: GPIO01
+  transform: 
+    mirror_y: true
+  on_touch:
+    - lambda: |-
+          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+              touch.x,
+              touch.y,
+              touch.x_raw,
+              touch.y_raw
+              );
+
