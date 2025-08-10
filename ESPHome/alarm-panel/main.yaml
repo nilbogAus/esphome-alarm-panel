@@ -254,48 +254,4 @@ display:
     update_interval: never
     # pages: !include_dir_merge_list alarm-panel/display_pages/
 
-lvgl:
-  id: lvgl_display
-  displays:
-    - my_display
-  touchscreens:
-    - my_touchscreen
-  text_font: roboto
-  theme:
-    button:
-      bg_color: 0x2F8CD8
-      bg_grad_color: 0x005782
-      bg_grad_dir: VER
-      bg_opa: COVER
-      border_color: 0x0077b3
-      border_width: 1
-      text_color: 0xFFFFFF
-      pressed: # set some button colors to be different in pressed state
-        bg_color: 0x006699
-        bg_grad_color: 0x00334d
-      checked: # set some button colors to be different in checked state
-        bg_color: 0x1d5f96
-        bg_grad_color: 0x03324A
-        text_color: 0xfff300
-    buttonmatrix:
-      bg_opa: TRANSP
-      border_color: 0x0077b3
-      border_width: 0
-      text_color: 0xFFFFFF
-      pad_all: 5
-      items: # set all your buttonmatrix buttons to use your custom defined styles and font
-        bg_color: 0x2F8CD8
-        bg_grad_color: 0x005782
-        bg_grad_dir: VER
-        bg_opa: COVER
-        border_color: 0x0077b3
-        border_width: 1
-        text_color: 0xFFFFFF
-        pressed:
-          bg_color: 0x006699
-          bg_grad_color: 0x00334d
-        checked:
-          bg_color: 0x1d5f96
-          bg_grad_color: 0x03324A
-          text_color: 0x001015  
  
