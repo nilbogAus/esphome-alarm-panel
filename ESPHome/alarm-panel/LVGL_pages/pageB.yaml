@@ -1,81 +1,83 @@
-- id: pageB
-  bg_color: col_black
-  widgets:
-    - label:
-        id: lbl_tittle
-        text_color: col_yellow
-        text_font: roboto_lrg
-        text: "Electricity"
-        align: TOP_MID
-
-    - meter:
-        id: meter_power
-        width: 270
-        height: 270
-        border_side: none        
-        align_to: 
-          id: lbl_tittle
-          align: OUT_BOTTOM_MID
-        bg_color: 0
-        text_color: col_white
-        text_font: roboto_sml
-        scales:
-          range_from: -9000
-          range_to: 9000
-          angle_range: 270
-          ticks:
-            count: 19
-            length: 16
-            major:
-              stride: 3
-              length: 13
-              label_gap: 13
-              width: 1
-              color: col_white
-          indicators:
-            - line:
-                id: power_needle
-                width: 4
-                color: col_white
-            - arc:
-                color: col_red
-                start_value: -9000
-                end_value: 0    
-                width: 8   
-            - arc:
-                color: col_yellow
-                start_value: 0
-                end_value: 450                           
-                width: 8   
-            - arc:
-                color: col_dkgreen
-                start_value: 450
-                end_value: 9000                  
-                width: 8   
-
-    - label:
-        id: cost_wh
-        recolor: true
-        width: 100%
-        text_font: roboto
-        text_align: CENTER
-        text: "Loading"
-        align_to: 
-          id: meter_power
-          align: BOTTOM_MID         
-
-    - textarea:
-        id: textarea_poweredby
-        text_color: col_green
-        text_font: roboto_sml
-        cursor:
-          bg_opa: transp        
-        border_side: none
-        bg_color: 0               
-        one_line: false
-        placeholder_text: "Powered by"
-        align_to: 
-          id: cost_wh
-          align: OUT_BOTTOM_MID    
-
-  
+lvgl:
+  pages:
+    - id: pageB
+      bg_color: col_black
+      widgets:
+        - label:
+            id: lbl_tittle
+            text_color: col_yellow
+            text_font: roboto_lrg
+            text: "Electricity"
+            align: TOP_MID
+    
+        - meter:
+            id: meter_power
+            width: 270
+            height: 270
+            border_side: none        
+            align_to: 
+              id: lbl_tittle
+              align: OUT_BOTTOM_MID
+            bg_color: 0
+            text_color: col_white
+            text_font: roboto_sml
+            scales:
+              range_from: -9000
+              range_to: 9000
+              angle_range: 270
+              ticks:
+                count: 19
+                length: 16
+                major:
+                  stride: 3
+                  length: 13
+                  label_gap: 13
+                  width: 1
+                  color: col_white
+              indicators:
+                - line:
+                    id: power_needle
+                    width: 4
+                    color: col_white
+                - arc:
+                    color: col_red
+                    start_value: -9000
+                    end_value: 0    
+                    width: 8   
+                - arc:
+                    color: col_yellow
+                    start_value: 0
+                    end_value: 450                           
+                    width: 8   
+                - arc:
+                    color: col_dkgreen
+                    start_value: 450
+                    end_value: 9000                  
+                    width: 8   
+    
+        - label:
+            id: cost_wh
+            recolor: true
+            width: 100%
+            text_font: roboto
+            text_align: CENTER
+            text: "Loading"
+            align_to: 
+              id: meter_power
+              align: BOTTOM_MID         
+    
+        - textarea:
+            id: textarea_poweredby
+            text_color: col_green
+            text_font: roboto_sml
+            cursor:
+              bg_opa: transp        
+            border_side: none
+            bg_color: 0               
+            one_line: false
+            placeholder_text: "Powered by"
+            align_to: 
+              id: cost_wh
+              align: OUT_BOTTOM_MID    
+    
+      
