@@ -1,5 +1,5 @@
 lvgl:
-  pages:
+  - pages:
     - id: pageA
       bg_color: col_black
       widgets:
