@@ -2,13 +2,11 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - lvgl.page.show: pageA 
         - delay: 30s    #wait for sensors etc to be ready 
         - while:
             condition:
                 - wifi.connected:
             then:
-                - lvgl.page.show: pageA 
                 - delay: 5 min              
                 - while:
                     condition:
