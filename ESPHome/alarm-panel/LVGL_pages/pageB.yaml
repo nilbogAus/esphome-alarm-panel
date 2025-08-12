@@ -18,7 +18,9 @@ lvgl:
             align_to: 
               id: lbl_tittle
               align: OUT_BOTTOM_MID
-            bg_color: 0
+            bg_color: 0x000000   
+            bg_grad_color: 0x0000BB
+            bg_grad_dir: ver 
             text_color: col_white
             text_font: roboto_sml
             scales:
