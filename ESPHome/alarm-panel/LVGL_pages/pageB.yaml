@@ -76,7 +76,9 @@ lvgl:
             cursor:
               bg_opa: transp        
             border_side: none
-            bg_color: 0               
+            bg_color: 0x010101   
+            bg_grad_color: 0x444444
+            bg_grad_dir: ver         
             one_line: false
             placeholder_text: "Powered by"
             align_to: 
