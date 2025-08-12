@@ -18,8 +18,9 @@ lvgl:
             align_to: 
               id: lbl_tittle
               align: OUT_BOTTOM_MID
-            bg_color: 0x000010   
+            bg_color: 0x000050   
             bg_grad_color: 0x0000BB
+            bg_dither_mode: ORDERED
             bg_grad_dir: ver 
             text_color: col_white
             text_font: roboto_sml
@@ -65,6 +66,7 @@ lvgl:
             text_align: CENTER
             text: "Loading"
             bg_color: 0x0000BB
+            bg_grad_color: 0x0000FF
             align_to: 
               id: meter_power
               align: BOTTOM_MID         
