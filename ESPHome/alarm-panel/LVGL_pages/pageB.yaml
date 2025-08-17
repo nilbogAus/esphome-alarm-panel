@@ -81,7 +81,7 @@ lvgl:
             max_value: 100
             border_width: 1
             border_color: col_white
-            pad_all: 2
+            pad_all: 10
             align_to: 
               id: cost_wh
               align: OUT_BOTTOM_MID    
