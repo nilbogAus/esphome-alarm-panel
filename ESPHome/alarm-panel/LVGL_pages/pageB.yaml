@@ -80,8 +80,7 @@ lvgl:
             min_value: 1
             max_value: 100
             arc_color: col_orange
-            color: col_red
-            bar_color: col_yellow
+            bg_color: col_yellow
             align_to: 
               id: cost_wh
               align: OUT_BOTTOM_MID    
