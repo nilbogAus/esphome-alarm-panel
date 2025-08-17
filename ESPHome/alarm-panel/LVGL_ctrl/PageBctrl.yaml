@@ -73,7 +73,9 @@ sensor:
           value: !lambda "return x;"
       - lvgl.label.update:
           id: lbl_battery
-          text: !lambda "return x;"
+          text:
+            format: "%s"
+            args: [ 'x.c_str()']     
           
 switch:
   - platform: homeassistant
