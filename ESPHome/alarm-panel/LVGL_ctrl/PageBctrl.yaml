@@ -69,9 +69,13 @@ sensor:
     entity_id: sensor.encharge_492334007623_battery
     on_value:
       - lvgl.bar.update:
-          id: bar_battery
+          id: battery_bar
           value: !lambda "return x;"
-          
+      - lvgl.bar.update:
+          id: battery_label
+          value: !lambda "return x;"          
+           
+
 switch:
   - platform: homeassistant
     id: pool_switch
