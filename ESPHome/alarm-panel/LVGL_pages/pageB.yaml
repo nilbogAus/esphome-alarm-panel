@@ -161,7 +161,7 @@ lvgl:
             one_line: false
             placeholder_text: "Powered by"
             align_to: 
-              id: bar_battery
+              id: battery_symbol_obj
               align: OUT_BOTTOM_MID    
     
       
