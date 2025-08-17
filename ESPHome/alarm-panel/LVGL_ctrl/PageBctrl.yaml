@@ -59,7 +59,7 @@ sensor:
               id: g_poweredby
               value: 'id(g_poweredby) + "Enphase (house) battery"'
           - lvgl.textarea.update:
-              id: textarea_poweredbyd
+              id: textarea_poweredby
               text: 
                 format: "%s"
                 args: [ 'id(g_poweredby).c_str()']            
