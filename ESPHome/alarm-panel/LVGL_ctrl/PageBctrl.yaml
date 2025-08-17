@@ -83,7 +83,11 @@ sensor:
             - lvgl.bar.update:
                 id: bar_battery
                 indicator:
-                  bg_color: col_red
+                  bg_color: 
+                    red:   "return (100 - x); "
+                    green: "return (x); "
+                    blue:  0.0000
+                    white: 0.0000
           else:
             - lvgl.bar.update:
                 id: bar_battery
