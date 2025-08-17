@@ -76,8 +76,10 @@ sensor:
           text:
             format: "%.0f"
             args: !lambda "return x;"  
-          
-          
+      - lvgl.label.update:
+          id: lbl_battery
+          text: !lambda "return (x);"         
+
 switch:
   - platform: homeassistant
     id: pool_switch
