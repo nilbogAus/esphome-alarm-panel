@@ -71,82 +71,28 @@ lvgl:
             align_to: 
               id: meter_power
               align: BOTTOM_MID       
+                
 
-        - obj:
-              id: battery_symbol_obj
-              align_to: 
-                id: cost_wh
-                align: OUT_BOTTOM_MID    
-              width: 60
-              height: 24
-              bg_color: 0
-              pad_all: 0
-              outline_width: 0
-              outline_color: 0
-              border_width: 0
-              border_color: 0
-              border_side: NONE
-              outline_pad: 0
-              radius: 0
-  #            hidden: ${Hide_Battery_Symbol}
-              hidden: false
-              widgets:
-                - line:
-                    id: battery_symbol
-                    points:
-                      - 12, 2
-                      - 18, 2
-                      - 17, 2
-                      - 17, 4
-                      - 17, 3
-                      - 20, 3
-                      - 19, 3
-                      - 19, 20
-                      - 19, 19
-                      - 10, 19
-                      - 11, 19
-                      - 11, 2
-                      - 11, 3
-                      - 14, 3
-                    line_width: 2
-                    line_rounded: false
-                    #line_color: 
-                - bar:
-                    id: battery_bar
-                    x: 12
-                    y: 3
-                    height: 15
-                    width: 6
-                    radius: 0
-                    min_value: 0
-                    max_value: 100
-                    bg_color: 0
-                    indicator:
-                      # bg_color:  !lambda |-
-                      #   if( id(battery_soc_value) <= id(min_soc_value) ) {
-                      #     return lv_color_hex(0xff0000); // red
-                      #     } else {
-                      #     return lv_color_hex(0x00ff00); // green
-                      #   }
-                      radius: 0
-                    value: 0
-                - label:
-                    id: battery_label
-                    x: 25
-                    y: 3
-                    text_font: MONTSERRAT_14
-                    text_align: CENTER
-                    width: 35
-                    # text_color: !lambda |-
-                    #   if( id(battery_soc_value) <= id(min_soc_value) ) {
-                    #     return lv_color_hex(0xff0000); // red
-                    #     } else {
-                    #     return lv_color_hex(0x00ff00); // green
-                    #   }
-                    # text: !lambda |-
-                    #   return (to_string(static_cast<int>(id(battery_soc_value)))+"%").c_str();
+        - bar:
+            id: bar_battery
+            width: 90%
+            indicator:
+              value: 75
+            min_value: 1
+            max_value: 100
+            align_to: 
+              id: cost_wh
+              align: OUT_BOTTOM_MID    
+        - label:
+            id: lbl_battery
+            width: 90%
+            text_font: roboto
+            text_align: CENTER
+            text: "Loading"
+            align_to: 
+              id: bar_battery
+              align: CENTER       
 
-      
     
         - textarea:
             id: textarea_poweredby
@@ -161,7 +107,7 @@ lvgl:
             one_line: false
             placeholder_text: "Powered by"
             align_to: 
-              id: battery_symbol_obj
+              id: bar_battery
               align: OUT_BOTTOM_MID    
     
       

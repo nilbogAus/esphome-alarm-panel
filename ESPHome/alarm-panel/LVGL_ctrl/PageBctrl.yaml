@@ -67,13 +67,11 @@ sensor:
     name: "Home Battery Percent"
     id: home_battery_percent
     entity_id: sensor.encharge_492334007623_battery
-    # on_value:
-    #   - lvgl.bar.update:
-    #       id: battery_bar
-    #       value: !lambda "return x;"
-      
-           
-
+    on_value:
+      - lvgl.bar.update:
+          id: bar_battery
+          value: !lambda "return x;"
+          
 switch:
   - platform: homeassistant
     id: pool_switch
