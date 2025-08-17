@@ -1,3 +1,5 @@
+# Alarm Page
+
 lvgl:
   id: !extend lvgl_display
   pages:

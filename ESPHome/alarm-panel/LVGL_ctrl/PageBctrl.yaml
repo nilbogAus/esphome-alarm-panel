@@ -1,3 +1,5 @@
+#electricity Page
+
 globals:
   - id: g_powerprice
     type: float
@@ -26,7 +28,7 @@ sensor:
               lambda: "return (x > 450); "
             then:
               - lvgl.label.update:
-                  id: cost_wh
+                  id:   
                   text: 
                     format: "#00FF00 %.0fW, earning %.0f¢/ph"
                     args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
@@ -49,7 +51,7 @@ sensor:
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power
-    entity_id: sensor.encharge_492334007623_power       
+    entity_id: sensor.encharge_492334007623_power    
     on_value_range:
       - below: -10
         then:
@@ -60,9 +62,16 @@ sensor:
               id: textarea_poweredby
               text: 
                 format: "%s"
-                args: [ 'id(g_poweredby).c_str()']                     
-
-            
+                args: [ 'id(g_poweredby).c_str()']            
+  - platform: homeassistant
+    name: "Home Battery Percent"
+    id: home_battery_percent
+    entity_id: sensor.encharge_492334007623_battery
+    on_value:
+      - lvgl.bar.update:
+          id: bar_battery
+          value: !lambda "return x;"
+          
 switch:
   - platform: homeassistant
     id: pool_switch

@@ -1,3 +1,5 @@
+#Control(Button) Page
+
 switch:
   - platform: homeassistant
     entity_id: switch.sonoff_10007724b9

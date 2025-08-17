@@ -1,3 +1,5 @@
+#Weather Page
+
 sensor:
   # Tempreature
   - platform: homeassistant

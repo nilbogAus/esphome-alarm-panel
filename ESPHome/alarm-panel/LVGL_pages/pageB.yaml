@@ -1,3 +1,5 @@
+#electricity Page
+
 lvgl:
   pages:
     - id: pageB
@@ -20,7 +22,7 @@ lvgl:
               align: OUT_BOTTOM_MID
             bg_color: 0x000050   
             bg_grad_color: 0x0000BB
-            bg_dither_mode: ORDERED
+            bg_dither_mode: 
             bg_grad_dir: ver 
             text_color: col_white
             text_font: roboto_sml
@@ -70,6 +72,17 @@ lvgl:
             align_to: 
               id: meter_power
               align: BOTTOM_MID         
+
+        - bar:
+            id: bar_battery
+            value: 
+            width: 100%
+            min_value: 1
+            max_value: 100
+            align_to: 
+              id: cost_wh
+              align: OUT_BOTTOM_MID    
+    
     
         - textarea:
             id: textarea_poweredby
@@ -84,7 +97,7 @@ lvgl:
             one_line: false
             placeholder_text: "Powered by"
             align_to: 
-              id: cost_wh
+              id: bar_battery
               align: OUT_BOTTOM_MID    
     
       
