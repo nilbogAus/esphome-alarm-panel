@@ -73,11 +73,6 @@ sensor:
           value: !lambda "return x;"
       - lvgl.label.update:
           id: lbl_battery
-          text:
-            format: "%.0f"
-            args: !lambda "return x;"  
-      - lvgl.label.update:
-          id: lbl_battery
           text: !lambda "return (x);"         
 
 switch:
