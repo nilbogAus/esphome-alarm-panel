@@ -74,7 +74,6 @@ lvgl:
 
         - bar:
             id: bar_battery
-            value: 
             width: 100%
             min_value: 1
             max_value: 100
