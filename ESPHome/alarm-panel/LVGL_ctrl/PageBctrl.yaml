@@ -82,11 +82,13 @@ sensor:
           then:
             - lvgl.bar.update:
                 id: bar_battery
-                bg_color: 
                 indicator:
                   bg_color: col_red
-
           else:
+            - lvgl.bar.update:
+                id: bar_battery
+                indicator:
+                  bg_color: col_green          
       
 
 switch:
