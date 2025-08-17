@@ -75,7 +75,7 @@ sensor:
           id: lbl_battery
           text: 
             format: "Battery %.0f%%"
-            args: ['x']       
+            args: ['x']
       
 
 switch:

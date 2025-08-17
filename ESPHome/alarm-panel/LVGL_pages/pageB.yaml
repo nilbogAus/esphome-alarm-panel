@@ -79,6 +79,7 @@ lvgl:
             height: 35
             min_value: 1
             max_value: 100
+            color: col_green
             align_to: 
               id: cost_wh
               align: OUT_BOTTOM_MID    
@@ -86,7 +87,7 @@ lvgl:
             id: lbl_battery
             width: 90%
             text_font: roboto
-            text_color: col_gray
+            text_color: col_white
             text_align: CENTER
             text: "Loading"
             align_to: 
