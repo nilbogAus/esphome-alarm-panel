@@ -79,7 +79,7 @@ lvgl:
             height: 35
             min_value: 1
             max_value: 100
-            color: col_green
+            arc_color: col_green
             align_to: 
               id: cost_wh
               align: OUT_BOTTOM_MID    
