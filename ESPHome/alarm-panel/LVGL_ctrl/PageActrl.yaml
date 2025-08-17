@@ -1,3 +1,5 @@
+# Alarm Page
+
 text_sensor:
   - platform: homeassistant
     name: "Alarm State"
