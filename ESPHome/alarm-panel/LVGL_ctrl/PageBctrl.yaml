@@ -84,8 +84,8 @@ sensor:
                 id: bar_battery
                 indicator:
                   bg_color: 
-                    red:   "return (100 - x); "
-                    green: "return (x); "
+                    red: !lambda "return (100 - x); "
+                    green: !lambda "return (x); "
                     blue:  0.0000
                     white: 0.0000
           else:
