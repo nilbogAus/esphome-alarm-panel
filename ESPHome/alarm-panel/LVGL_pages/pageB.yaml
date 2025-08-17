@@ -76,6 +76,7 @@ lvgl:
         - bar:
             id: bar_battery
             width: 90%
+            height: 20
             min_value: 1
             max_value: 100
             align_to: 
