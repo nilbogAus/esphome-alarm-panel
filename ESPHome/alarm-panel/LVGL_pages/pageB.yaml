@@ -22,7 +22,6 @@ lvgl:
               align: OUT_BOTTOM_MID
             bg_color: 0x000050   
             bg_grad_color: 0x0000BB
-            bg_dither_mode: 
             bg_grad_dir: ver 
             text_color: col_white
             text_font: roboto_sml
