@@ -75,7 +75,8 @@ sensor:
           id: lbl_battery
           text:
             format: "%.0f"
-            args: [ 'x.c_str()']     
+            args: !lambda "return x;"  
+          
           
 switch:
   - platform: homeassistant
