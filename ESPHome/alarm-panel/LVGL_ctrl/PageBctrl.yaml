@@ -67,10 +67,10 @@ sensor:
     name: "Home Battery Percent"
     id: home_battery_percent
     entity_id: sensor.encharge_492334007623_battery
-    on_value:
-      - lvgl.bar.update:
-          id: battery_bar
-          value: !lambda "return x;"
+    # on_value:
+    #   - lvgl.bar.update:
+    #       id: battery_bar
+    #       value: !lambda "return x;"
       
            
 
