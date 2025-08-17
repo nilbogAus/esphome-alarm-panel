@@ -74,8 +74,8 @@ sensor:
       - lvgl.label.update:
           id: lbl_battery
           text: 
-            format: "%.0f"
-            args: [ 'x']       
+            format: "Battery %.0f%%"
+            args: ['x']       
       
 
 switch:

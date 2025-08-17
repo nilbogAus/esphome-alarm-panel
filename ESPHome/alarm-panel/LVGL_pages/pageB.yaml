@@ -76,7 +76,7 @@ lvgl:
         - bar:
             id: bar_battery
             width: 90%
-            height: 40
+            height: 35
             min_value: 1
             max_value: 100
             align_to: 
@@ -86,6 +86,7 @@ lvgl:
             id: lbl_battery
             width: 90%
             text_font: roboto
+            text_color: col_gray
             text_align: CENTER
             text: "Loading"
             align_to: 
