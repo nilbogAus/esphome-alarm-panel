@@ -82,18 +82,25 @@ sensor:
           then:
             - lvgl.bar.update:
                 id: bar_battery
+                bg_color: col_red
                 indicator:
-                  bg_color: 
-                    red: !lambda "return (100 - x); "
-                    green: !lambda "return (x); "
-                    blue:  0.0000
-                    white: 0.0000
+                  bg_color: col_red     
           else:
-            - lvgl.bar.update:
-                id: bar_battery
-                indicator:
-                  bg_color: col_green          
-      
+            - if:
+                condition:
+                  lambda: "return (x < 50); "
+                then:          
+                  - lvgl.bar.update:
+                      id: bar_battery
+                      bg_color: col_yellow
+                      indicator:
+                        bg_color: col_yellow          
+                else:          
+                  - lvgl.bar.update:
+                      id: bar_battery
+                      bg_color: col_green
+                      indicator:
+                        bg_color: col_green           
 
 switch:
   - platform: homeassistant
