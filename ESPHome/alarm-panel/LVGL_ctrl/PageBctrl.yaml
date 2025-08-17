@@ -76,6 +76,14 @@ sensor:
           text: 
             format: "Battery %.0f%%"
             args: ['x']
+      - if:
+          condition:
+            lambda: "return (x < 15); "
+          then:
+            - lvgl.bar.update:
+                id: bar_battery
+                bg_color: col_red
+          else:
       
 
 switch:
