@@ -71,9 +71,7 @@ sensor:
       - lvgl.bar.update:
           id: battery_bar
           value: !lambda "return x;"
-      - lvgl.bar.update:
-          id: battery_label
-          value: !lambda "return x;"          
+      
            
 
 switch:
