@@ -150,7 +150,7 @@ lvgl:
             text: "battery"
             align_to: 
               id: battery_meter
-              align: OUT_BOTTOM_MID  
+              align: BOTTOM_MID  
 
         - meter:
             height: 145
@@ -185,4 +185,4 @@ lvgl:
             text: "solar"
             align_to: 
               id: solar_meter
-              align: OUT_BOTTOM_MID        
+              align: BOTTOM_MID        
