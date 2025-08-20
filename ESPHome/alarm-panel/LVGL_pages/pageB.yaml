@@ -101,7 +101,7 @@ lvgl:
             id: textarea_poweredby
             cursor:
               bg_opa: transp   
-            width: 100%     
+            width: 95%     
             border_side: none
             bg_color: 0x010101   
             bg_grad_color: 0x444444
@@ -113,7 +113,7 @@ lvgl:
 
         - meter:
             height: 100%
-            width: 50%
+            width: 40%
             border_width: 0
             bg_opa: TRANSP
             align_to: 
