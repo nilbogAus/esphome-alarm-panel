@@ -97,7 +97,7 @@ lvgl:
               align: CENTER       
 
     
-        - textarea:
+        - widgets:
             id: textarea_poweredby
             cursor:
               bg_opa: transp        
