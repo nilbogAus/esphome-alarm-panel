@@ -144,12 +144,18 @@ lvgl:
                       width: 2
                       start_value: -5
                       end_value: 0
-
+        - label:
+            text_color: col_gray
+            text_font: roboto_sml
+            text: "battery"
+            align_to: 
+              id: battery_meter
+              align: OUT_BOTTOM_MID  
 
         - meter:
-            id: solar_meter        
             height: 145
-            width: 
+            width: 145
+            id: solar_meter
             border_width: 0
             bg_opa: TRANSP
             align_to: 
@@ -180,10 +186,3 @@ lvgl:
             align_to: 
               id: solar_meter
               align: OUT_BOTTOM_MID        
-        - label:
-            text_color: col_gray
-            text_font: roboto_sml
-            text: "battery"
-            align_to: 
-              id: battery_meter
-              align: OUT_BOTTOM_MID  
