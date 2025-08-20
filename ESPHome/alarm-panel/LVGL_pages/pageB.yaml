@@ -131,19 +131,8 @@ lvgl:
                 indicators:
                   - line:
                       id: val_needle
-                      width: 8
-                      r_mod: 12 # sets line length by this much difference from the scale default radius
+                      width: 2
+                      color: col_gray
                       value: 2
-                  - arc: # first half of the scale background
-                      color: 0xFF3000
-                      r_mod: 10 # radius difference from the scale default radius
-                      width: 31
-                      start_value: -10
-                      end_value: 0
-                  - arc: # second half of the scale background
-                      color: 0x00FF00
-                      r_mod: 10
-                      width: 31
-                      start_value: 0
-                      end_value: 10     
+
       
