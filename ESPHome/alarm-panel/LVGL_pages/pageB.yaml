@@ -97,7 +97,7 @@ lvgl:
               align: CENTER       
 
     
-        - object:
+        - obj:
             id: textarea_poweredby
             border_side: none
             bg_color: 0x010101   
