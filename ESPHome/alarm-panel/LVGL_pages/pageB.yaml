@@ -133,6 +133,16 @@ lvgl:
                       width: 2
                       color: col_gray
                       value: 0
+                  - arc: # first half of the scale background
+                      color: col_green
+                      width: 2
+                      start_value: 0
+                      end_value: 5
+                  - arc: # first half of the scale background
+                      color: col_red
+                      width: 2
+                      start_value: -5
+                      end_value: 0
 
         - meter:
             height: 145
@@ -155,4 +165,9 @@ lvgl:
                       width: 2
                       color: col_gray
                       value: 0
+                  - arc: # first half of the scale background
+                      color: col_green
+                      width: 2
+                      start_value: 0
+                      end_value: 12                      
       
