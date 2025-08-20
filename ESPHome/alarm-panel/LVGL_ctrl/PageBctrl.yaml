@@ -56,7 +56,17 @@ sensor:
       then:
         - lvgl.indicator.update:
             id: battery_needle
-            value: !lambda "return x;"    
+            value: !lambda "return (x/1000);"    
+  - platform: homeassistant
+    name: "Home Solar Power"
+    id: home_solar_power
+    entity_id: sensor.envoy_122348003312_current_power_production    
+    on_value:       
+      then:
+        - lvgl.indicator.update:
+            id: solar_needle
+            value: !lambda "return (x/1000);"               
+            
        
   - platform: homeassistant
     name: "Home Battery Percent"
