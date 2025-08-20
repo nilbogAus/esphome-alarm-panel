@@ -100,7 +100,8 @@ lvgl:
         - textarea:
             id: textarea_poweredby
             cursor:
-              bg_opa: transp        
+              bg_opa: transp   
+            width: 100%     
             border_side: none
             bg_color: 0x010101   
             bg_grad_color: 0x444444
@@ -116,7 +117,7 @@ lvgl:
             border_width: 0
             bg_opa: TRANSP
             align_to: 
-              id: bar_battery
+              id: textarea_poweredby
               align: LEFT_MID  
             scales:
               - range_from: -10
