@@ -66,6 +66,19 @@ switch:
           id: lvgl_keypad_button8
           state: 
             checked: true  
+  - platform: homeassistant
+    id: pool_switch
+    entity_id: switch.sonoff_10001e7f40
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button9
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button9
+          state: 
+            checked: true              
             
 
 globals:
