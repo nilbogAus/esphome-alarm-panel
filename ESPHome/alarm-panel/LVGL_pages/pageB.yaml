@@ -112,16 +112,37 @@ lvgl:
               id: bar_battery
               align: OUT_BOTTOM_MID   
 
-
         - meter:
-            height: 135
-            width: 135
+            height: 145
+            width: 145
             border_width: 0
             bg_opa: TRANSP
             align_to: 
               id: bar_battery
               align: OUT_BOTTOM_LEFT 
-              y: 20
+              y: 15
+            scales:
+              - range_from: -5
+                range_to: 5
+                angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
+                ticks:
+                  count: 11
+                indicators:
+                  - line:
+                      id: battery_needle
+                      width: 2
+                      color: col_gray
+                      value: 0
+
+        - meter:
+            height: 145
+            width: 145
+            border_width: 0
+            bg_opa: TRANSP
+            align_to: 
+              id: bar_battery
+              align: OUT_BOTTOM_RIGHT
+              y: 15
             scales:
               - range_from: 0
                 range_to: 12
@@ -130,9 +151,8 @@ lvgl:
                   count: 13
                 indicators:
                   - line:
-                      id: val_needle
+                      id: solar_needle
                       width: 2
                       color: col_gray
-                      value: 2
-
+                      value: 0
       
