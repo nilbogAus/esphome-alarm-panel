@@ -120,6 +120,7 @@ lvgl:
             align_to: 
               id: bar_battery
               align: OUT_BOTTOM_LEFT 
+              y: 20
             scales:
               - range_from: -10
                 range_to: 10
