@@ -99,8 +99,6 @@ lvgl:
     
         - textarea:
             id: textarea_poweredby
-            text_color: col_green
-            text_font: roboto_sml
             cursor:
               bg_opa: transp        
             border_side: none
@@ -108,7 +106,6 @@ lvgl:
             bg_grad_color: 0x444444
             bg_grad_dir: ver         
             one_line: false
-            placeholder_text: "Powered by"
             align_to: 
               id: bar_battery
               align: OUT_BOTTOM_MID    
