@@ -52,17 +52,7 @@ sensor:
     name: "Home Battery Power"
     id: home_battery_power
     entity_id: sensor.encharge_492334007623_power    
-    on_value_range:
-      - below: -10
-        then:
-          - globals.set:
-              id: g_poweredby
-              value: 'id(g_poweredby) + "Enphase (house) battery"'
-          - lvgl.textarea.update:
-              id: textarea_poweredby
-              text: 
-                format: "%s"
-                args: [ 'id(g_poweredby).c_str()']            
+       
   - platform: homeassistant
     name: "Home Battery Percent"
     id: home_battery_percent
