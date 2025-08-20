@@ -84,7 +84,8 @@ lvgl:
             pad_all: 10
             align_to: 
               id: cost_wh
-              align: OUT_BOTTOM_MID    
+              align: OUT_BOTTOM_MID   
+              y: 15 
         - label:
             id: lbl_battery
             width: 90%
@@ -122,17 +123,17 @@ lvgl:
               align: OUT_BOTTOM_LEFT 
               y: 20
             scales:
-              - range_from: -10
-                range_to: 10
+              - range_from: 0
+                range_to: 12
                 angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
                 ticks:
-                  count: 0
+                  count: 13
                 indicators:
                   - line:
                       id: val_needle
                       width: 8
                       r_mod: 12 # sets line length by this much difference from the scale default radius
-                      value: -2
+                      value: 2
                   - arc: # first half of the scale background
                       color: 0xFF3000
                       r_mod: 10 # radius difference from the scale default radius
