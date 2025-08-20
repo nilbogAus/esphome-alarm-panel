@@ -117,8 +117,6 @@ lvgl:
             width: 145
             border_width: 0
             bg_opa: TRANSP
-            text_color: col_white
-            text_font: roboto_sml
             align_to: 
               id: bar_battery
               align: OUT_BOTTOM_LEFT 
@@ -129,10 +127,6 @@ lvgl:
                 angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
                 ticks:
                   count: 11
-                  major:
-                    stride: 5
-                    width: 2
-                    color: col_white                  
                 indicators:
                   - line:
                       id: battery_needle
