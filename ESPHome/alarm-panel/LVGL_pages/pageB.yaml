@@ -147,9 +147,9 @@ lvgl:
 
 
         - meter:
+            id: solar_meter        
             height: 145
             width: 
-            id: solar_meter
             border_width: 0
             bg_opa: TRANSP
             align_to: 
