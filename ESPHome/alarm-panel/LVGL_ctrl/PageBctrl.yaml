@@ -52,6 +52,11 @@ sensor:
     name: "Home Battery Power"
     id: home_battery_power
     entity_id: sensor.encharge_492334007623_power    
+    on_value:       
+      then:
+        - lvgl.indicator.update:
+            id: battery_needle
+            value: !lambda "return x;"    
        
   - platform: homeassistant
     name: "Home Battery Percent"
