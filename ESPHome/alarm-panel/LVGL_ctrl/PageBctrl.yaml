@@ -102,26 +102,5 @@ sensor:
                       indicator:
                         bg_color: col_green           
 
-switch:
-  - platform: homeassistant
-    id: pool_switch
-    entity_id: switch.sonoff_10001e7f40
-    on_turn_on:
-      - globals.set:
-          id: g_poweredby
-          value: 'id(g_poweredby) + "Pool"'
-      - lvgl.textarea.update:
-          id: textarea_poweredby
-          text: 
-            format: "%s"
-            args: [ 'id(g_poweredby).c_str()']
-    on_turn_off:
-      - globals.set:
-          id: g_poweredby
-          value: 'id(g_poweredby) + "pool Off"'
-      - lvgl.textarea.update:
-          id: textarea_poweredby
-          text: 
-            format: "%s"
-            args: [ 'id(g_poweredby).c_str()']    
+
 

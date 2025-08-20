@@ -38,6 +38,7 @@ font:
           "\U000F0335", # mdi-lightbulb
           "\U000F1A2B", # mdi-blinds-horizontal
           "\U000F001B", # mdi-air-conditioner
+          "\U000F0606", # mdi-pool
           ]
   - file: "gfonts://Roboto"
     id: roboto_sml

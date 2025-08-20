@@ -62,7 +62,8 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
-                  - text: 9
+                  - text: "9\n\U000F0606\nPool"
+                    id: lvgl_keypad_button9
                     control:
                       no_repeat: true
                       checkable: true
