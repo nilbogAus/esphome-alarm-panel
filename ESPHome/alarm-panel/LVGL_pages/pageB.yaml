@@ -118,7 +118,7 @@ lvgl:
             bg_opa: TRANSP
             align_to: 
               id: textarea_poweredby
-              align: LEFT_MID  
+              align: BOTTOM_LEFT 
             scales:
               - range_from: -10
                 range_to: 10
