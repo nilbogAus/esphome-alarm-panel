@@ -22,10 +22,6 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
-
-   
-
-
    
   - platform: homeassistant
     name: "Forecast Today Temp Min"
@@ -143,3 +139,4 @@ text_sensor:
                     ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
                     return ("\U000F0F2F");
             }             
+
