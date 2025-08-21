@@ -42,7 +42,7 @@ sensor:
                         bg_grad_color: 0xEEEE00                        
                         text: 
                           format: "#000000 %.0fW, earning %.0f¢/ph"
-                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
+                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/-10'] 
                   else:           
                     - lvgl.label.update:
                         id: cost_wh
@@ -50,7 +50,7 @@ sensor:
                         bg_grad_color: 0xEE0000
                         text: 
                           format: "#000000 %.0fW, costing $%.2fph"
-                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
+                          args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/-1000']    
 
   #small meters                          
   - platform: homeassistant
