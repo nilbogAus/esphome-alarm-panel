@@ -9,14 +9,14 @@ lvgl:
             id: lbl_A_pg_help
             text_color: col_white
             text_font: roboto
-            text: "Press \U000F0B08 for Alarm Page \U000F0734"
+            text: "Press \U000F0B08 for Alarm \U000F0734"
             align: TOP_RIGHT
             y: 20
         - label:
             id: lbl_B_pg_help        
             text_color: col_white
             text_font: roboto
-            text: "Press \U000F0B09 for Electricity Page \U000F0734"
+            text: "Press \U000F0B09 for Electricity \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_A_pg_help
@@ -26,7 +26,7 @@ lvgl:
             id: lbl_C_pg_help        
             text_color: col_white
             text_font: roboto
-            text: "Press \U000F0B0A for Button Page \U000F0734"
+            text: "Press \U000F0B0A for Button \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_B_pg_help
@@ -36,7 +36,7 @@ lvgl:
             id: lbl_D_pg_help        
             text_color: col_white
             text_font: roboto
-            text: "Press \U000F0B0B for Alarm Page \U000F0734"
+            text: "Press \U000F0B0B for Alarm \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_C_pg_help

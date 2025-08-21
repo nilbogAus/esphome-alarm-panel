@@ -61,6 +61,14 @@ sensor:
     name: "Internal Temperature" 
     id: InternalTemp   
 
+    
+  - platform: uptime
+    type: seconds
+    id: uptime_sensor
+    filters:
+      - lambda: return x / 3600;
+    unit_of_measurement: "h"
+
 binary_sensor: 
   - platform: gpio
     pin:
