@@ -124,8 +124,8 @@ lvgl:
               align: OUT_BOTTOM_LEFT 
               y: 15
             scales:
-              - range_from: -5
-                range_to: 5
+              - range_from: -5000
+                range_to: 5000
                 angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
                 ticks:
                   count: 11
@@ -139,11 +139,11 @@ lvgl:
                       color: col_green
                       width: 2
                       start_value: 0
-                      end_value: 5
+                      end_value: 5000
                   - arc: # first half of the scale background
                       color: col_red
                       width: 2
-                      start_value: -5
+                      start_value: -5000
                       end_value: 0
         - label:
             text_color: col_gray
@@ -165,7 +165,7 @@ lvgl:
               y: 15
             scales:
               - range_from: 0
-                range_to: 12
+                range_to: 12000
                 angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
                 ticks:
                   count: 13
@@ -179,7 +179,7 @@ lvgl:
                       color: col_green
                       width: 2
                       start_value: 0
-                      end_value: 12                      
+                      end_value: 12000                   
         - label:
             text_color: col_gray
             text_font: roboto_sml
