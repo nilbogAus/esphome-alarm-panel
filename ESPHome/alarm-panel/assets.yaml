@@ -39,6 +39,10 @@ font:
           "\U000F001B", # mdi-air-conditioner
           "\U000F0606", # mdi-pool
           "\U000F0734", # mdi-arrow-right-bold
+          "\U000F0B08", # mdi-alpha-a-box
+          "\U000F0B09", # mdi-alpha-b-box
+          "\U000F0B0A", # mdi-alpha-c-box   
+          "\U000F0B0B", # mdi-alpha-d-box                 
           ]
   - file: "gfonts://Roboto"
     id: roboto_sml
