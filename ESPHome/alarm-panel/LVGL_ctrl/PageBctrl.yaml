@@ -65,7 +65,7 @@ sensor:
       then:
         - lvgl.indicator.update:
             id: solar_needle
-            value: !lambda "return (x/1000);"               
+            value: !lambda "return (x);"               
             
        
   - platform: homeassistant
