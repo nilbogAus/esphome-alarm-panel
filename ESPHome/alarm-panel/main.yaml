@@ -111,19 +111,6 @@ sensor:
     name: "Internal Temperature" 
     id: InternalTemp   
 
-
-
-
-  
-  - platform: homeassistant
-    name: "EV Power"
-    id: ev_power
-    entity_id: sensor.sonoff_100155a107_power_2
-  - platform: homeassistant
-    name: "Solar Power"
-    id: solar_power
-    entity_id: sensor.envoy_122348003312_current_power_production
-
   - platform: homeassistant
     name: "Forecast Temp Min"
     id: forecast_temp_min

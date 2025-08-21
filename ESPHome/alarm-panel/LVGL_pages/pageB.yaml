@@ -5,7 +5,6 @@ lvgl:
     - id: pageB
       bg_color: col_black
       scrollbar_mode: "OFF"
-      height: 480
       widgets:
         - label:
             id: lbl_tittle
