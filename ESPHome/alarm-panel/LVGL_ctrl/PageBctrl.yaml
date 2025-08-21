@@ -4,11 +4,11 @@ globals:
   - id: g_powerprice
     type: float
     restore_value: no
-    initial_value: '0.3115'
+    initial_value: '0.3628'
   - id: g_solarprice
     type: float
     restore_value: no
-    initial_value: '0.07'    
+    initial_value: '0.04'    
   - id: g_poweredby
     type: std::string
     initial_value: ''      
@@ -28,9 +28,11 @@ sensor:
               lambda: "return (x > 450); "
             then:
               - lvgl.label.update:
-                  id:   
+                  id: cost_wh
+                  bg_color: 0x55FF55
+                  bg_grad_color: 0x00EE00
                   text: 
-                    format: "#00FF00 %.0fW, earning %.0f¢/ph"
+                    format: "#000000 %.0fW, earning %.0f¢/ph"
                     args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
             else:
               - if:
@@ -39,30 +41,39 @@ sensor:
                   then:
                     - lvgl.label.update:
                         id: cost_wh
+                        bg_color: 0xFFFF55
+                        bg_grad_color: 0xEEEE00                        
                         text: 
-                          format: "#FFFF00 %.0fW, earning %.0f¢/ph"
+                          format: "#000000 %.0fW, earning %.0f¢/ph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
                   else:           
                     - lvgl.label.update:
                         id: cost_wh
+                        bg_color: 0xFF5555
+                        bg_grad_color: 0xEE0000
                         text: 
-                          format: "#FF0000 %.0fW, costing $%.2fph"
+                          format: "#000000 %.0fW, costing $%.2fph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
   - platform: homeassistant
     name: "Home Battery Power"
     id: home_battery_power
     entity_id: sensor.encharge_492334007623_power    
-    on_value_range:
-      - below: -10
-        then:
-          - globals.set:
-              id: g_poweredby
-              value: 'id(g_poweredby) + "Enphase (house) battery"'
-          - lvgl.textarea.update:
-              id: textarea_poweredby
-              text: 
-                format: "%s"
-                args: [ 'id(g_poweredby).c_str()']            
+    on_value:       
+      then:
+        - lvgl.indicator.update:
+            id: battery_needle
+            value: !lambda "return (x);"    
+  - platform: homeassistant
+    name: "Home Solar Power"
+    id: home_solar_power
+    entity_id: sensor.envoy_122348003312_current_power_production    
+    on_value:       
+      then:
+        - lvgl.indicator.update:
+            id: solar_needle
+            value: !lambda "return (x*1000);"               
+            
+       
   - platform: homeassistant
     name: "Home Battery Percent"
     id: home_battery_percent

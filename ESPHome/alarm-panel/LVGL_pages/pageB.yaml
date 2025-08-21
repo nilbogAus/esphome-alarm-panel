@@ -4,6 +4,7 @@ lvgl:
   pages:
     - id: pageB
       bg_color: col_black
+      scrollbar_mode: "OFF"
       widgets:
         - label:
             id: lbl_tittle
@@ -66,11 +67,16 @@ lvgl:
             text_font: roboto
             text_align: CENTER
             text: "Loading"
-            bg_color: 0x0000BB
-            bg_grad_color: 0x0000FF
+            pad_top: 5
+            pad_bottom: 5 
+            bg_color: 0x2F8CD8
+            bg_grad_color: 0x005782
+            bg_grad_dir: VER
+            bg_opa: COVER
             align_to: 
               id: meter_power
-              align: BOTTOM_MID       
+              align: BOTTOM_MID      
+              y: 10 
                 
 
         - bar:
@@ -84,7 +90,8 @@ lvgl:
             pad_all: 10
             align_to: 
               id: cost_wh
-              align: OUT_BOTTOM_MID    
+              align: OUT_BOTTOM_MID   
+              y: 15 
         - label:
             id: lbl_battery
             width: 90%
@@ -99,18 +106,89 @@ lvgl:
     
         - textarea:
             id: textarea_poweredby
-            text_color: col_green
-            text_font: roboto_sml
             cursor:
-              bg_opa: transp        
+              bg_opa: transp   
+            width: 95%     
             border_side: none
             bg_color: 0x010101   
             bg_grad_color: 0x444444
             bg_grad_dir: ver         
             one_line: false
-            placeholder_text: "Powered by"
             align_to: 
               id: bar_battery
-              align: OUT_BOTTOM_MID    
-    
-      
+              align: OUT_BOTTOM_MID   
+
+        - meter:
+            id: battery_meter
+            height: 145
+            width: 145
+            border_width: 0
+            bg_opa: TRANSP
+            align_to: 
+              id: bar_battery
+              align: OUT_BOTTOM_LEFT 
+              y: 15
+            scales:
+              - range_from: -5000
+                range_to: 5000
+                angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
+                ticks:
+                  count: 11
+                indicators:
+                  - line:
+                      id: battery_needle
+                      width: 2
+                      color: col_gray
+                      value: 0
+                  - arc: # first half of the scale background
+                      color: col_green
+                      width: 2
+                      start_value: 0
+                      end_value: 5000
+                  - arc: # first half of the scale background
+                      color: col_red
+                      width: 2
+                      start_value: -5000
+                      end_value: 0
+        - label:
+            text_color: col_gray
+            text_font: roboto_sml
+            text: "battery"
+            align_to: 
+              id: battery_meter
+              align: CENTER  
+
+        - meter:
+            height: 145
+            width: 145
+            id: solar_meter
+            border_width: 0
+            bg_opa: TRANSP
+            align_to: 
+              id: bar_battery
+              align: OUT_BOTTOM_RIGHT
+              y: 15
+            scales:
+              - range_from: 0
+                range_to: 12000
+                angle_range: 180 # sets the total angle to 180 = starts mid left and ends mid right
+                ticks:
+                  count: 13
+                indicators:
+                  - line:
+                      id: solar_needle
+                      width: 2
+                      color: col_gray
+                      value: 0
+                  - arc: # first half of the scale background
+                      color: col_green
+                      width: 2
+                      start_value: 0
+                      end_value: 12000                   
+        - label:
+            text_color: col_gray
+            text_font: roboto_sml
+            text: "solar"
+            align_to: 
+              id: solar_meter
+              align: CENTER        
