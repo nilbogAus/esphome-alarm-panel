@@ -76,7 +76,7 @@ lvgl:
             align_to: 
               id: meter_power
               align: BOTTOM_MID      
-              y: 5 
+              y: 10 
                 
 
         - bar:
