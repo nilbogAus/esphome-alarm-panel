@@ -45,8 +45,10 @@ sensor:
                   else:           
                     - lvgl.label.update:
                         id: cost_wh
+                        bg_color: 0x2FFF2F
+                        bg_grad_color: 0x00FF00
                         text: 
-                          format: "#FF0000 %.0fW, costing $%.2fph"
+                          format: "#000000 %.0fW, costing $%.2fph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    
   - platform: homeassistant
     name: "Home Battery Power"
