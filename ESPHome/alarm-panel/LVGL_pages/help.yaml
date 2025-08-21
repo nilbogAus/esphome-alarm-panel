@@ -8,33 +8,36 @@ lvgl:
         - label:
             id: lbl_A_pg_help
             text_color: col_white
-            text_font: roboto_lrg
+            text_font: roboto
             text: "\"A\" Alarm Page \U000F0734"
             align: TOP_RIGHT
         - label:
             id: lbl_B_pg_help        
             text_color: col_white
-            text_font: roboto_lrg
+            text_font: roboto
             text: "\"B\" Electricity Page \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_A_pg_help
               align: OUT_BOTTOM_RIGHT
+              y: 20
         - label:
             id: lbl_C_pg_help        
             text_color: col_white
-            text_font: roboto_lrg
+            text_font: roboto
             text: "\"C\" Button Page \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_B_pg_help
               align: OUT_BOTTOM_RIGHT
+              y: 20
         - label:
             id: lbl_D_pg_help        
             text_color: col_white
-            text_font: roboto_lrg
+            text_font: roboto
             text: "\"D\" Button Alarm \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_C_pg_help
               align: OUT_BOTTOM_RIGHT
+              y: 20
