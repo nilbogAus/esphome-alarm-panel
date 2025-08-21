@@ -4,6 +4,7 @@ lvgl:
   pages:
     - id: pageB
       bg_color: col_black
+      height: 480
       widgets:
         - label:
             id: lbl_tittle
