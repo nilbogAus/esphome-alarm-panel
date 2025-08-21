@@ -24,10 +24,14 @@ color:
 
 font:
   - file: "gfonts://Roboto"
-
     id: roboto_lrg
     size: 50
     glyphs: '?|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
+    extras:
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0734", # mdi-arrow-right-bold
+          ]
   - file: "gfonts://Roboto"
     id: roboto
     size: 25

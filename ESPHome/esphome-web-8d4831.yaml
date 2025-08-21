@@ -71,7 +71,7 @@ packages:
       - path: assets.yaml
       - path: matrix_keypad.yaml
       - path: scripts.yaml
-    ref: main
+    ref: help-page
     refresh: 5s
   remote_package_files2:  
     url: https://github.com/nilbogAus/esphome-alarm-panel/
@@ -81,7 +81,7 @@ packages:
       - path: PageBctrl.yaml
       - path: PageCctrl.yaml
       - path: PageDctrl.yaml
-    ref: main
+    ref: help-page
     refresh: 5s
   remote_package_files3:  
     url: https://github.com/nilbogAus/esphome-alarm-panel/
@@ -91,7 +91,8 @@ packages:
       - path: pageB.yaml
       - path: pageC.yaml
       - path: pageD.yaml
-    ref: main
+      - path: page_help
+    ref: help-page
     refresh: 5s    
 
 

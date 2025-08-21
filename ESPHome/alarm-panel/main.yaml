@@ -75,7 +75,7 @@ binary_sensor:
     id: keypadA
     key: A
     on_press:
-      - lvgl.page.show: pageA
+      - lvgl.page.show: page_help #pageA
       - script.execute: script_page_carousel
   - platform: matrix_keypad
     keypad_id: keypad
