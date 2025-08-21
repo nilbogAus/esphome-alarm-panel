@@ -67,11 +67,14 @@ lvgl:
             text_font: roboto
             text_align: CENTER
             text: "Loading"
-            bg_color: 0x0000BB
-            bg_grad_color: 0x0000FF
+            bg_color: 0x2F8CD8
+            bg_grad_color: 0x005782
+            bg_grad_dir: VER
+            bg_opa: COVER
             align_to: 
               id: meter_power
-              align: BOTTOM_MID       
+              align: BOTTOM_MID      
+              y: 5 
                 
 
         - bar:
