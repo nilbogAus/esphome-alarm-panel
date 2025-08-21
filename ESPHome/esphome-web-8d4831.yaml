@@ -343,59 +343,6 @@ binary_sensor:
     on_press:
       - lvgl.page.show: pageD
 
-graph:
-  - id: InternalTemp_graph
-    duration: 24h
-    width: 320 
-    height: 150
-    x_grid: 6h
-    y_grid: 10 
-    border: false
-    max_range: 65
-    min_range: 40
-    traces:
-      - sensor: InternalTemp
-        color: col_red    
-        continuous: true   
-  - id: wifi_graph
-    duration: 24h
-    width: 320 
-    height: 150
-    x_grid: 6h
-    y_grid: 10 
-    max_range: 100
-    min_range: 1
-    border: false
-    traces:
-      - sensor: wifi_signal_pct
-        color: col_green      
-        continuous: true   
-  - id: LoopTime_graph
-    duration: 24h
-    width: 320 
-    height: 150
-    x_grid: 6h
-    y_grid: 10 
-    border: false
-    traces:
-      - sensor: LoopTime
-        color: col_blue           
-  - id: solar_power_graph
-    duration: 12h
-    width: 320 
-    height: 100
-    x_grid: 2h
-    y_grid: 2.500
-    max_range: 10.000
-    min_range: 10.000    
-    min_value: 0     
-    border: True
-    traces:
-      - sensor: solar_power
-        color: col_green       
-        line_thickness: 1     
-        continuous: true   
-
 touchscreen:
   platform: xpt2046
 #needs calibration
