@@ -61,7 +61,7 @@ sensor:
     name: "Internal Temperature" 
     id: InternalTemp   
 
-    
+
   - platform: uptime
     type: seconds
     id: uptime_sensor
@@ -83,7 +83,7 @@ binary_sensor:
     id: keypadA
     key: A
     on_press:
-      - lvgl.page.show: page_help #pageA
+      - lvgl.page.show: pageA
       - script.execute: script_page_carousel
   - platform: matrix_keypad
     keypad_id: keypad
