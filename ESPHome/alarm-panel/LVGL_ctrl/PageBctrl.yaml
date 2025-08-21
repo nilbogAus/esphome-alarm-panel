@@ -28,9 +28,11 @@ sensor:
               lambda: "return (x > 450); "
             then:
               - lvgl.label.update:
-                  id:   
+                  id: cost_wh
+                  bg_color: 0x55FF55
+                  bg_grad_color: 0x00EE00
                   text: 
-                    format: "#00FF00 %.0fW, earning %.0f¢/ph"
+                    format: "#000000 %.0fW, earning %.0f¢/ph"
                     args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10']
             else:
               - if:
@@ -39,14 +41,16 @@ sensor:
                   then:
                     - lvgl.label.update:
                         id: cost_wh
+                        bg_color: 0xFFFF55
+                        bg_grad_color: 0xEEEE00                        
                         text: 
-                          format: "#FFFF00 %.0fW, earning %.0f¢/ph"
+                          format: "#000000 %.0fW, earning %.0f¢/ph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_solarprice)/10'] 
                   else:           
                     - lvgl.label.update:
                         id: cost_wh
-                        bg_color: 0x2FFF2F
-                        bg_grad_color: 0x00FF00
+                        bg_color: 0xFF5555
+                        bg_grad_color: 0xEE0000
                         text: 
                           format: "#000000 %.0fW, costing $%.2fph"
                           args: [ 'id(net_power).get_state()',  'id(net_power).get_state()*id(g_powerprice)/1000']    

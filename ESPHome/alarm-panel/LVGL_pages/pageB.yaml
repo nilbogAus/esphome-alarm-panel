@@ -67,6 +67,8 @@ lvgl:
             text_font: roboto
             text_align: CENTER
             text: "Loading"
+            pad_top: 5
+            pad_bottom: 5 
             bg_color: 0x2F8CD8
             bg_grad_color: 0x005782
             bg_grad_dir: VER
