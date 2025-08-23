@@ -91,6 +91,7 @@ packages:
       - path: pageB.yaml
       - path: pageC.yaml
       - path: pageD.yaml
+      - path: page_help
     ref: main
     refresh: 5s    
 
