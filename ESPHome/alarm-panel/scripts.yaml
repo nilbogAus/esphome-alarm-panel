@@ -27,7 +27,7 @@ script:
                                 - delay: 4s   
                         - if:
                             condition:
-                                lambda: 'r.stateeturn id(uptime_sensor).state < 7'
+                                lambda: 'return id(uptime_sensor).state < 7'
                             then:
                                 - delay: 3s  
                         - delay: 3s  
