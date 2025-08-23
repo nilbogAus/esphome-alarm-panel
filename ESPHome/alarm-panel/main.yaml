@@ -67,7 +67,7 @@ sensor:
     id: uptime_sensor
     filters:
       - lambda: return x / 3600;
-    unit_of_measurement: "h"
+    unit_of_measurement: "d"
 
 binary_sensor: 
   - platform: gpio
