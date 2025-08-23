@@ -17,17 +17,17 @@ script:
                         - lvgl.page.show: page_help
                         - if:
                             condition:
-                                lambda: 'return id(uptime_sensor).state < 1'
+                                lambda: 'return id(uptime_sensor).state < 1;'
                             then:
                                 - delay: 10s   
                         - if:
                             condition:
-                                lambda: 'return id(uptime_sensor).state < 3'
+                                lambda: 'return id(uptime_sensor).state < 3;'
                             then:
                                 - delay: 4s   
                         - if:
                             condition:
-                                lambda: 'return id(uptime_sensor).state < 7'
+                                lambda: 'return id(uptime_sensor).state < 7;'
                             then:
                                 - delay: 3s  
                         - delay: 3s  
