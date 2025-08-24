@@ -67,7 +67,7 @@ sensor:
     id: uptime_sensor
     name: uptime_sensor
     filters:
-      - lambda: return x / 85400;
+      - lambda: return x / 86400;
     unit_of_measurement: "d"
     
 
