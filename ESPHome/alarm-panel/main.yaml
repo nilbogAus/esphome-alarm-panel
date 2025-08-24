@@ -69,6 +69,7 @@ sensor:
     filters:
       - lambda: return x / 86400;
     unit_of_measurement: "d"
+    entity_category: "diagnostic" 
     
 
 binary_sensor: 
