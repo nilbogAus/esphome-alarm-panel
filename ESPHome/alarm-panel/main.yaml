@@ -70,6 +70,7 @@ sensor:
       - lambda: return x / 86400;
     unit_of_measurement: "d"
     entity_category: "diagnostic" 
+    accuracy_decimals: 5
     
 
 binary_sensor: 
