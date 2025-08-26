@@ -80,7 +80,7 @@ switch:
           state: 
             checked: true     
   - platform: homeassistant
-    entity_id: switch.sonoff_10015acdb5
+    entity_id: switch.sonoff_10015b43ad
     id: dehumidifier
     on_turn_on:
       - lvgl.widget.update:
