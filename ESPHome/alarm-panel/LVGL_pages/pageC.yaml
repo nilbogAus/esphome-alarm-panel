@@ -73,6 +73,10 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                        logger.log:
+                          format: "Matrix button clicked: %d, is button_2 = %u"
+                          args: ["x", "id(button_2) == x"]
                   - text: 0
                     control:
                       no_repeat: true
