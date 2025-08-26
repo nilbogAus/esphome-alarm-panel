@@ -75,8 +75,8 @@ lvgl:
                       checkable: true
                     on_click:
                         logger.log:
-                          format: "Matrix button clicked: %d, is button_2 = %u"
-                          args: ["x", "id(button_2) == x"]
+                          format: "Matrix button clicked: %d, is lvgl_keypad_button_star = %u"
+                          args: ["x", "id(lvgl_keypad_button_star) == x"]
                   - text: 0
                     control:
                       no_repeat: true
