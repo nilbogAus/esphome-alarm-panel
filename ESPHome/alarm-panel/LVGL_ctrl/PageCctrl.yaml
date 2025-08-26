@@ -81,7 +81,7 @@ switch:
             checked: true     
   - platform: homeassistant
     entity_id: switch.sonoff_10015b43ad
-    id: dehumidifier
+    id: dehumidifier_switch
     on_turn_on:
       - lvgl.widget.update:
           id: lvgl_keypad_button_star
@@ -286,4 +286,4 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            switch.toggle: lvgl_keypad_button_star
+            switch.toggle: dehumidifier_switch
