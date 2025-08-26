@@ -78,7 +78,21 @@ switch:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
           state: 
-            checked: true              
+            checked: true     
+  - platform: homeassistant
+    entity_id: switch.sonoff_10015acdb5
+    id: dehumidifier
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_star
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_star
+          state: 
+            checked: true  
+
             
 
 globals:
@@ -262,4 +276,14 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            switch.toggle: master_ac                            
+            switch.toggle: master_ac
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad_star
+    key: "*"
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: lvgl_keypad_button_star

@@ -68,8 +68,8 @@ lvgl:
                       no_repeat: true
                       checkable: true
               - buttons:
-                  - text: "*"
-                    key_code: "*"
+                  - text: "*\n\U000F1466\nDehumidifier"
+                    id: lvgl_keypad_button_star
                     control:
                       no_repeat: true
                       checkable: true
