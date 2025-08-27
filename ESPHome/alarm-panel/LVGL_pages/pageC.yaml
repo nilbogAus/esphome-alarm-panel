@@ -81,10 +81,12 @@ lvgl:
                       checkable: true
                     on_click:
                       switch.toggle: dehumidifier_switch
-                  - text: 0
+                  - text: "0\U000F05F1\nEV",
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: EV_switch
                   - text: "#"
                     key_code: "#"
                     control:
