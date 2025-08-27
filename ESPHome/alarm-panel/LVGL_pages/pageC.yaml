@@ -82,6 +82,7 @@ lvgl:
                     on_click:
                       switch.toggle: dehumidifier_switch
                   - text: "0\U000F05F1\nEV"
+                    id: lvgl_keypad_button0
                     control:
                       no_repeat: true
                       checkable: true
