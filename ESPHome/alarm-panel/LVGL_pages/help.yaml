@@ -36,7 +36,7 @@ lvgl:
             id: lbl_D_pg_help        
             text_color: col_white
             text_font: roboto
-            text: "Press \U000F0B0B for Alarm \U000F0734"
+            text: "Press \U000F0B0B for Weather \U000F0734"
             align: TOP_MID        
             align_to: 
               id: lbl_C_pg_help
