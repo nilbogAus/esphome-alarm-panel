@@ -111,33 +111,33 @@ switch:
     entity_id: input_boolean.car_charger_override
     id: EV_override_switch
 
-# sensor:
-#   - platform: homeassistant
-#     entity_id: cover.left     
-#     attribute: current_tilt_position
-#     id: test_blind    
-#     name: "test blind"
-#     on_value:
-#       - logger.log: "test blind sensor"
-#       - logger.log:
-#           format: "The blind sensor reports value %.1f "
-#           args: [ 'id(test_blind).state' ]    
+sensor:
+  - platform: homeassistant
+    entity_id: cover.study     
+    attribute: current_tilt_position
+    id: test_blind    
+    name: "test blind"
+    on_value:
+      - logger.log: "test blind change"
+      - logger.log:
+          format: "The blind sensor reports value %.1f "
+          args: [ 'id(test_blind).state' ]    
 
-# script:
-#   - id: script_test_log
-#     mode: restart
-#     then:
-#         - delay: 30s    #wait for sensors etc to be ready 
-#         - while:
-#             condition:
-#                 - wifi.connected:
-#             then:
-#                 - delay: 20s             
-#                 - logger.log: "test blind sensor"
-#                 - logger.log:
-#                     format: "The blind sensor reports value %.1f "
-#                     args: [ 'id(test_blind).state' ]   
-    
+script:
+  - id: script_test_log
+    mode: restart
+    then:
+      - logger.log: "test blind sensor log start"
+      - delay: 30s    #wait for sensors etc to be ready 
+      - while:
+          condition:
+              - wifi.connected:
+          then:
+              - logger.log: "test blind sensor"
+              - logger.log:
+                  format: "The blind sensor reports value %.1f "
+                  args: [ 'id(test_blind).state' ]   
+              - delay: 20s   
 
 globals:
   - id: blinds_study_open
