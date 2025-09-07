@@ -42,6 +42,7 @@ switch:
           state: 
             checked: true  
 
+# 3rd row
   - platform: homeassistant
     entity_id: switch.sonoff_10001744f0
     id: kids_ac
@@ -75,12 +76,14 @@ switch:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
           state: 
-            checked: false
+            checked: true
     on_turn_off:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
           state: 
-            checked: true     
+            checked: false     
+
+# 4th row
   - platform: homeassistant
     entity_id: switch.sonoff_10015b43ad
     id: dehumidifier_switch
