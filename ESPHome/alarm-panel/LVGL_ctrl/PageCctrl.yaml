@@ -115,13 +115,20 @@ sensor:
   - platform: homeassistant
     entity_id: cover.study     
     attribute: current_tilt_position
-    id: test_blind    
-    name: "test blind"
-    on_value:
-      - logger.log: "test blind change"
-      - logger.log:
-          format: "The blind sensor reports value %.1f "
-          args: [ 'id(test_blind).state' ]    
+    id: blind_study  
+  - platform: homeassistant
+    entity_id: cover.carrington_rd     
+    attribute: current_tilt_position
+    id: blind_lucy1  
+  - platform: homeassistant
+    entity_id: cover.darri_ave     
+    attribute: current_tilt_position
+    id: blind_lucy2  
+  - platform: homeassistant
+    entity_id: cover.tane     
+    attribute: current_tilt_position
+    id: blind_tane  
+
 
 script:
   - id: script_test_log
@@ -133,11 +140,19 @@ script:
           condition:
               - wifi.connected:
           then:
-              - logger.log: "test blind sensor"
               - logger.log:
-                  format: "The blind sensor reports value %.1f "
-                  args: [ 'id(test_blind).state' ]   
-              - delay: 20s   
+                  format: "The blind study reports value %.1f "
+                  args: [ 'id(blind_study).state' ]   
+              - logger.log:
+                  format: "The blind_lucy1 reports value %.1f "
+                  args: [ 'id(blind_lucy1).state' ]   
+              - logger.log:
+                  format: "The blind_lucy2 reports value %.1f "
+                  args: [ 'id(blind_lucy2).state' ]   
+              - logger.log:
+                  format: "The blind_tane reports value %.1f "
+                  args: [ 'id(blind_tane).state' ]   
+              - delay: 60s   
 
 globals:
   - id: blinds_study_open
