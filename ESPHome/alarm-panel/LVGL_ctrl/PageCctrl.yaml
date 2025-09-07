@@ -114,7 +114,11 @@ switch:
 sensor:
   - platform: homeassistant
     entity_id: cover.study     
-    id: study_blind       
+    id: study_blind    
+    on_value:
+      - logger.log:
+          format: "The blind sensor reports value %.1f "
+          args: [ 'id(study_blind).state' ]    
 
 globals:
   - id: blinds_study_open
