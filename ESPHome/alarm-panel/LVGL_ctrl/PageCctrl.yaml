@@ -114,6 +114,7 @@ switch:
 sensor:
   - platform: homeassistant
     entity_id: cover.study     
+    attribute: current_tilt_position
     id: study_blind    
     name: "study blind"
     on_value:
