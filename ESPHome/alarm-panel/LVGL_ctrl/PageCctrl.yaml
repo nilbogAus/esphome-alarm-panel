@@ -115,6 +115,7 @@ sensor:
   - platform: homeassistant
     entity_id: cover.study     
     id: study_blind    
+    name: "study blind"
     on_value:
       - logger.log:
           format: "The blind sensor reports value %.1f "
