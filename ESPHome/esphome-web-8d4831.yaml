@@ -13,6 +13,8 @@ esphome:
       then:
         - logger.log: "Device ready"
         - script.execute: script_page_carousel 
+        - script.execute: script_pageC_blinds
+
   project:
     name: "nilbogAus.esphome-alarm-panel"
     version: "2.0.0"
