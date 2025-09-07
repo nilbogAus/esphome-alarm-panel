@@ -113,7 +113,7 @@ switch:
 
 sensor:
   - platform: homeassistant
-    entity_id: cover.cover.left     
+    entity_id: cover.left     
     attribute: current_tilt_position
     id: test_blind    
     name: "test blind"
