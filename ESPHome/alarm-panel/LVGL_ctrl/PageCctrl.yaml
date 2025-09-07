@@ -134,73 +134,72 @@ script:
   - id: script_pageC_blinds
     mode: restart
     then:
-      - logger.log: "test blind sensor log start"
-      - delay: 30s    #wait for sensors etc to be ready 
-      - if:
-          condition:
-            sensor.in_range:
-              id: blind_tane
-              above: 10.0
-              below: 90.0
-          then:
-            globals.set:
-              id: blinds_tane_open
-              value: 'true' 
-          else:                
-            globals.set:
-              id: blinds_tane_open
-              value: 'false' 
-      - if:
-          condition:
-            sensor.in_range:
-              id: blind_study
-              above: 10.0
-              below: 90.0
-          then:
-            globals.set:
-              id: blinds_study_open
-              value: 'true' 
-          else:                
-            globals.set:
-              id: blinds_study_open
-              value: 'false'    
-      - if:
-          condition:
-            or:
-              - sensor.in_range:
-                  id: blind_lucy1
-                  above: 10.0
-                  below: 90.0
-              - sensor.in_range:
-                  id: blind_lucy1
-                  above: 10.0
-                  below: 90.0
-          then:
-            globals.set:
-              id: blinds_tane_open
-              value: 'true' 
-          else:                
-            globals.set:
-              id: blinds_tane_open
-              value: 'false'             
-
+      - logger.log: "blind sensor monitor start"
+      - delay: 30s    #wait for sensors etc to be ready
       - while:
           condition:
               - wifi.connected:
           then:
-              - logger.log:
-                  format: "The blind study reports value %.1f "
-                  args: [ 'id(blind_study).state' ]   
-              - logger.log:
-                  format: "The blind_lucy1 reports value %.1f "
-                  args: [ 'id(blind_lucy1).state' ]   
-              - logger.log:
-                  format: "The blind_lucy2 reports value %.1f "
-                  args: [ 'id(blind_lucy2).state' ]   
-              - logger.log:
-                  format: "The blind_tane reports value %.1f "
-                  args: [ 'id(blind_tane).state' ]   
-              - delay: 60s   
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_tane
+                    above: 10.0
+                    below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'false' 
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_study
+                    above: 10.0
+                    below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_study_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_study_open
+                    value: 'false'    
+            - if:
+                condition:
+                  or:
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'false'      
+            - logger.log:
+                format: "The blind study reports value %.1f "
+                args: [ 'id(blind_study).state' ]   
+            - logger.log:
+                format: "The blind_lucy1 reports value %.1f "
+                args: [ 'id(blind_lucy1).state' ]   
+            - logger.log:
+                format: "The blind_lucy2 reports value %.1f "
+                args: [ 'id(blind_lucy2).state' ]   
+            - logger.log:
+                format: "The blind_tane reports value %.1f "
+                args: [ 'id(blind_tane).state' ]          
+            - delay: 10min
 
 globals:
   - id: blinds_study_open
