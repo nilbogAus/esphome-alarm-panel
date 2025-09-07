@@ -111,10 +111,10 @@ switch:
     entity_id: input_boolean.car_charger_override
     id: EV_override_switch
 
-cover:
+sensor:
   - platform: homeassistant
     entity_id: cover.study     
-    id: syudy_blind       
+    id: study_blind       
 
 globals:
   - id: blinds_study_open
