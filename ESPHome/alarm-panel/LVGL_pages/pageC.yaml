@@ -88,8 +88,10 @@ lvgl:
                       checkable: true
                     on_click:
                       switch.toggle: EV_switch
-                  - text: "#"
+                  - text: "#\n\U000F04A1\nStairs"
                     key_code: "#"
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: stairs_sign

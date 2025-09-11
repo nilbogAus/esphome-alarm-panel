@@ -113,6 +113,20 @@ switch:
   - platform: homeassistant
     entity_id: input_boolean.car_charger_override
     id: EV_override_switch
+  - platform: homeassistant
+    entity_id: switch.stairs_sign
+    id: stairs_sign
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_hash
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_hash
+          state: 
+            checked: true  
+
 
 sensor:
   - platform: homeassistant
@@ -423,4 +437,14 @@ binary_sensor:
             switch.turn_on: EV_override_switch
           else:
             switch.turn_off: EV_override_switch
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad_hash
+    key: "#"
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: stairs_sign
 
