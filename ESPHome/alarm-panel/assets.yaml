@@ -26,7 +26,7 @@ font:
   - file: "gfonts://Roboto"
     id: roboto_lrg
     size: 50
-    glyphs: '?|!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz'   
+    glyphs: '?-.°0123456789ACLE acdegilmnrsty'   
   - file: "gfonts://Roboto"
     id: roboto
     size: 25
