@@ -89,6 +89,7 @@ lvgl:
                     on_click:
                       switch.toggle: EV_switch
                   - text: "#\n\U000F04A1\nStairs"
+                    id: lvgl_keypad_button_hash
                     key_code: "#"
                     control:
                       no_repeat: true
