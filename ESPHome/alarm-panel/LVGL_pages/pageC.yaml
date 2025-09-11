@@ -57,28 +57,42 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: kids_ac
                   - text: "8\n\U000F001B\nMaster"
                     id: lvgl_keypad_button8
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: master_ac
                   - text: "9\n\U000F0606\nPool"
                     id: lvgl_keypad_button9
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: pool_switch
               - buttons:
-                  - text: "*"
-                    key_code: "*"
+                  - text: "*\n\U000F1466\nDehumid"
+                    id: lvgl_keypad_button_star
                     control:
                       no_repeat: true
                       checkable: true
-                  - text: 0
+                    on_click:
+                      switch.toggle: dehumidifier_switch
+                  - text: "0\n\U000F05F1\nEV"
+                    id: lvgl_keypad_button0
                     control:
                       no_repeat: true
                       checkable: true
-                  - text: "#"
+                    on_click:
+                      switch.toggle: EV_switch
+                  - text: "#\n\U000F04A1\nStairs"
+                    id: lvgl_keypad_button_hash
                     key_code: "#"
                     control:
                       no_repeat: true
                       checkable: true
+                    on_click:
+                      switch.toggle: stairs_sign

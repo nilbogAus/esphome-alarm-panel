@@ -1,6 +1,7 @@
 #Control(Button) Page
 
 switch:
+# 1st row
   - platform: homeassistant
     entity_id: switch.sonoff_10007724b9
     id: tanes_lights
@@ -40,6 +41,8 @@ switch:
           id: lvgl_keypad_button3
           state: 
             checked: true  
+
+# 3rd row
   - platform: homeassistant
     entity_id: switch.sonoff_10001744f0
     id: kids_ac
@@ -68,7 +71,7 @@ switch:
             checked: true  
   - platform: homeassistant
     id: pool_switch
-    entity_id: switch.sonoff_10001e7f40
+    entity_id: light.pool_switch_9cdb57_mini_switch
     on_turn_on:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
@@ -78,8 +81,142 @@ switch:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
           state: 
-            checked: true              
+            checked: true     
             
+# 4th row
+  - platform: homeassistant
+    entity_id: switch.sonoff_10015b43ad
+    id: dehumidifier_switch
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_star
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_star
+          state: 
+            checked: true  
+  - platform: homeassistant
+    entity_id: switch.athom_smart_plug_v2_f12d0b_switch
+    id: EV_switch
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button0
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button0
+          state: 
+            checked: true  
+  - platform: homeassistant
+    entity_id: input_boolean.car_charger_override
+    id: EV_override_switch
+  - platform: homeassistant
+    entity_id: switch.stairs_sign
+    id: stairs_sign
+    on_turn_on:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_hash
+          state: 
+            checked: false
+    on_turn_off:
+      - lvgl.widget.update:
+          id: lvgl_keypad_button_hash
+          state: 
+            checked: true  
+
+
+sensor:
+  - platform: homeassistant
+    entity_id: cover.study     
+    attribute: current_tilt_position
+    id: blind_study  
+  - platform: homeassistant
+    entity_id: cover.carrington_rd     
+    attribute: current_tilt_position
+    id: blind_lucy1  
+  - platform: homeassistant
+    entity_id: cover.darri_ave     
+    attribute: current_tilt_position
+    id: blind_lucy2  
+  - platform: homeassistant
+    entity_id: cover.tane     
+    attribute: current_tilt_position
+    id: blind_tane  
+
+
+script:
+  - id: script_pageC_blinds
+    mode: restart
+    then:
+      - logger.log: "blind sensor monitor start"
+      - delay: 30s    #wait for sensors etc to be ready
+      - while:
+          condition:
+              - wifi.connected:
+          then:
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_tane
+                    above: 10.0
+                    below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'false' 
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_study
+                    above: 10.0
+                    below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_study_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_study_open
+                    value: 'false'    
+            - if:
+                condition:
+                  or:
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'false'      
+            - logger.log:
+                format: "The blind study reports value %.1f "
+                args: [ 'id(blind_study).state' ]   
+            - logger.log:
+                format: "The blind_lucy1 reports value %.1f "
+                args: [ 'id(blind_lucy1).state' ]   
+            - logger.log:
+                format: "The blind_lucy2 reports value %.1f "
+                args: [ 'id(blind_lucy2).state' ]   
+            - logger.log:
+                format: "The blind_tane reports value %.1f "
+                args: [ 'id(blind_tane).state' ]          
+            - delay: 10min
 
 globals:
   - id: blinds_study_open
@@ -262,4 +399,52 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            switch.toggle: master_ac                            
+            switch.toggle: master_ac
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad9
+    key: 9
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: pool_switch            
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad_star
+    key: "*"
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: dehumidifier_switch
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad0
+    key: 0
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: EV_switch   
+      - if:
+          condition:
+            switch.is_on: EV_switch
+          then:
+            switch.turn_on: EV_override_switch
+          else:
+            switch.turn_off: EV_override_switch
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad_hash
+    key: "#"
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: stairs_sign
+

@@ -1,10 +1,24 @@
 # Help Page
+# http_request:
+
+
+# online_image:
+#   - url: "http://esphome-web-678334.local:8081/"
+#     format: jpg
+#     id: my_online_image
+#     type: RGB565 
+#     update_interval: 60s
 
 lvgl:
   pages:
     - id: page_help
       bg_color: col_black
       widgets:
+        # - image:
+        #     id: my_online_image_img
+        #     x: 50
+        #     y: 50 
+        #     src: my_online_image
         - label:
             id: lbl_A_pg_help
             text_color: col_white
