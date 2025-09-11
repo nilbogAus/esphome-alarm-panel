@@ -3,6 +3,7 @@ substitutions:
   friendly_name: alarm-panel-master
   inside_temp: sensibo_Master_Bedroom_Temperature
 
+
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}

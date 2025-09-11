@@ -71,7 +71,7 @@ switch:
             checked: true  
   - platform: homeassistant
     id: pool_switch
-    entity_id: switch.sonoff_10001e7f40
+    entity_id: light.pool_switch_9cdb57_mini_switch
     on_turn_on:
       - lvgl.widget.update:
           id: lvgl_keypad_button9
@@ -386,6 +386,16 @@ binary_sensor:
             lvgl.page.is_showing: pageC
           then:
             switch.toggle: master_ac
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypad9
+    key: 9
+    on_press:
+      - if:
+          condition:
+            lvgl.page.is_showing: pageC
+          then:
+            switch.toggle: pool_switch            
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypad_star
