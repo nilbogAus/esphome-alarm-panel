@@ -6,6 +6,7 @@ online_image:
   - url: "http://esphome-web-678334.local:8081/"
     format: jpg
     id: my_online_image
+    type: RGB565 
     update_interval: 1
 
 lvgl:
