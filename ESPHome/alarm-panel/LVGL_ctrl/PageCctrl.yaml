@@ -135,6 +135,7 @@ sensor:
     id: blind_study  
     name: blind_study
     on_value:
+      - delay: 30s  
       - logger.log:
           format: "The blind_study reports value %.1f to sensor"
           args: [ 'id(blind_study).state' ]      
@@ -143,7 +144,9 @@ sensor:
     entity_id: cover.carrington_rd     
     attribute: current_tilt_position
     id: blind_lucy1  
+    name: blind_lucy1
     on_value:
+      - delay: 30s  
       - logger.log:
           format: "The blind_lucy1 reports value %.1f to sensor"
           args: [ 'id(blind_lucy1).state' ]  
@@ -151,7 +154,9 @@ sensor:
     entity_id: cover.darri_ave     
     attribute: current_tilt_position
     id: blind_lucy2  
+    name: blind_lucy2
     on_value:
+      - delay: 30s  
       - logger.log:
           format: "The blind_lucy2 reports value %.1f to sensor"
           args: [ 'id(blind_lucy2).state' ]  
@@ -159,7 +164,9 @@ sensor:
     entity_id: cover.tane     
     attribute: current_tilt_position
     id: blind_tane
+    name: blind_tane
     on_value:
+      - delay: 30s  
       - logger.log:
           format: "The blind_tane reports value %.1f to sensor"
           args: [ 'id(blind_tane).state' ]  
