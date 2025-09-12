@@ -133,18 +133,36 @@ sensor:
     entity_id: cover.study     
     attribute: current_tilt_position
     id: blind_study  
+    name: blind_study
+    on_value:
+      - logger.log:
+          format: "The blind_study reports value %.1f to sensor"
+          args: [ 'id(blind_study).state' ]      
+
   - platform: homeassistant
     entity_id: cover.carrington_rd     
     attribute: current_tilt_position
     id: blind_lucy1  
+    on_value:
+      - logger.log:
+          format: "The blind_lucy1 reports value %.1f to sensor"
+          args: [ 'id(blind_lucy1).state' ]  
   - platform: homeassistant
     entity_id: cover.darri_ave     
     attribute: current_tilt_position
     id: blind_lucy2  
+    on_value:
+      - logger.log:
+          format: "The blind_lucy2 reports value %.1f to sensor"
+          args: [ 'id(blind_lucy2).state' ]  
   - platform: homeassistant
     entity_id: cover.tane     
     attribute: current_tilt_position
-    id: blind_tane  
+    id: blind_tane
+    on_value:
+      - logger.log:
+          format: "The blind_tane reports value %.1f to sensor"
+          args: [ 'id(blind_tane).state' ]  
 
 
 script:
@@ -205,16 +223,16 @@ script:
                     id: blinds_tane_open
                     value: 'false'      
             - logger.log:
-                format: "The blind study reports value %.1f "
+                format: "The blind study reports value %.1f to script"
                 args: [ 'id(blind_study).state' ]   
             - logger.log:
-                format: "The blind_lucy1 reports value %.1f "
+                format: "The blind_lucy1 reports value %.1f to script"
                 args: [ 'id(blind_lucy1).state' ]   
             - logger.log:
-                format: "The blind_lucy2 reports value %.1f "
+                format: "The blind_lucy2 reports value %.1f to script"
                 args: [ 'id(blind_lucy2).state' ]   
             - logger.log:
-                format: "The blind_tane reports value %.1f "
+                format: "The blind_tane reports value %.1f to script"
                 args: [ 'id(blind_tane).state' ]          
             - delay: 10min
 
