@@ -216,11 +216,11 @@ script:
                         below: 90.0
                 then:
                   globals.set:
-                    id: blinds_tane_open
+                    id: blinds_lucy_open
                     value: 'true' 
                 else:                
                   globals.set:
-                    id: blinds_tane_open
+                    id: blinds_lucy_open
                     value: 'false'      
             - logger.log:
                 format: "The blind study reports value %.1f to script"
@@ -234,7 +234,7 @@ script:
             - logger.log:
                 format: "The blind_tane reports value %.1f to script"
                 args: [ 'id(blind_tane).state' ]          
-            - delay: 10min
+            - delay: 1min
 
 globals:
   - id: blinds_study_open
