@@ -425,9 +425,17 @@ binary_sensor:
                 condition:
                   lambda: 'return id(lvgl_keypad_button6) == 1;'
                 then:
-                  logger.log: "close blind"
+                  - logger.log: "close blind"
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button6
+                      state: 
+                        checked: true  
                 else:
-                  logger.log: "open blind"
+                  - logger.log: "open blind"
+                  - lvgl.widget.update:
+                      id: lvgl_keypad_button6
+                      state: 
+                        checked: false   
                   # - homeassistant.service:
                   #     service: cover.open_cover
                   #     data_template:
