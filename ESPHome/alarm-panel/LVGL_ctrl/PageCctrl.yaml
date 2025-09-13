@@ -187,6 +187,15 @@ script:
             #Study
             - if:
                 condition:
+                  lambda: 'isnan(id(blind_study).state))' 
+                then:
+                  logger: "blind_study nan state"
+                else:
+                  logger: "blind_study some value state"
+
+
+            - if:
+                condition:
                   sensor.in_range:
                     id: blind_study
                     above: 10.0
