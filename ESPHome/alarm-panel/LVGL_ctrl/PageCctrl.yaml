@@ -207,18 +207,12 @@ script:
                       id: lvgl_keypad_button4
                       state: 
                         checked: true    
-                  - globals.set:
-                      id: blinds_study_open
-                      value: 'false'  
                 else:
                   - logger.log: "blind_study sun up. set blind open"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button4
                       state: 
                         checked: false    
-                  - globals.set:
-                      id: blinds_study_open
-                      value: 'true'  
           else:
             - logger.log: "blind_study some value state"
             - if:
@@ -229,18 +223,12 @@ script:
                     below: 90.0
                 then:
                   - logger.log: "blind_study range closed. set blind closed"
-                  - globals.set:
-                      id: blinds_study_open
-                      value: 'false' 
                   - lvgl.widget.update:
                       id: lvgl_keypad_button4
                       state: 
                         checked: true    
                 else:              
                   - logger.log: "blind_study range open. set blind open"
-                  - globals.set:
-                      id: blinds_study_open
-                      value: 'true'  
                   - lvgl.widget.update:
                       id: lvgl_keypad_button4
                       state: 
