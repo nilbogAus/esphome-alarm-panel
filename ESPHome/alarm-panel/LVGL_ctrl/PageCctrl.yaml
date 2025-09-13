@@ -201,16 +201,16 @@ script:
             - if:
                 condition:
                   lambda: 'return id(sun).state == "below_horizon";'
-              then:
-                - logger.log: "blind_study sun set. set blind close"
-                - globals.set:
-                    id: blinds_study_open
-                    value: 'false'  
-              else:
-                - logger.log: "blind_study sun up. set blind open"
-                - globals.set:
-                    id: blinds_study_open
-                    value: 'true'  
+                then:
+                  - logger.log: "blind_study sun set. set blind close"
+                  - globals.set:
+                      id: blinds_study_open
+                      value: 'false'  
+                else:
+                  - logger.log: "blind_study sun up. set blind open"
+                  - globals.set:
+                      id: blinds_study_open
+                      value: 'true'  
           else:
             - logger.log: "blind_study some value state"
             - if:
