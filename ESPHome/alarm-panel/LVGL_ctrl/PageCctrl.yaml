@@ -418,9 +418,6 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            - logger.log:
-                format: "Button 6 checked: %d"
-                args: [ id(lvgl_keypad_button6).state]
             - if:
                 condition:
                   lambda: 'return id(lvgl_keypad_button6).get_state().checked;'
