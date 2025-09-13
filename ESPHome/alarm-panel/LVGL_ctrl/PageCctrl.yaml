@@ -187,7 +187,7 @@ script:
             #Study
             - if:
                 condition:
-                  lambda: 'isnan(id(blind_study).state))' 
+                  lambda: 'return isnan(id(blind_study).state)' 
                 then:
                   logger: "blind_study nan state"
                 else:
