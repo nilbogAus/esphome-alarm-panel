@@ -492,6 +492,4 @@ binary_sensor:
             lvgl.page.is_showing: pageC
           then:
             switch.toggle: stairs_sign
-  - device_class: window
-    id: device_study_window
-    name: device_study_window
+
