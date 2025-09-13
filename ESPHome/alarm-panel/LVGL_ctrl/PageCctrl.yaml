@@ -420,7 +420,7 @@ binary_sensor:
           then:
             - if:
                 condition:
-                  lambda: 'return id(lvgl_keypad_button6).get_state().checked;'
+                  lambda: 'return id(lvgl_keypad_button6).state().checked;'
                 then:
                   logger.log: "close blind"
                 else:
