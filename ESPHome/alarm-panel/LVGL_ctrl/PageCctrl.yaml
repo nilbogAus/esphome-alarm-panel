@@ -170,6 +170,9 @@ sensor:
       - logger.log:
           format: "The blind_tane reports value %.1f to sensor"
           args: [ 'id(blind_tane).state' ]  
+
+
+text_sensor:
   - platform: homeassistant
     entity_id: sun.sun
     id: sun
