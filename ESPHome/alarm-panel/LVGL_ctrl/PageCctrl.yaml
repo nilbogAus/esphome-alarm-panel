@@ -423,7 +423,7 @@ binary_sensor:
                 args: [ 'id(lvgl_keypad_button6)' ]   
             - if:
                 condition:
-                  lambda: 'return (id(lvgl_keypad_button6).state != 0);'    ## problem test
+                  lambda: 'return (id(lvgl_keypad_button6) != 0);'    ## problem test
                 then:
                   - logger.log: "close blind"
                   - lvgl.widget.update:
