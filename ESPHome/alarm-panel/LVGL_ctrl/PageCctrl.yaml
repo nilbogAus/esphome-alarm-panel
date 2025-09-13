@@ -132,7 +132,7 @@ cover:
   - platform: template
     name: "Template Cover"
     lambda: |-
-      if (id(top_end_stop).state) {
+      if (id(current_tilt_position).state > 90) {
         return COVER_OPEN;
       } else {
         return COVER_CLOSED;
@@ -146,7 +146,7 @@ cover:
     optimistic: true
 
 
-
+sensor:
   - platform: homeassistant
     entity_id: cover.study     
     attribute: current_tilt_position
