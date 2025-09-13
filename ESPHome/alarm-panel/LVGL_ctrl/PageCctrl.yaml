@@ -170,6 +170,9 @@ sensor:
       - logger.log:
           format: "The blind_tane reports value %.1f to sensor"
           args: [ 'id(blind_tane).state' ]  
+  - platform: homeassistant
+    entity_id: sun.sun
+    id: sun
 
 
 script:
@@ -185,29 +188,33 @@ script:
           then:
 
             #Study
+            - logger.log:
+                format: "The blind study reports value %.1f to script"
+                args: [ 'id(blind_study).state' ]   
             - if:
                 condition:
                   lambda: return isnan(id(blind_study).state);
                 then:
-                  logger.log: "blind_study nan state"
+                  - logger.log: "blind_study nan state"
+                  - logger.log:
+                      format: "The sun state reports value %.s"
+                      args: [ 'id(sun).state' ] 
                 else:
-                  logger.log: "blind_study some value state"
-
-
-            - if:
-                condition:
-                  sensor.in_range:
-                    id: blind_study
-                    above: 10.0
-                    below: 90.0
-                then:
-                  globals.set:
-                    id: blinds_study_open
-                    value: 'true' 
-                else:                
-                  globals.set:
-                    id: blinds_study_open
-                    value: 'false'  
+                  - logger.log: "blind_study some value state"
+                  - if:
+                      condition:
+                        sensor.in_range:
+                          id: blind_study
+                          above: 10.0
+                          below: 90.0
+                      then:
+                        globals.set:
+                          id: blinds_study_open
+                          value: 'true' 
+                      else:                
+                        globals.set:
+                          id: blinds_study_open
+                          value: 'false'  
 
 
             #tane
@@ -244,9 +251,7 @@ script:
                   globals.set:
                     id: blinds_lucy_open
                     value: 'false'      
-            - logger.log:
-                format: "The blind study reports value %.1f to script"
-                args: [ 'id(blind_study).state' ]   
+
             - logger.log:
                 format: "The blind_lucy1 reports value %.1f to script"
                 args: [ 'id(blind_lucy1).state' ]   
