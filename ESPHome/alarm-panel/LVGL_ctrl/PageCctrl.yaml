@@ -418,9 +418,12 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
+            - logger.log:
+                format: "button 6 value %.1f "
+                args: [ 'id(lvgl_keypad_button6)' ]   
             - if:
                 condition:
-                  lambda: 'return id(lvgl_keypad_button6).state().checked;'
+                  lambda: 'return id(lvgl_keypad_button6) == 1;'
                 then:
                   logger.log: "close blind"
                 else:
