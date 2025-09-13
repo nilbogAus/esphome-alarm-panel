@@ -127,8 +127,26 @@ switch:
           state: 
             checked: true  
 
+# switchs to hold state of windows as mysmartblinds status unreliable
+cover:
+  - platform: template
+    name: "Template Cover"
+    lambda: |-
+      if (id(top_end_stop).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: open_cover_switch
+    close_action:
+      - switch.turn_on: close_cover_switch
+    stop_action:
+      - switch.turn_on: stop_cover_switch
+    optimistic: true
 
-sensor:
+
+
   - platform: homeassistant
     entity_id: cover.study     
     attribute: current_tilt_position
@@ -203,7 +221,9 @@ script:
                     above: 10.0
                     below: 90.0
                 then:
-                  globals.set:
+                  - binary_sensor.
+                    device_study_window.on
+                  - globals.set:
                     id: blinds_study_open
                     value: 'true' 
                 else:                
@@ -472,4 +492,6 @@ binary_sensor:
             lvgl.page.is_showing: pageC
           then:
             switch.toggle: stairs_sign
-
+  - device_class: window
+    id: device_study_window
+    name: device_study_window
