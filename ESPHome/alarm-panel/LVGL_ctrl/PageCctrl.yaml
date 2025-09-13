@@ -127,24 +127,6 @@ switch:
           state: 
             checked: true  
 
-# switchs to hold state of windows as mysmartblinds status unreliable
-cover:
-  - platform: template
-    name: "Template Cover"
-    lambda: |-
-      if (id(current_tilt_position).state > 90) {
-        return COVER_OPEN;
-      } else {
-        return COVER_CLOSED;
-      }
-    open_action:
-      - switch.turn_on: open_cover_switch
-    close_action:
-      - switch.turn_on: close_cover_switch
-    stop_action:
-      - switch.turn_on: stop_cover_switch
-    optimistic: true
-
 
 sensor:
   - platform: homeassistant
@@ -191,64 +173,68 @@ sensor:
 
 
 script:
+#  to manage state of blinds as mysmartblinds status unreliable
   - id: script_pageC_blinds
     mode: restart
     then:
-      - logger.log: "blind sensor monitor start"
       - delay: 30s    #wait for sensors etc to be ready
+      - logger.log: "blind sensor monitor start"
       - while:
           condition:
               - wifi.connected:
           then:
-            # - if:
-            #     condition:
-            #       sensor.in_range:
-            #         id: blind_tane
-            #         above: 10.0
-            #         below: 90.0
-            #     then:
-            #       globals.set:
-            #         id: blinds_tane_open
-            #         value: 'true' 
-            #     else:                
-            #       globals.set:
-            #         id: blinds_tane_open
-            #         value: 'false' 
-            # - if:
-            #     condition:
-            #       sensor.in_range:
-            #         id: blind_study
-            #         above: 10.0
-            #         below: 90.0
-            #     then:
-            #       - binary_sensor.
-            #         device_study_window.on
-            #       - globals.set:
-            #         id: blinds_study_open
-            #         value: 'true' 
-            #     else:                
-            #       globals.set:
-            #         id: blinds_study_open
-            #         value: 'false'    
-            # - if:
-            #     condition:
-            #       or:
-            #         - sensor.in_range:
-            #             id: blind_lucy1
-            #             above: 10.0
-            #             below: 90.0
-            #         - sensor.in_range:
-            #             id: blind_lucy1
-            #             above: 10.0
-            #             below: 90.0
-            #     then:
-            #       globals.set:
-            #         id: blinds_lucy_open
-            #         value: 'true' 
-            #     else:                
-            #       globals.set:
-            #         id: blinds_lucy_open
-            #         value: 'false'      
+
+            #Study
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_study
+                    above: 10.0
+                    below: 90.0
+                then:
+                  - globals.set:
+                    id: blinds_study_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_study_open
+                    value: 'false'  
+
+
+            #tane
+            - if:
+                condition:
+                  sensor.in_range:
+                    id: blind_tane
+                    above: 10.0
+                    below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_tane_open
+                    value: 'false' 
+            - if:
+                condition:
+                  or:
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                    - sensor.in_range:
+                        id: blind_lucy1
+                        above: 10.0
+                        below: 90.0
+                then:
+                  globals.set:
+                    id: blinds_lucy_open
+                    value: 'true' 
+                else:                
+                  globals.set:
+                    id: blinds_lucy_open
+                    value: 'false'      
             - logger.log:
                 format: "The blind study reports value %.1f to script"
                 args: [ 'id(blind_study).state' ]   
