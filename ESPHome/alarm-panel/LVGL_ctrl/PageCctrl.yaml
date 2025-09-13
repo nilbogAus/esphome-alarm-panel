@@ -200,8 +200,8 @@ script:
                 then:
                   - logger.log: "blind_study nan state"
                   - logger.log:
-                      format: "The sun state reports value %s"
-                      args: [ 'id(sun).state' ] 
+                      format: "The sun state reports value %s "
+                      args: [ 'id(sun).state.c_str()' ] 
                 else:
                   - logger.log: "blind_study some value state"
                   - if:
