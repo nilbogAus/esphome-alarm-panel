@@ -420,8 +420,14 @@ binary_sensor:
           then:
             - logger.log:
                 format: "Button 6 checked: %d"
-                args: [ x ]
-
+                args: [ id(lvgl_keypad_button6).state]
+            - if:
+                condition:
+                  lambda: 'return id(lvgl_keypad_button6).get_state().checked;'
+                then:
+                  logger.log: "close blind"
+                else:
+                  logger.log: "open blind"
                   # - homeassistant.service:
                   #     service: cover.open_cover
                   #     data_template:
