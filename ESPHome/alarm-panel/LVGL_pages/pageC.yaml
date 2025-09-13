@@ -41,11 +41,7 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
-                    on_value: # Trigger for the individual button, returning the checked state
-                      then:
-                        - logger.log:
-                            format: "Button 4 checked: %d"
-                            args: [ x ]
+
                   - text: "5\n\U000F1A2B\nLucys"
                     id: lvgl_keypad_button5
                     control:
@@ -56,6 +52,7 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
+
               - buttons:
                   - text: "7\n\U000F001B\nKids"
                     id: lvgl_keypad_button7
