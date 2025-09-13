@@ -200,55 +200,55 @@ script:
           condition:
               - wifi.connected:
           then:
-            - if:
-                condition:
-                  sensor.in_range:
-                    id: blind_tane
-                    above: 10.0
-                    below: 90.0
-                then:
-                  globals.set:
-                    id: blinds_tane_open
-                    value: 'true' 
-                else:                
-                  globals.set:
-                    id: blinds_tane_open
-                    value: 'false' 
-            - if:
-                condition:
-                  sensor.in_range:
-                    id: blind_study
-                    above: 10.0
-                    below: 90.0
-                then:
-                  - binary_sensor.
-                    device_study_window.on
-                  - globals.set:
-                    id: blinds_study_open
-                    value: 'true' 
-                else:                
-                  globals.set:
-                    id: blinds_study_open
-                    value: 'false'    
-            - if:
-                condition:
-                  or:
-                    - sensor.in_range:
-                        id: blind_lucy1
-                        above: 10.0
-                        below: 90.0
-                    - sensor.in_range:
-                        id: blind_lucy1
-                        above: 10.0
-                        below: 90.0
-                then:
-                  globals.set:
-                    id: blinds_lucy_open
-                    value: 'true' 
-                else:                
-                  globals.set:
-                    id: blinds_lucy_open
-                    value: 'false'      
+            # - if:
+            #     condition:
+            #       sensor.in_range:
+            #         id: blind_tane
+            #         above: 10.0
+            #         below: 90.0
+            #     then:
+            #       globals.set:
+            #         id: blinds_tane_open
+            #         value: 'true' 
+            #     else:                
+            #       globals.set:
+            #         id: blinds_tane_open
+            #         value: 'false' 
+            # - if:
+            #     condition:
+            #       sensor.in_range:
+            #         id: blind_study
+            #         above: 10.0
+            #         below: 90.0
+            #     then:
+            #       - binary_sensor.
+            #         device_study_window.on
+            #       - globals.set:
+            #         id: blinds_study_open
+            #         value: 'true' 
+            #     else:                
+            #       globals.set:
+            #         id: blinds_study_open
+            #         value: 'false'    
+            # - if:
+            #     condition:
+            #       or:
+            #         - sensor.in_range:
+            #             id: blind_lucy1
+            #             above: 10.0
+            #             below: 90.0
+            #         - sensor.in_range:
+            #             id: blind_lucy1
+            #             above: 10.0
+            #             below: 90.0
+            #     then:
+            #       globals.set:
+            #         id: blinds_lucy_open
+            #         value: 'true' 
+            #     else:                
+            #       globals.set:
+            #         id: blinds_lucy_open
+            #         value: 'false'      
             - logger.log:
                 format: "The blind study reports value %.1f to script"
                 args: [ 'id(blind_study).state' ]   
