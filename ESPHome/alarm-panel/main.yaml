@@ -81,7 +81,8 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
-
+    in_press:
+      script.execute: script_pageC_blinds
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadA
