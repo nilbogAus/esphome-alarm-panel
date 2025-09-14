@@ -321,7 +321,7 @@ binary_sensor:
             - if:
                 condition:
                   lambda: |-
-                    if (id(ultrasonic_sensor1) > 0) {
+                    if (id(lvgl_keypad_button6) > 0) {
                       return true;
                     } else {
                       return false;
