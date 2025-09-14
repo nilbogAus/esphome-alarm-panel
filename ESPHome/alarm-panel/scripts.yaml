@@ -95,7 +95,7 @@ script:
     
       #Lucys
       - logger.log:
-          format: "The blind_lucy1 reports value %.1f and %.1f to script"
+          format: "The blind_lucy reports value %.1f and %.1f to script"
           args: [ 'id(blind_lucy1).state', 'id(blind_lucy2).state'  ]   
       - if:
           condition:
