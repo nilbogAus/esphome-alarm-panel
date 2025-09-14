@@ -128,7 +128,7 @@ script:
                         above: 10.0
                         below: 90.0
                     - sensor.in_range:
-                        id: blind_lucy
+                        id: blind_lucy2
                         above: 10.0
                         below: 90.0
                 then:
