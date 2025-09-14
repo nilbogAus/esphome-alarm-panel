@@ -180,6 +180,19 @@ text_sensor:
       then:
         script.execute: script_pageC_blinds
 
+globals:
+  - id: blinds_study_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'
+  - id: blinds_lucy_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'    
+  - id: blinds_tane_open
+    type: bool
+    restore_value: no
+    initial_value: 'true'     
 
 binary_sensor: 
   - platform: matrix_keypad
