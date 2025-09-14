@@ -108,13 +108,13 @@ script:
                 condition:
                   lambda: 'return id(sun).state == "below_horizon";'
                 then:
-                  - logger.log: "blind_study sun set. set blind close"
+                  - logger.log: "blind_lucy1 sun set. set blind close"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button5
                       state: 
                         checked: true    
                 else:
-                  - logger.log: "blind_study sun up. set blind open"
+                  - logger.log: "blind_lucy1 sun up. set blind open"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button5
                       state: 
@@ -132,13 +132,13 @@ script:
                         above: 10.0
                         below: 90.0
                 then:
-                  - logger.log: "blind_study range closed. set blind open"
+                  - logger.log: "blind_lucy1 range closed. set blind open"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button5
                       state: 
                         checked: false    
                 else:              
-                  - logger.log: "blind_study range open. set blind open"
+                  - logger.log: "blind_lucy1 range open. set blind open"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button5
                       state: 
@@ -159,13 +159,13 @@ script:
                 condition:
                   lambda: 'return id(sun).state == "below_horizon";'
                 then:
-                  - logger.log: "blind_study sun set. set blind close"
+                  - logger.log: "blind_tane sun set. set blind close"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button4
                       state: 
                         checked: true    
                 else:
-                  - logger.log: "blind_study sun up. set blind open"
+                  - logger.log: "blind_tane sun up. set blind open"
                   - lvgl.widget.update:
                       id: lvgl_keypad_button4
                       state: 
@@ -189,14 +189,5 @@ script:
                       id: lvgl_keypad_button4
                       state: 
                         checked: false    
-
-      - logger.log:
-          format: "The blind_lucy1 reports value %.1f to script"
-          args: [ 'id(blind_lucy1).state' ]   
-      - logger.log:
-          format: "The blind_lucy2 reports value %.1f to script"
-          args: [ 'id(blind_lucy2).state' ]   
-      - logger.log:
-          format: "The blind_tane reports value %.1f to script"
-          args: [ 'id(blind_tane).state' ]          
+       
       - delay: 1min
