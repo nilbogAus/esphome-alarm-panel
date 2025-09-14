@@ -311,7 +311,8 @@ binary_sensor:
     id: keypad6
     key: 6
     on_press:
-      - if:
+      - logger.log: "******************************************"
+      - if: 
           condition:
             lvgl.page.is_showing: pageC
           then:
@@ -342,7 +343,7 @@ binary_sensor:
                   #     service: cover.open_cover
                   #     data_template:
                   #       entity_id: cover.study  
-
+      - logger.log: "******************************************"
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypad7
