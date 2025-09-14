@@ -339,6 +339,9 @@ binary_sensor:
                       id: lvgl_keypad_button6
                       state: 
                         checked: false   
+            - logger.log:
+                format: "button 6 value %.1f "
+                args: [ 'id(lvgl_keypad_button6)' ]   
                   # - homeassistant.service:
                   #     service: cover.open_cover
                   #     data_template:
