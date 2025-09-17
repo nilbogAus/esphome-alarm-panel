@@ -85,8 +85,8 @@ binary_sensor:
       - if:
           condition:
             lambda: |-
-              bool is_checked = lv_obj_has_state(id(lvgl_keypad_button6)->raw_obj(), LV_STATE_CHECKED);
-              return is_checked ? ON : OFF;
+              lv_obj_t *button_obj = lv_btnmatrix_get_btn_obj(lvgl_keypad, lvgl_keypad_button6); // Example function
+              return lv_obj_has_state(button_obj, LV_STATE_CHECKED));
           then:
             logger.log: "checked true"
           else:
