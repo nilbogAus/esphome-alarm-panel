@@ -82,7 +82,14 @@ binary_sensor:
     name: "Onboard button"
     id: onboard_button
     on_press:
-      script.execute: script_pageC_blinds
+      - if:
+          condition:
+            lambda: lv_obj_has_state(id(lvgl_keypad_button4)->raw_obj(), LV_STATE_CHECKED);
+          then:
+            logger.log: "checked true"
+          else:
+            logger.log: "checked false"
+    #  - script.execute: script_pageC_blinds
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadA
