@@ -85,7 +85,7 @@ binary_sensor:
       - if:
           condition:
             lambda: |-
-              return (lv_obj_has_state(lv_obj_get_child(lvgl_keypad, 1), LV_STATE_CHECKED) == true);
+              return (lv_obj_has_state(*lv_obj_get_child(lvgl_keypad, 1), LV_STATE_CHECKED) == true);
           then:
             logger.log: "checked true"
           else:
