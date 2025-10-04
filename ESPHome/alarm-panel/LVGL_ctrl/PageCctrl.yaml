@@ -176,11 +176,20 @@ cover:
     id: cover_study
     lambda: |-
       if (isnan(id(blind_study).state)) {
-        if (id(sun).state == "below_horizon") {
-          return COVER_CLOSED;
-        } else {
-          return COVER_OPEN;
-        };
+        switch (id(my_counter)) {
+          case "O":
+            return COVER_OPEN;
+            break;
+          case "C":
+            return COVER_CLOSED;
+          default:
+            if (id(sun).state == "below_horizon") {
+              return COVER_CLOSED;
+            } else {
+              return COVER_OPEN;
+            };
+            break; 
+        }
       } else {
         if (id(blind_study).state < 90 && id(blind_study).state > 10) {
           return COVER_OPEN;
@@ -193,11 +202,17 @@ cover:
           service: cover.open_cover
           data_template:
             entity_id: cover.study  
+      - globals.set:
+          id: g_blinds_study
+          value: 'O'  
     close_action:
       - homeassistant.service:
           service: cover.close_cover
           data_template:
             entity_id: cover.study  
+      - globals.set:
+          id: g_blinds_study
+          value: 'C' 
     optimistic: true
 
 text_sensor:
@@ -205,14 +220,15 @@ text_sensor:
     entity_id: sun.sun
     id: sun
     on_value:
-      then:
-        script.execute: script_pageC_blinds
+      - globals.set:
+          id: g_blinds_study
+          value: 'U'  
 
 globals:
-  - id: blinds_study_open
-    type: std::optional<bool> 
+  - id: g_blinds_study
+    type: char
     restore_value: no
-    initial_value: 'true'
+    initial_value: 'U'
   - id: blinds_lucy_open
     type: bool
     restore_value: no
