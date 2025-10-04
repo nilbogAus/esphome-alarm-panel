@@ -226,7 +226,7 @@ text_sensor:
 
 globals:
   - id: g_blinds_study
-    type: char
+    type: string
     restore_value: no
     initial_value: U
   - id: blinds_lucy_open
