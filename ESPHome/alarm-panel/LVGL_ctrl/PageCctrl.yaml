@@ -204,7 +204,7 @@ cover:
             entity_id: cover.study  
       - globals.set:
           id: g_blinds_study
-          value: '50'
+          value: "50"
     close_action:
       - homeassistant.service:
           service: cover.close_cover
@@ -228,7 +228,7 @@ globals:
   - id: g_blinds_study
     type: int
     restore_value: no
-    initial_value: 999
+    initial_value: "999"
   - id: blinds_lucy_open
     type: bool
     restore_value: no
