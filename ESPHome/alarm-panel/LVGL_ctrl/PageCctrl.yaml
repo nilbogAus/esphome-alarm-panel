@@ -212,7 +212,7 @@ cover:
             entity_id: cover.study  
       - globals.set:
           id: g_blinds_study
-          value: 0
+          value: '0'
     optimistic: true
 
 text_sensor:
@@ -222,7 +222,7 @@ text_sensor:
     on_value:
       - globals.set:
           id: g_blinds_study
-          value: 999
+          value: '999'
 
 globals:
   - id: g_blinds_study
