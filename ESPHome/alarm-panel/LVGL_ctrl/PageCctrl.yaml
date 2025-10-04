@@ -204,7 +204,7 @@ cover:
             entity_id: cover.study  
       - globals.set:
           id: g_blinds_study
-          value: 50  
+          value: '50'
     close_action:
       - homeassistant.service:
           service: cover.close_cover
