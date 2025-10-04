@@ -176,11 +176,11 @@ cover:
     id: cover_study
     lambda: |-
       if (isnan(id(blind_study).state)) {
-        switch (id(g_blinds_study).state) {
-          case "O":
+        switch (id(g_blinds_study)) {
+          case 'O':
             return COVER_OPEN;
             break;
-          case "C":
+          case 'C':
             return COVER_CLOSED;
           default:
             if (id(sun).state == "below_horizon") {
