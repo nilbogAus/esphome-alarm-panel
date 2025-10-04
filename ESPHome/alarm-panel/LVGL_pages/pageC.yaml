@@ -52,6 +52,8 @@ lvgl:
                     control:
                       no_repeat: true
                       checkable: true
+                    on_press:
+                      cover.toggle: cover_study                         
 
               - buttons:
                   - text: "7\n\U000F001B\nKids"
