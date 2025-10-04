@@ -81,16 +81,7 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
-    on_press:
-      - if:
-          condition:
-            lambda: |-
-              return lv_obj_has_state(id(lvgl_keypad_button6), LV_STATE_CHECKED);
-          then:
-            logger.log: "checked true"
-          else:
-            logger.log: "checked false"
-    #  - script.execute: script_pageC_blinds
+      - script.execute: script_pageC_blinds
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypadA
