@@ -204,13 +204,13 @@ text_sensor:
   - platform: homeassistant
     entity_id: sun.sun
     id: sun
-    on_value:
+    on:
       then:
         script.execute: script_pageC_blinds
 
 globals:
   - id: blinds_study_open
-    type: bool
+    type: std::optional<bool> 
     restore_value: no
     initial_value: 'true'
   - id: blinds_lucy_open
