@@ -180,24 +180,24 @@ cover:
           return COVER_CLOSED;
         } else {
           return COVER_OPEN;
-        }
+        };
       } else {
         if (id(blind_study).state < 90 && id(blind_study).state > 10) {
           return COVER_OPEN;
         } else {
           return COVER_CLOSED;
-        }   
+        };      
       };
     open_action:
       - homeassistant.service:
-        service: cover.open_cover
-        data_template:
-          entity_id: cover.study  
+          service: cover.open_cover
+          data_template:
+            entity_id: cover.study  
     close_action:
       - homeassistant.service:
-        service: cover.close_cover
-        data_template:
-          entity_id: cover.study  
+          service: cover.close_cover
+          data_template:
+            entity_id: cover.study  
     optimistic: true
 
 text_sensor:
