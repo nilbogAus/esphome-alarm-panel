@@ -176,7 +176,7 @@ cover:
     id: cover_study
     lambda: |-
       if (isnan(id(blind_study).state)) {
-        switch (id(g_blinds_study)) {
+        switch (id(g_blinds_study).state) {
           case "O":
             return COVER_OPEN;
             break;
