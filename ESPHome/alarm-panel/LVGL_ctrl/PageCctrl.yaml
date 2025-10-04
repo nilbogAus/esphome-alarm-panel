@@ -226,7 +226,7 @@ text_sensor:
 
 globals:
   - id: g_blinds_study
-    type: integer
+    type: int
     restore_value: no
     initial_value: 999
   - id: blinds_lucy_open
