@@ -177,10 +177,10 @@ cover:
     lambda: |-
       if (isnan(id(blind_study).state)) {
         switch (id(g_blinds_study)) {
-          case 'O':
+          case 50:
             return COVER_OPEN;
             break;
-          case 'C':
+          case 0:
             return COVER_CLOSED;
           default:
             if (id(sun).state == "below_horizon") {
@@ -204,7 +204,7 @@ cover:
             entity_id: cover.study  
       - globals.set:
           id: g_blinds_study
-          value: O  
+          value: 50  
     close_action:
       - homeassistant.service:
           service: cover.close_cover
@@ -212,7 +212,7 @@ cover:
             entity_id: cover.study  
       - globals.set:
           id: g_blinds_study
-          value: 'C' 
+          value: 0
     optimistic: true
 
 text_sensor:
@@ -222,13 +222,13 @@ text_sensor:
     on_value:
       - globals.set:
           id: g_blinds_study
-          value: 'U'  
+          value: 999
 
 globals:
   - id: g_blinds_study
-    type: std::string
+    type: integer
     restore_value: no
-    initial_value: U
+    initial_value: 999
   - id: blinds_lucy_open
     type: bool
     restore_value: no
