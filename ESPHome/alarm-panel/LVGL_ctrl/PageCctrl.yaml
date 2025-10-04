@@ -139,7 +139,6 @@ sensor:
       - logger.log:
           format: "The blind_study reports value %.1f to sensor"
           args: [ 'id(blind_study).state' ]      
-
   - platform: homeassistant
     entity_id: cover.carrington_rd     
     attribute: current_tilt_position
@@ -171,6 +170,35 @@ sensor:
           format: "The blind_tane reports value %.1f to sensor"
           args: [ 'id(blind_tane).state' ]  
 
+cover:
+  - platform: template
+    name: "Template Cover Study"
+    id: cover_study
+    lambda: |-
+      if (isnan(id(blind_study).state)) {
+        if (id(sun).state == "below_horizon") {
+          return COVER_CLOSED;
+        } else {
+          return COVER_OPEN;
+        };
+      } else {
+        if (id(blind_study).state < 90 && id(blind_study).state > 10) {
+          return COVER_OPEN;
+        } else {
+          return COVER_CLOSED;
+        };      
+      };
+    open_action:
+      - homeassistant.service:
+        service: cover.open_cover
+        data_template:
+          entity_id: cover.study  
+    close_action:
+      - homeassistant.service:
+        service: cover.close_cover
+        data_template:
+          entity_id: cover.study  
+    optimistic: true
 
 text_sensor:
   - platform: homeassistant
