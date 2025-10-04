@@ -204,7 +204,7 @@ text_sensor:
   - platform: homeassistant
     entity_id: sun.sun
     id: sun
-    on:
+    on_value:
       then:
         script.execute: script_pageC_blinds
 
