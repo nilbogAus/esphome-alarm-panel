@@ -150,9 +150,10 @@ spi:
     mosi_pin: GPIO23
     miso_pin: GPIO19 
 
+
 display:
   - platform: ili9xxx
-    model: ST7796
+    model: ILI9488
     id: my_display
     invert_colors: false    
     spi_id: display_spi
