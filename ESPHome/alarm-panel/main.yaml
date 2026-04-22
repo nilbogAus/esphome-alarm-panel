@@ -165,7 +165,7 @@ display:
     dimensions:  #320x480 only possible with psram
       width: 320
       height: 480
-    rotation: 0
+
     color_palette: NONE 
     data_rate: 80MHz
     auto_clear_enabled: false
