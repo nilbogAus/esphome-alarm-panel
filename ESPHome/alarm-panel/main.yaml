@@ -151,7 +151,7 @@ spi:
 
 display:
   - platform: ili9xxx
-    model: ILI9488_A #ST7796
+    model: ST7796
     id: my_display
     invert_colors: false    
     spi_id: display_spi
@@ -165,9 +165,10 @@ display:
       height: 480
     rotation: 0
     color_palette: NONE 
-    data_rate: 80MHz
+    data_rate: 40MHz
     auto_clear_enabled: false
     update_interval: never
+    show_test_card: true
     # pages: !include_dir_merge_list alarm-panel/display_pages/
 
  
