@@ -150,7 +150,7 @@ spi:
     miso_pin: GPIO19 
 
 display:
-  - platform: ili9xxx
+  - platform: mipi_spi # ili9xxx
     model: ST7796
     id: my_display
     invert_colors: false    
