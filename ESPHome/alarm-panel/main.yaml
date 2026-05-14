@@ -165,7 +165,7 @@ display:
       height: 480
     rotation: 0
     color_palette: NONE 
-    data_rate: 40MHz
+    data_rate: 80MHz
     auto_clear_enabled: false
     update_interval: never
     show_test_card: true
