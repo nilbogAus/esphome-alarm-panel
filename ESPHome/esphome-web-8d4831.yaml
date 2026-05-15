@@ -97,5 +97,13 @@ packages:
       - path: page_help
     ref: main
     refresh: 5s    
+  remote_package_files4:  
+    url: https://github.com/nilbogAus/esphome-alarm-panel/
+    path: ESPHome/alarm-panel/Displays/
+    files:       
+      - path: XMKJ3-95_4-0.yaml
+    ref: main
+    refresh: 5s    
+    
 
 
