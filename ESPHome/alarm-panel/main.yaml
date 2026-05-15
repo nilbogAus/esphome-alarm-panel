@@ -151,7 +151,7 @@ spi:
 
 display:
   - platform: mipi_spi # ili9xxx
-    model: ST7796
+    model: ILI9488 #ST7796
     id: my_display
     invert_colors: false    
     spi_id: display_spi
