@@ -156,7 +156,7 @@ display:
     invert_colors: false    
     spi_id: display_spi
     dc_pin: GPIO27
-#    reset_pin: GPIO33
+    reset_pin: GPIO33
 #    cs_pin: 
 #      number: GPIO15
 #      ignore_strapping_warning: true 
