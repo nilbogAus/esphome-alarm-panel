@@ -163,7 +163,7 @@ display:
     transform:
       swap_xy: false
       mirror_x: true
-      mirror_y: false
+      mirror_y: true
 #    dimensions:  #320x480 only possible with psram
 #      width: 320
 #      height: 480
