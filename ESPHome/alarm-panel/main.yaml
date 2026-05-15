@@ -160,7 +160,8 @@ display:
     cs_pin: 
       number: GPIO15
       ignore_strapping_warning: true 
-    mirror_x: true
+    transform: 
+      mirror_x: true
 #    dimensions:  #320x480 only possible with psram
 #      width: 320
 #      height: 480
