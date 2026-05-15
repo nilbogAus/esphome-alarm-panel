@@ -157,9 +157,9 @@ display:
     spi_id: display_spi
     dc_pin: GPIO27
     reset_pin: GPIO33
-#    cs_pin: 
-#      number: GPIO15
-#      ignore_strapping_warning: true 
+    cs_pin: 
+      number: GPIO15
+      ignore_strapping_warning: true 
 #    dimensions:  #320x480 only possible with psram
 #      width: 320
 #      height: 480
