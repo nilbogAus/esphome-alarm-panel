@@ -101,7 +101,8 @@ packages:
     url: https://github.com/nilbogAus/esphome-alarm-panel/
     path: ESPHome/alarm-panel/Displays/
     files:       
-      - path: XMKJ3-95_4-0.yaml
+      #- path: XMKJ3-95_4-0.yaml
+      - path: EQV4-0inchLCD.yaml
     ref: main
     refresh: 5s    
     
