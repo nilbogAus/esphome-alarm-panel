@@ -149,26 +149,7 @@ spi:
     mosi_pin: GPIO23
     miso_pin: GPIO19 
 
-display:
-  - platform: ili9xxx
-    model: ST7796
-    id: my_display
-    invert_colors: false    
-    spi_id: display_spi
-    dc_pin: GPIO27
-    reset_pin: GPIO33
-    cs_pin: 
-      number: GPIO15
-      ignore_strapping_warning: true 
-    dimensions:  #320x480 only possible with psram
-      width: 320
-      height: 480
-    rotation: 0
-    color_palette: NONE 
-    data_rate: 80MHz
-    auto_clear_enabled: false
-    update_interval: never
-    # pages: !include_dir_merge_list alarm-panel/display_pages/
+
 
  
 lvgl:
