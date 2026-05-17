@@ -74,7 +74,7 @@ lvgl:
                     on_click:
                       switch.toggle: pool_switch
               - buttons:
-                  - text: "*\n\U000F1466\nDehumid"
+                  - text: "*\n\U000F04A1\nScreen"
                     id: lvgl_keypad_button_star
                     control:
                       no_repeat: true
