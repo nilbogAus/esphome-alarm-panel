@@ -28,7 +28,7 @@ lvgl:
                       checkable: true
                     on_press:
                       switch.toggle: front_lights                  
-                  - text: "3\n\U000000A0\U000000A0\U000F0335\nKitchen"
+                  - text: "3\n3\U000000A0\U000F0335\nKitchen"
                     id: lvgl_keypad_button3
                     control:
                       no_repeat: true
