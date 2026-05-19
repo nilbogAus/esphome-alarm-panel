@@ -85,19 +85,6 @@ switch:
             
 # 4th row
   - platform: homeassistant
-    entity_id: switch.sonoff_10015b43ad
-    id: dehumidifier_switch
-    on_turn_on:
-      - lvgl.widget.update:
-          id: lvgl_keypad_button_star
-          state: 
-            checked: false
-    on_turn_off:
-      - lvgl.widget.update:
-          id: lvgl_keypad_button_star
-          state: 
-            checked: true  
-  - platform: homeassistant
     entity_id: switch.athom_smart_plug_v2_f12d0b_switch
     id: EV_switch
     on_turn_on:
@@ -419,7 +406,7 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            switch.toggle: dehumidifier_switch
+            light.toggle: Backlight
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypad0
