@@ -14,21 +14,21 @@ lvgl:
                 bg_color: 0xFFFF00
             rows:
               - buttons:
-                  - text: "1\n\U000F0335\nTanes"
+                  - text: "1\n  \U000F0335\nTanes"
                     id: lvgl_keypad_button1
                     control:
                       no_repeat: true
                       checkable: true
                     on_press:
                       switch.toggle: tanes_lights                
-                  - text: "2\n\U000F0335\nFront"
+                  - text: "2\n  \U000F0335\nFront"
                     id: lvgl_keypad_button2
                     control:
                       no_repeat: true
                       checkable: true
                     on_press:
                       switch.toggle: front_lights                  
-                  - text: "3\n\U000F0335\nKitchen"
+                  - text: "3\n   \U000F0335\nKitchen"
                     id: lvgl_keypad_button3
                     control:
                       no_repeat: true
