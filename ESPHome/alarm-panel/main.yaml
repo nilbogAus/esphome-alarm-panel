@@ -32,6 +32,9 @@ light:
           state: 
             checked: false
     on_turn_off:
+      - output.set_level:
+          id: backlight_output
+          level: "20%"
       - lvgl.widget.update:
           id: lvgl_keypad_button_star
           state: 
