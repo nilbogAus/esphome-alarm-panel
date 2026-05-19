@@ -35,7 +35,7 @@ light:
           id: lvgl_keypad_button_star
           state: 
             checked: true  
-      - wait: 10s
+      - delay: 10s
       - light.turn_on: Backlight
 
 sensor:
