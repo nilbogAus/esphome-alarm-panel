@@ -16,11 +16,12 @@ time:
 
 output:
   - id: backlight_output
-    platform: gpio
+    platform: ledc
     pin: GPIO25
+    frequency: 144 Hz
 
 light:
-  - platform: binary
+  - platform: monochromatic
     name: "Display Backlight"
     id: Backlight
     restore_mode: ALWAYS_ON
