@@ -419,7 +419,7 @@ binary_sensor:
           condition:
             lvgl.page.is_showing: pageC
           then:
-            switch.toggle: dehumidifier_switch
+            light.toggle: Backlight
   - platform: matrix_keypad
     keypad_id: keypad
     id: keypad0
