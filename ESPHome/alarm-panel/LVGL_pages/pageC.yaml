@@ -15,8 +15,7 @@ lvgl:
             rows:
               - buttons:
                   - text: "1\n\U000F0335\nTanes"
-                    text_align: CENTER
-                    id: lvgl_keypad_button1`
+                    id: lvgl_keypad_button1
                     control:
                       no_repeat: true
                       checkable: true
