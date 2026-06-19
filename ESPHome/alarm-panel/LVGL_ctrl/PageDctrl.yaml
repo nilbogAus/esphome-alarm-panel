@@ -15,7 +15,7 @@ sensor:
   - platform: homeassistant
     name: "Outside Temp"
     id: outside_temp
-    entity_id: sensor.easyweatherv1_6_5_outdoor_temperature
+    entity_id: sensor.${outside_temp}
     on_value:
       - lvgl.label.update:
           id: lbl_outside_temp

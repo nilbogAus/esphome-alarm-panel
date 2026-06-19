@@ -2,6 +2,7 @@ substitutions:
   name: esphome-web-8d4831
   friendly_name: alarm-panel-master
   inside_temp: sensibo_Master_Bedroom_Temperature
+  outside_temp: outside_balcony_temp_humidity_temperature
 
 
 esphome:
@@ -24,6 +25,8 @@ esp32:
   board: nodemcu-32s
   framework:
     type: esp-idf
+    advanced:
+      sram1_as_iram: true
    # version: recommended
     # Custom sdkconfig options
     sdkconfig_options:  
@@ -53,12 +56,6 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    password: !secret esphome-web-9d4d29_wifi_ap_password
-
-captive_portal:
-  
 debug:
   update_interval: 300s
 
