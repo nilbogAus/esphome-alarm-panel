@@ -27,6 +27,7 @@ esp32:
     type: esp-idf
     advanced:
       sram1_as_iram: true
+      compiler_optimization: SIZE
    # version: recommended
     # Custom sdkconfig options
     sdkconfig_options:  
@@ -95,6 +96,9 @@ packages:
       - path: assets.yaml
       - path: matrix_keypad.yaml
       - path: scripts.yaml
+      #NB: not enough flash for both web and ble
+      - path: ble.yaml
+      #- path: web.yaml      
     ref: main
     refresh: 5s
   remote_package_files2:  
