@@ -7,8 +7,6 @@ script:
             condition:
                 - wifi.connected:
             then:
-                - esp32_ble_tracker.start_scan:
-                    continuous: true
                 - delay: 5 min              
                 - while:
                     condition:
