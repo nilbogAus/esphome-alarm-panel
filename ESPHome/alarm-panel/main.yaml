@@ -1,7 +1,4 @@
 
-#web_server:
-#  port: 80
-  
 globals:
   - id: g_keypad
     type: std::string
