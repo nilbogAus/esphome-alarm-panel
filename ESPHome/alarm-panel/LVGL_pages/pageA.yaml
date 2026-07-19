@@ -13,7 +13,7 @@ image:
     resize: 320x480
 
 interval:
-  - interval: 30s              
+  - interval: 30s                    # Adjust frequency (e.g., 500ms to 2s)
     then:
       - component.update: cam_1_image
       - lvgl.image.update:
@@ -25,48 +25,52 @@ lvgl:
     - id: pageA
       bg_color: col_black
       widgets:
-        # - label:
-        #     id: lbl_title_pgA
-        #     text_color: col_yellow
-        #     text_font: roboto_lrg
-        #     text: "Alarm"
-        #     align: TOP_MID
-        # - label:
-        #     id: img_alarm_icon        
-        #     text_color: col_white
-        #     text_font: icons_200
-        #     text: "\U000F02D6"
-        #     align: TOP_MID        
-        #     align_to: 
-        #       id: lbl_tittle
-        #       align: OUT_BOTTOM_MID
-        # - textarea:
-        #     id: lbl_status
-        #     text_color: col_gray
-        #     text_font: roboto_lrg
-        #     bg_color: col_black
-        #     one_line: true   
-        #     text_align: CENTER
-        #     text: "Loading..."
-        #     align: TOP_MID    
-        #     border_width: 0
-        #     cursor:
-        #       bg_opa: transp       
-        #       opa: transp 
-        #     align_to: 
-        #       id: img_alarm_icon
-        #       align: OUT_BOTTOM_MID         
-        # - textarea:
-        #     id: txt_passcode
-        #     one_line: true       
-        #     placeholder_text: "Enter code"   
-        #     text_align: CENTER
-        #     width: 45%
-        #     align_to:         
-        #       id: lbl_status
-        #       align: OUT_BOTTOM_MID   
-        #       y: 40 
+        - label:
+            id: lbl_title_pgA
+            text_color: col_yellow
+            text_font: roboto_lrg
+            text: "Alarm"
+            align: TOP_MID
+        - label:
+            id: img_alarm_icon        
+            text_color: col_white
+            text_font: icons_200
+            text: "\U000F02D6"
+            align: TOP_MID        
+            align_to: 
+              id: lbl_tittle
+              align: OUT_BOTTOM_MID
         - image:
             id: cam1_stream_widget
             src: cam_1_image       # Points to the online_image id
-            align: CENTER     
+            align: TOP_MID   
+            align_to: 
+              id: img_alarm_icon
+              align: OUT_BOTTOM_MID      
+        - textarea:
+            id: lbl_status
+            text_color: col_gray
+            text_font: roboto_lrg
+            bg_color: col_black
+            one_line: true   
+            text_align: CENTER
+            text: "Loading..."
+            align: TOP_MID    
+            border_width: 0
+            cursor:
+              bg_opa: transp       
+              opa: transp 
+            align_to: 
+              id: cam1_stream_widget
+              align: OUT_BOTTOM_MID         
+        - textarea:
+            id: txt_passcode
+            one_line: true       
+            placeholder_text: "Enter code"   
+            text_align: CENTER
+            width: 45%
+            align_to:         
+              id: lbl_status
+              align: OUT_BOTTOM_MID   
+              y: 40 
+  
