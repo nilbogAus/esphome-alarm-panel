@@ -1,4 +1,18 @@
 # Alarm Page
+image:
+  - platform: online_image
+    url: "http://video-1.local:8081/"
+    format: JPEG
+    type: RGB565
+    id: cam_1_image
+    resize: 320x480
+
+interval:
+  - interval: 7s                    # Adjust frequency (e.g., 500ms to 2s)
+    then:
+      - component.update: cam_1_image
+      - lvgl.image.update:
+          id: cam1_stream_widget
 
 lvgl:
   id: !extend lvgl_display
@@ -46,4 +60,8 @@ lvgl:
             align_to:         
               id: lbl_status
               align: OUT_BOTTOM_MID   
-              y: 40      
+              y: 40 
+        - image:
+            id: cam1_stream_widget
+            src: cam_1_image       # Points to the online_image id
+            align: CENTER     
