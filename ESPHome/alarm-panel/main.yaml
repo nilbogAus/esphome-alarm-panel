@@ -16,17 +16,8 @@ output:
     platform: ledc
     pin: GPIO25
     frequency: 80 Hz
-  - id: LED_output
-    platform: ledc
-    pin: 
-      number: GPIO01
-    frequency: 144 Hz
 
 light:
-  - platform: status_led
-    name: "Onboard LED"
-    id: LED
-    output: LED_output   
   - platform: monochromatic
     name: "Display Backlight"
     id: Backlight
