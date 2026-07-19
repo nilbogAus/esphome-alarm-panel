@@ -1,4 +1,9 @@
 # Alarm Page
+http_request:
+  useragent: esphome/device
+  timeout: 10s
+  watchdog_timeout: 15s
+
 image:
   - platform: online_image
     url: "http://video-1.local:8081/"
