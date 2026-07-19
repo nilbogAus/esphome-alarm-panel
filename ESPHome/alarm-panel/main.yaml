@@ -20,7 +20,6 @@ output:
     platform: ledc
     pin: 
       number: GPIO01
-      ignore_strapping_warning: true
     frequency: 144 Hz
 
 light:
