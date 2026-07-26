@@ -6,7 +6,7 @@ http_request:
 
 image:
   - platform: online_image
-    url: "http://video-1.local:8081/"
+    url: "http://iis/house.jpg"
     format: JPEG
     type: RGB565
     id: cam_1_image
