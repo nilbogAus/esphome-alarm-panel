@@ -13,6 +13,27 @@ image:
     id: cam_1_image
     resize: 320x480
 
+text_sensor:
+  - platform: homeassistant
+    id: cam_ip_address
+    # Replace with the exact entity ID of your ESP32-CAM's IP address sensor in HA
+    entity_id: sensor.front_room_video_device_ip_address 
+    on_value:
+      - component.update: camera_url_generator
+
+  # Generate the dynamic URL string using the variable IP address
+  - platform: template
+    id: camera_url_generator
+    lambda: |-
+      return "http://" + id(cam_ip_address).state + ":8081/";
+    update_interval: never
+    on_value:
+      # Inject the fresh URL directly into the image downloader
+      - online_image.set_url:
+          id: my_cam_snapshot
+          url: !lambda 'return x.c_str();'
+
+
 interval:
   - interval: 30s                    # Adjust frequency (e.g., 500ms to 2s)
     then:
