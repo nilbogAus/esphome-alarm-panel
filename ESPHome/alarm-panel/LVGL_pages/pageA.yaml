@@ -6,7 +6,8 @@ http_request:
   watchdog_timeout: 15s
 
 image:
-  - platform: online_image
+  - platform:           
+    id: my_cam_snapshot
     url: "http://iis.local/house.jpg"
     format: JPEG
     type: RGB565
