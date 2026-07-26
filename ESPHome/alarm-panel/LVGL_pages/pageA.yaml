@@ -7,7 +7,7 @@ http_request:
 
 image:
   - platform: online_image
-    url: "http://192.168.40.237/house.jpg"
+    url: "http://iis.local/house.jpg"
     format: JPEG
     type: RGB565
     id: cam_1_image
