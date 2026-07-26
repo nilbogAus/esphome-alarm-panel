@@ -1,5 +1,6 @@
 # Alarm Page
 http_request:
+  verify_ssl: false
   useragent: esphome/device
   timeout: 10s
   watchdog_timeout: 15s
