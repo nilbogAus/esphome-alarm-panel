@@ -57,7 +57,7 @@ switch:
           state: 
             checked: true              
   - platform: homeassistant
-    entity_id: switch.sonoff_10001e7e08
+    entity_id: switch.sonoff_basic_masterac_sonoff_basic_relay
     id: master_ac
     on_turn_on:
       - lvgl.widget.update:
