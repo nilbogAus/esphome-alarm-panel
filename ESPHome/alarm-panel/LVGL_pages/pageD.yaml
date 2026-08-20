@@ -107,11 +107,12 @@ lvgl:
                     bg_grad_color: 0x983500
                     bg_grad_dir: ver
                     widgets:
+                    #extra temps
                         - obj:
                             pad_all: 1
                             width: 25%
                             height: SIZE_CONTENT
-                            id: wg_Tempreatures_Pool
+                            id: wg_Tempreatures_right_extra
                             align_to:         
                                 id: wg_Weather
                                 align: TOP_RIGHT
@@ -123,18 +124,18 @@ lvgl:
                             hidden: true     
                             widgets:                                  
                                 - label:
-                                    id: wg_Tempreatures_Pool_Title
+                                    id: wg_Tempreatures_right_extra_Title
                                     align_to:         
-                                        id: wg_Tempreatures_Pool
+                                        id: wg_Tempreatures_right_extra
                                         align: TOP_MID                     
                                     text: "Pool"
                                     text_color: col_blue        
                                 - label:
-                                    id: lbl_pool_temp
+                                    id: lbl_right_extra_temp
                                     pad_right: 6
                                     scrollbar_mode: "OFF"
                                     align_to:         
-                                        id: wg_Tempreatures_Pool_Title
+                                        id: wg_Tempreatures_right_extra_Title
                                         align: OUT_BOTTOM_MID                               
                                     text: "??.?°C"
                                     text_color: col_white
@@ -142,7 +143,41 @@ lvgl:
                                     radius: 10          
                                     text_font: roboto
                                     text_align: CENTER    
-       
+                        - obj:
+                            pad_all: 1
+                            width: 25%
+                            height: SIZE_CONTENT
+                            id: wg_Tempreatures_left_extra
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_LEFT
+                            border_color: col_black
+                            bg_color: 0x000000   
+                            bg_grad_color: 0x0000BB
+                            bg_grad_dir: ver    
+                            scrollbar_mode: "OFF" 
+                            hidden: true     
+                            widgets:                                  
+                                - label:
+                                    id: wg_Tempreatures_left_extra_Title
+                                    align_to:         
+                                        id: wg_Tempreatures_left_extra
+                                        align: TOP_MID                     
+                                    text: "Pool"
+                                    text_color: col_blue        
+                                - label:
+                                    id: lbl_left_extra_temp
+                                    pad_right: 6
+                                    scrollbar_mode: "OFF"
+                                    align_to:         
+                                        id: wg_Tempreatures_left_extra_Title
+                                        align: OUT_BOTTOM_MID                               
+                                    text: "??.?°C"
+                                    text_color: col_white
+                                    border_width: 0
+                                    radius: 10          
+                                    text_font: roboto
+                                    text_align: CENTER           
 
                         # Forcast Icon
                         - label:

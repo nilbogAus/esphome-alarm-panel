@@ -24,16 +24,27 @@ sensor:
             args: ['id(outside_temp).get_state()']    
 
   - platform: homeassistant
-    name: "Pool Temp"
-    id: Pool_temp
-    entity_id: sensor.${pool_temp}
+    name: "Right Extra Temp"
+    id: Right_Extra_temp
+    entity_id: sensor.${right_extra_temp}
     on_value:
       - lvgl.label.update:
-          id: lbl_pool_temp
+          id: lbl_right_extra_temp
           text: 
             format: "%.1f°C"
-            args: ['id(Pool_temp).get_state()']   
-      - lvgl.widget.show: wg_Tempreatures_Pool
+            args: ['id(right_extra_temp).get_state()']   
+      - lvgl.widget.show: wg_Tempreatures_right_extra
+  - platform: homeassistant
+    name: "Left Extra Temp"
+    id: Left_Extra_temp
+    entity_id: sensor.${left_extra_temp}
+    on_value:
+      - lvgl.label.update:
+          id: lbl_left_extra_temp
+          text: 
+            format: "%.1f°C"
+            args: ['id(left_extra_temp).get_state()']   
+      - lvgl.widget.show: wg_Tempreatures_left_extra
    
   - platform: homeassistant
     name: "Forecast Today Temp Min"
