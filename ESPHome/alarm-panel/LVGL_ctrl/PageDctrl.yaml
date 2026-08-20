@@ -33,6 +33,7 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(Pool_temp).get_state()']    
+          hidden: false
    
   - platform: homeassistant
     name: "Forecast Today Temp Min"
