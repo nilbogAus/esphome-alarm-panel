@@ -122,9 +122,9 @@ lvgl:
                             scrollbar_mode: "OFF"                
                             widgets:                                  
                                 - label:
-                                    id: wg_Tempreatures_Outside_Title
+                                    id: wg_Tempreatures_Pool_Title
                                     align_to:         
-                                        id: wg_Tempreatures_Outside
+                                        id: wg_Tempreatures_Pool
                                         align: TOP_MID                     
                                     text: "Pool"
                                     text_color: col_blue
@@ -133,7 +133,7 @@ lvgl:
                                     pad_right: 6
                                     scrollbar_mode: "OFF"
                                     align_to:         
-                                        id: wg_Tempreatures_Outside_Title
+                                        id: wg_Tempreatures_Pool_Title
                                         align: OUT_BOTTOM_MID                               
                                     text: "??.?°C"
                                     text_color: col_white
