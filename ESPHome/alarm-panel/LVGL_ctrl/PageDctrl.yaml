@@ -20,7 +20,7 @@ sensor:
       - lvgl.label.update:
           id: lbl_outside_temp
           text: 
-            format: "%.1f°C"1
+            format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
 
   - platform: homeassistant
