@@ -33,7 +33,7 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(Pool_temp).get_state()']   
-      - lvgl.widget.show: wg_Tempreatures_Pool
+      - lvgl.widget.show: wg_Extra_temps_Right
    
   - platform: homeassistant
     name: "Forecast Today Temp Min"
