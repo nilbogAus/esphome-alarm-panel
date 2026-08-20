@@ -29,7 +29,7 @@ sensor:
     entity_id: sensor.${pool_temp}
     on_value:
       - lvgl.label.update:
-          id: lbl_pool_temp
+          id: lbl_Extra_temps_Right
           text: 
             format: "%.1f°C"
             args: ['id(Pool_temp).get_state()']   

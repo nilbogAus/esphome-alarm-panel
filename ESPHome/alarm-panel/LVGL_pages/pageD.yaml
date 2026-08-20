@@ -125,18 +125,18 @@ lvgl:
                             hidden: true     
                             widgets:                                  
                                 - label:
-                                    id: wg_Tempreatures_Pool_Title
+                                    id: wg_Extra_temps_Right_Title
                                     align_to:         
                                         id: wg_Extra_temps_Right
                                         align: TOP_MID                     
                                     text: "Pool"
                                     text_color: col_blue        
                                 - label:
-                                    id: lbl_pool_temp
+                                    id: lbl_Extra_temps_Right
                                     pad_right: 6
                                     scrollbar_mode: "OFF"
                                     align_to:         
-                                        id: wg_Tempreatures_Pool_Title
+                                        id: wg_Extra_temps_Right_Title
                                         align: OUT_BOTTOM_MID                               
                                     text: "??.?°C"
                                     text_color: col_white
