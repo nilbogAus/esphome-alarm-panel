@@ -165,7 +165,7 @@ lvgl:
                                     align_to:         
                                         id: wg_Extra_temps_Left
                                         align: TOP_MID                     
-                                    text: "Pool"
+                                    text: ${extra_temp_left_name}
                                     text_color: col_blue        
                                 - label:
                                     id: lbl_Extra_temps_Left

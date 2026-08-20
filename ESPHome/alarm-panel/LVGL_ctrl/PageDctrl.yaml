@@ -34,7 +34,18 @@ sensor:
             format: "%.1f°C"
             args: ['id(Extra_temp_right).get_state()']   
       - lvgl.widget.show: wg_Extra_temps_Right
-   
+  - platform: homeassistant
+    name: "Left Extra Temp"
+    id: Extra_temp_left
+    entity_id: sensor.${extra_temp_left}
+    on_value:
+      - lvgl.label.update:
+          id: lbl_Extra_temps_Left
+          text: 
+            format: "%.1f°C"
+            args: ['id(Extra_temp_left).get_state()']   
+      - lvgl.widget.show: wg_Extra_temps_Left
+
   - platform: homeassistant
     name: "Forecast Today Temp Min"
     id: forecast_temp_today
