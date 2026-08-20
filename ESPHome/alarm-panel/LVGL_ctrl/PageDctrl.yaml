@@ -20,12 +20,12 @@ sensor:
       - lvgl.label.update:
           id: lbl_outside_temp
           text: 
-            format: "%.1f°C"
+            format: "%.1f°C"1
             args: ['id(outside_temp).get_state()']    
 
   - platform: homeassistant
-    name: "Right Extra Temp"
-    id: Right_Extra_temp
+    name: "HA Right Extra Temp"
+    id: ha_Right_Extra_temp
     entity_id: sensor.${right_extra_temp}
     on_value:
       - lvgl.label.update:
@@ -35,8 +35,8 @@ sensor:
             args: ['id(right_extra_temp).get_state()']   
       - lvgl.widget.show: wg_Tempreatures_right_extra
   - platform: homeassistant
-    name: "Left Extra Temp"
-    id: Left_Extra_temp
+    name: "HA Left Extra Temp"
+    id: ha_Left_Extra_temp
     entity_id: sensor.${left_extra_temp}
     on_value:
       - lvgl.label.update:
