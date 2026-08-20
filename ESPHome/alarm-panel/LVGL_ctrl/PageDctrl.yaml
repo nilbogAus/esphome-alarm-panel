@@ -24,15 +24,15 @@ sensor:
             args: ['id(outside_temp).get_state()']    
 
   - platform: homeassistant
-    name: "Pool Temp"
-    id: Pool_temp
-    entity_id: sensor.${pool_temp}
+    name: "Extra Temp Right"
+    id: Extra_temp_right
+    entity_id: sensor.${extra_temp_right}
     on_value:
       - lvgl.label.update:
           id: lbl_Extra_temps_Right
           text: 
             format: "%.1f°C"
-            args: ['id(Pool_temp).get_state()']   
+            args: ['id(extra_temp_right).get_state()']   
       - lvgl.widget.show: wg_Extra_temps_Right
    
   - platform: homeassistant
