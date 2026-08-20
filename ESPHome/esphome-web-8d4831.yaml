@@ -3,6 +3,10 @@ substitutions:
   friendly_name: alarm-panel-master
   inside_temp: sensibo_Master_Bedroom_Temperature
   outside_temp: outside_balcony_temp_humidity_temperature
+  extra_temp_right: creepy3_temperature
+  extra_temp_right_name: Pool
+  extra_temp_left: spare # creepy3_temperature
+  extra_temp_left_name: Spare
 
 
 esphome:
