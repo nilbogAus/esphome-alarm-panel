@@ -22,6 +22,17 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
+
+  - platform: homeassistant
+    name: "Pool Temp"
+    id: Pool_temp
+    entity_id: sensor.${pool_temp}
+    on_value:
+      - lvgl.label.update:
+          id: lbl_pool_temp
+          text: 
+            format: "%.1f°C"
+            args: ['id(Pool_temp).get_state()']    
    
   - platform: homeassistant
     name: "Forecast Today Temp Min"
