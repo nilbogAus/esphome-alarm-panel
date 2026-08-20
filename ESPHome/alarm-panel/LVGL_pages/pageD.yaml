@@ -161,7 +161,7 @@ lvgl:
                                 - label:
                                     id: wg_Tempreatures_left_extra_Title
                                     align_to:         
-                                        id: wg_Tempreatures_left_extra
+                                        id: wg_Tempreatures_left_extra_Title
                                         align: TOP_MID                     
                                     text: "Pool"
                                     text_color: col_blue        
