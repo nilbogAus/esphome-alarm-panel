@@ -6,7 +6,7 @@ substitutions:
   extra_temp_right: creepy3_temperature
   extra_temp_right_name: Pool
   extra_temp_left: spare # creepy3_temperature
-  extra_temp_name_left: Spare
+  extra_temp_left_name: Spare
 
 
 esphome:
