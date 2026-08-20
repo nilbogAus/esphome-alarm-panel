@@ -111,7 +111,7 @@ lvgl:
                         - obj:
                             #extra temps
                             pad_all: 1
-                            width: 25%
+                            width: 30%
                             height: SIZE_CONTENT
                             id: wg_Extra_temps_Right
                             align_to:         
@@ -147,7 +147,7 @@ lvgl:
                         - obj:
                             #extra temps
                             pad_all: 1
-                            width: 25%
+                            width: 30%
                             height: SIZE_CONTENT
                             id: wg_Extra_temps_Left
                             align_to:         
