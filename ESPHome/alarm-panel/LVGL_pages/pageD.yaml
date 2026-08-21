@@ -44,7 +44,7 @@ lvgl:
                                     align_to:         
                                         id: wg_Tempreatures_Inside
                                         align: TOP_MID                                  
-                                    text: "Inside"
+                                    text: ${inside_temp_Name}
                                     text_color: col_blue
                                 - label:
                                     id: lbl_inside_temp
@@ -78,7 +78,7 @@ lvgl:
                                     align_to:         
                                         id: wg_Tempreatures_Outside
                                         align: TOP_MID                     
-                                    text: "Outside"
+                                    text: ${outside_temp_Name}
                                     text_color: col_blue
                                 - label:
                                     id: lbl_outside_temp

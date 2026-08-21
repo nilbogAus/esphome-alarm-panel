@@ -1,8 +1,11 @@
 substitutions:
   name: esphome-web-8d4831
   friendly_name: alarm-panel-master
+  #PageD weather Substitutions
   inside_temp: sensibo_Master_Bedroom_Temperature
+  inside_temp_Name: Inside
   outside_temp: outside_balcony_temp_humidity_temperature
+  outside_temp_Name: Outside
   extra_temp_right: creepy3_temperature
   extra_temp_right_name: Pool
   extra_temp_left: spare # creepy3_temperature
