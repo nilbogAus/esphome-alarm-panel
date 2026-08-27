@@ -1,4 +1,12 @@
 #electricity Page
+binary_sensor: 
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadB
+    key: B
+    on_press:
+    - lvgl.page.show: pageB
+    - script.execute: script_page_carousel
 
 globals:
   - id: g_powerprice
