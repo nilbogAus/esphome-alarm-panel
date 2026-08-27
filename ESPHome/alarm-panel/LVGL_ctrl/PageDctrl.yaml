@@ -1,7 +1,12 @@
 #Weather Page
+globals:
+  - id: g_ForcastDay
+    type: int
+    restore_value: no
+    initial_value: '0'
 
 sensor:
-  # Tempreature
+  # Temperature
   - platform: homeassistant
     name: "Inside Temp"
     id: inside_temp
@@ -22,7 +27,6 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
-
   - platform: homeassistant
     name: "Right Extra Temp"
     id: Extra_temp_right
@@ -46,6 +50,7 @@ sensor:
             args: ['id(Extra_temp_left).get_state()']   
       - lvgl.widget.show: wg_Extra_temps_Left
 
+#forcast 
   - platform: homeassistant
     name: "Forecast Today Temp Min"
     id: forecast_temp_today
@@ -56,7 +61,6 @@ sensor:
           text:
             format: "%s %.0f°C"
             args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state' ]      
-
 
   - platform: homeassistant
     name: "Forecast Today Rain Amount Max"
