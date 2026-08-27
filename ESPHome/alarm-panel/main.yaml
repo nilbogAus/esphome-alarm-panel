@@ -113,13 +113,7 @@ binary_sensor:
     on_press:
       - lvgl.page.show: pageC
       - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadD
-    key: D
-    on_press:
-      - lvgl.page.show: pageD
-      - script.execute: script_page_carousel
+
 
 
 touchscreen:
