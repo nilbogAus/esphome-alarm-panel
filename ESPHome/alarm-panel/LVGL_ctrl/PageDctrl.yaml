@@ -4,12 +4,6 @@ globals:
     type: int
     restore_value: no
     initial_value: '0'
-    on_value:
-      then:
-        - globals.set:
-            id: my_global_int
-            value: !lambda 'return int(x);' # 'x' is the new sensor value
-
 
 binary_sensor:
   - platform: matrix_keypad
