@@ -15,7 +15,7 @@ binary_sensor:
     on_press:
       - if:
           condition:
-            - lvgl.page.is_visible: pageD
+            - lvgl.page.is_showing: pageD
           then:
             - lambda: |-
                 id(g_ForcastDay)++;
