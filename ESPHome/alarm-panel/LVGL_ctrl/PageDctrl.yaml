@@ -5,9 +5,9 @@ globals:
     restore_value: no
     initial_value: '0'
     on_change:
-    then:
-      - lambda: |-
-          ESP_LOGI("main", "The global integer value is: %d", id(my_global_int));
+      then:
+        - lambda: |-
+            ESP_LOGI("main", "The global integer value is: %d", id(my_global_int));
 
 binary_sensor:
   - platform: matrix_keypad
