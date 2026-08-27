@@ -4,7 +4,18 @@ globals:
     type: int
     restore_value: no
     initial_value: '0'
-
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: 'id(g_ForcastDay) > 1;'   # max number of forcast pages
+            then:
+              - globals.set:
+                  id: g_ForcastDay
+                  value: '0'
+        - globals.set:
+            id: my_global_int
+            value: !lambda 'return int(x);' 
 
 
 binary_sensor:
