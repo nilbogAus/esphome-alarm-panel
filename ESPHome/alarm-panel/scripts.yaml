@@ -37,7 +37,7 @@ script:
                         - delay: 2s
                         - lvgl.page.show: pageD
                         - globals.set:
-                            id: my_global_var
+                            id: g_ForcastDay
                             value: '0'
                         - delay: 8s  
         - lvgl.page.show: pageA           
