@@ -19,7 +19,7 @@ binary_sensor:
                 id(g_ForcastDay)++;
             - if:
                 condition:
-                  lambda: 'id(g_ForcastDay) > 1;'   # max number of forcast pages
+                  lambda: return(id(g_ForcastDay) > 1);   # max number of forcast pages
                 then:
                   - globals.set:
                       id: g_ForcastDay
