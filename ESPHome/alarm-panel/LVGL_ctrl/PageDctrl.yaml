@@ -20,7 +20,7 @@ binary_sensor:
             - lambda: |-
                 id(g_ForcastDay)++;
       - lambda: |-
-          ESP_LOGI("main", "The global integer value is: %d", id(my_global_int));                
+          ESP_LOGI("main", "The global integer value is: %d", id(g_ForcastDay));                
       - lvgl.page.show: pageD
       - script.execute: script_page_carousel
 
