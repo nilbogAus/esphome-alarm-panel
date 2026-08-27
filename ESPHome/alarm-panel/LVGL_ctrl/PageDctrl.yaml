@@ -4,7 +4,7 @@ globals:
     type: int
     restore_value: no
     initial_value: '0'
-    on_change:
+    on_value:
       then:
         - lambda: |-
             ESP_LOGI("main", "The global integer value is: %d", id(my_global_int));
