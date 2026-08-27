@@ -36,5 +36,8 @@ script:
                         - lvgl.page.show: pageC
                         - delay: 2s
                         - lvgl.page.show: pageD
+                        - globals.set:
+                            id: my_global_var
+                            value: '0'
                         - delay: 8s  
         - lvgl.page.show: pageA           
