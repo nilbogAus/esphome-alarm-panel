@@ -92,29 +92,6 @@ binary_sensor:
     name: "Onboard button"
     id: onboard_button
 
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadA
-    key: A
-    on_press:
-      - lvgl.page.show: pageA
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadB
-    key: B
-    on_press:
-    - lvgl.page.show: pageB
-    - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadC
-    key: C
-    on_press:
-      - lvgl.page.show: pageC
-      - script.execute: script_page_carousel
-
-
 
 touchscreen:
   platform: xpt2046
