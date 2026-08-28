@@ -173,65 +173,65 @@ text_sensor:
     id: forecast_icon_today
     entity_id: sensor.wahroonga_mdi_icon_0
 
-  - script:
-    - id: weather_icon_update
-      parameters: 
-          icon: string
-      then:
-        - lambda: |-
-            ESP_LOGD("lambda", "Weather icon update called with parameter: %s", icon.c_str());
-        - lvgl.label.update:
-            id: lbl_weather_icon
-            text: !lambda |-
-              std::hash<std::string> hasher;
+script:
+  - id: weather_icon_update
+    parameters: 
+        icon: string
+    then:
+      - lambda: |-
+          ESP_LOGD("lambda", "Weather icon update called with parameter: %s", icon.c_str());
+      - lvgl.label.update:
+          id: lbl_weather_icon
+          text: !lambda |-
+            std::hash<std::string> hasher;
 
-              switch (hasher(icon.c_str()))
-              {
-                  case 1242744452: // mdi:weather-pouring
-                      return ("\U000F0596");// pouring
-                      break;
-                  case 3309699129: // mdi:weather-cloudy
-                      return ("\U000F0590");// cloudy
-                      break;                
-                  case 2949318122: // mdi:weather-night
-                      return ("\U000F0594");// clear-night
-                      break;
-                  case 345913139: // mdi:weather-hurricane
-                      return ("\U000F0898"); //weather-hurricane
-                      break;     
-                  case 1492665726: // mdi:weather-hazy
-                      return ("\U000F0F30"); //weather-hazy
-                      break;
-                  case 3041611428: // mdi:weather-sunny
-                      return ("\U000F0599");// sunny
-                      break;     
-                  case 2562052155: // mdi:weather-partly-rainy
-                  case 3241844169: // mdi:weather-light-showers              
-                      return ("\U000F0F33");//
-                      break;
-                  case 3348912596: // mdi:weather-partly-cloudy
-                      return ("\U000F0595"); // partlycloudy
-                      break;
-                  case 3416433233: // mdi:weather-rainy
-                      return ("\U000F0597"); // rainy
-                      break; 
-                  case 2453884742: // mdi:weather-windy          
-                      return ("\U000F059D"); // windy
-                      break;
-                  case 3996108531: // mdi:weather-snowy
-                      return ("\U000F0598"); // snowy
-                      break;
-                  case 344035588: // mdi:weather-lightning-rainy
-                      return ("\U000F067E"); // lightning-rainy
-                      break;                 
-                  case 3167514251: // mdi:weather-fog
-                      return ("\U000F0591"); // fog
-                      break;
-                  case 1097013394: // mdi:snowflake-melt
-                      return ("\U000F12CB"); // snowflake-melt
-                      break;  
-                  default:
-                      ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
-                      return ("\U000F0F2F");
-              }             
+            switch (hasher(icon.c_str()))
+            {
+                case 1242744452: // mdi:weather-pouring
+                    return ("\U000F0596");// pouring
+                    break;
+                case 3309699129: // mdi:weather-cloudy
+                    return ("\U000F0590");// cloudy
+                    break;                
+                case 2949318122: // mdi:weather-night
+                    return ("\U000F0594");// clear-night
+                    break;
+                case 345913139: // mdi:weather-hurricane
+                    return ("\U000F0898"); //weather-hurricane
+                    break;     
+                case 1492665726: // mdi:weather-hazy
+                    return ("\U000F0F30"); //weather-hazy
+                    break;
+                case 3041611428: // mdi:weather-sunny
+                    return ("\U000F0599");// sunny
+                    break;     
+                case 2562052155: // mdi:weather-partly-rainy
+                case 3241844169: // mdi:weather-light-showers              
+                    return ("\U000F0F33");//
+                    break;
+                case 3348912596: // mdi:weather-partly-cloudy
+                    return ("\U000F0595"); // partlycloudy
+                    break;
+                case 3416433233: // mdi:weather-rainy
+                    return ("\U000F0597"); // rainy
+                    break; 
+                case 2453884742: // mdi:weather-windy          
+                    return ("\U000F059D"); // windy
+                    break;
+                case 3996108531: // mdi:weather-snowy
+                    return ("\U000F0598"); // snowy
+                    break;
+                case 344035588: // mdi:weather-lightning-rainy
+                    return ("\U000F067E"); // lightning-rainy
+                    break;                 
+                case 3167514251: // mdi:weather-fog
+                    return ("\U000F0591"); // fog
+                    break;
+                case 1097013394: // mdi:snowflake-melt
+                    return ("\U000F12CB"); // snowflake-melt
+                    break;  
+                default:
+                    ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
+                    return ("\U000F0F2F");
+            }             
 
