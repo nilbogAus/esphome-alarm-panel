@@ -46,7 +46,8 @@ binary_sensor:
                 hidden: true
             - script.execute:
                 id: weather_icon_update
-                icon: id(forecast_icon_today).state.c_str()
+                icon: 
+                  - lambda: id(forecast_icon_today).state.c_str()
 
       # display tomorrows weather
       - if:
@@ -61,7 +62,8 @@ binary_sensor:
                 hidden: false
             - script.execute:
                 id: weather_icon_update
-                icon: id(forecast_icon_tomorrow).state.c_str()
+                icon: 
+                  - lambda: id(forecast_icon_tomorrow).state.c_str()
 
       - lvgl.page.show: pageD
       - script.execute: script_page_carousel
