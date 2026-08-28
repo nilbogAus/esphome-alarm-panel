@@ -188,6 +188,7 @@ lvgl:
                             pad_all: 5 
                             border_width: 0
                             text_color: col_blue
+                            align: CENTER
                             text_align: CENTER     
                             align_to:         
                                 id: wg_Weather
