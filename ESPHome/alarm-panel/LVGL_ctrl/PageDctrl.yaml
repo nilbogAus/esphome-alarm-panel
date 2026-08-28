@@ -11,6 +11,8 @@ binary_sensor:
     id: keypadD
     key: D
     on_press:
+      # manage day counter for forcast pages
+      then:
       - if:
           condition:
             - lvgl.page.is_showing: pageD
@@ -23,9 +25,32 @@ binary_sensor:
                 then:
                   - globals.set:
                       id: g_ForcastDay
-                      value: '0'            
+                      value: '0'   
+          else:
+            - globals.set:
+              id: g_ForcastDay
+              value: '0'            
       - lambda: |-
-          ESP_LOGI("main", "The global integer value is: %d", id(g_ForcastDay));                
+          ESP_LOGI("pageD", "The weather integer value is: %d", id(g_ForcastDay));     
+
+      # display todays weather
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 0;'
+          then:
+            - lvgl.label.update:
+                id: lbl_weather_day
+                text: "Today"
+      # display tomorrows weather
+
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 1;'
+          then:
+            - lvgl.label.update:
+                id: lbl_weather_day
+                text: "Tomorrow"
+
       - lvgl.page.show: pageD
       - script.execute: script_page_carousel
 
