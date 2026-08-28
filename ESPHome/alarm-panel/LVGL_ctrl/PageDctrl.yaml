@@ -62,8 +62,8 @@ binary_sensor:
                 hidden: false
             - script.execute:
                 id: weather_icon_update
-                icon: !lambda:  |-
-                      return id(forecast_icon_tomorrow).state;
+                icon: !lambda |-
+                  return id(forecast_icon_tomorrow).state;
 
       - lvgl.page.show: pageD
       - script.execute: script_page_carousel
