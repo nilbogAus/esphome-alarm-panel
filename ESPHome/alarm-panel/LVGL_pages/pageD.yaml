@@ -184,7 +184,7 @@ lvgl:
                         # Forcast Icon
                         - label:
                             id: lbl_weather_day
-                            text: "Today"
+                            text: "Tomorrow"
                             pad_all: 5 
                             border_width: 0
                             text_color: col_blue
