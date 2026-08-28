@@ -39,17 +39,23 @@ binary_sensor:
             lambda: 'return id(g_ForcastDay) == 0;'
           then:
             - lvgl.label.update:
-                id: lbl_weather_day
-                text: "Today"
-      # display tomorrows weather
+                id: lbl_weather_day_today
+                hidden: false
+            - lvgl.label.update:
+                id: lbl_weather_day_tomorrow
+                hidden: true
 
+      # display tomorrows weather
       - if:
           condition:
             lambda: 'return id(g_ForcastDay) == 1;'
           then:
             - lvgl.label.update:
-                id: lbl_weather_day
-                text: "Tomorrow"
+                id: lbl_weather_day_today
+                hidden: true          
+            - lvgl.label.update:
+                id: lbl_weather_day_tomorrow
+                hidden: false
 
       - lvgl.page.show: pageD
       - script.execute: script_page_carousel

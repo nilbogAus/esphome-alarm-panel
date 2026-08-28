@@ -183,16 +183,26 @@ lvgl:
 
                         # Forcast Icon
                         - label:
-                            id: lbl_weather_day
-                            text: "Tomorrow"
+                            id: lbl_weather_day_today
+                            text: "Today"
                             pad_all: 5 
                             border_width: 0
                             text_color: col_blue
-                            align: CENTER
                             text_align: CENTER     
                             align_to:         
                                 id: wg_Weather
                                 align: TOP_MID   
+                        - label:
+                            id: lbl_weather_day_tomorrow
+                            text: "Tomorrow"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                   
                         - label:
                             id: lbl_weather_icon
                             text_font: icons_200
