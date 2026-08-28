@@ -28,8 +28,8 @@ binary_sensor:
                       value: '0'   
           else:
             - globals.set:
-              id: g_ForcastDay
-              value: '0'            
+                id: g_ForcastDay
+                value: '0'            
       - lambda: |-
           ESP_LOGI("pageD", "The weather integer value is: %d", id(g_ForcastDay));     
 
