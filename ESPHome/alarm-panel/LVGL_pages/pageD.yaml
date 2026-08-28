@@ -216,7 +216,7 @@ lvgl:
                             height: SIZE_CONTENT
                             pad_all: 0   
                             align_to:         
-                                id: lbl_weather_day
+                                id: lbl_weather_day_today
                                 align: OUT_BOTTOM_MID 
                         - obj:
                             id: wg_weather_text
