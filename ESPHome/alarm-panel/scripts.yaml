@@ -39,10 +39,12 @@ script:
                             id: g_ForcastDay
                             value: '0'
                         - lvgl.page.show: pageD
+                        - script.execute: script_pageD_weather
                         - delay: 8s  
                         - globals.set:
                             id: g_ForcastDay
                             value: '1'
                         - lvgl.page.show: pageD
+                        - script.execute: script_pageD_weather
                         - delay: 4s                          
         - lvgl.page.show: pageA           

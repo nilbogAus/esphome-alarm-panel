@@ -32,41 +32,8 @@ binary_sensor:
                 value: '0'            
       - lambda: |-
           ESP_LOGI("pageD", "The weather integer value is: %d", id(g_ForcastDay));     
+      - script.execute: script_pageD_weather
 
-      # display todays weather
-      - if:
-          condition:
-            lambda: 'return id(g_ForcastDay) == 0;'
-          then:
-            - lvgl.label.update:
-                id: lbl_weather_day_today
-                hidden: false
-            - lvgl.label.update:
-                id: lbl_weather_day_tomorrow
-                hidden: true
-            - script.execute:
-                id: weather_icon_update
-                icon: !lambda |-
-                  return id(forecast_icon_today).state; 
-
-      # display tomorrows weather
-      - if:
-          condition:
-            lambda: 'return id(g_ForcastDay) == 1;'
-          then:
-            - lvgl.label.update:
-                id: lbl_weather_day_today
-                hidden: true          
-            - lvgl.label.update:
-                id: lbl_weather_day_tomorrow
-                hidden: false
-            - script.execute:
-                id: weather_icon_update
-                icon: !lambda |-
-                  return id(forecast_icon_tomorrow).state;
-
-      - lvgl.page.show: pageD
-      - script.execute: script_page_carousel
 
 sensor:
   # Temperature
@@ -240,4 +207,42 @@ script:
                     ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
                     return ("\U000F0F2F");
             }             
+
+  - id: script_pageD_weather
+    mode: restart
+    then:
+      # display todays weather
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 0;'
+          then:
+            - lvgl.label.update:
+                id: lbl_weather_day_today
+                hidden: false
+            - lvgl.label.update:
+                id: lbl_weather_day_tomorrow
+                hidden: true
+            - script.execute:
+                id: weather_icon_update
+                icon: !lambda |-
+                  return id(forecast_icon_today).state; 
+
+      # display tomorrows weather
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 1;'
+          then:
+            - lvgl.label.update:
+                id: lbl_weather_day_today
+                hidden: true          
+            - lvgl.label.update:
+                id: lbl_weather_day_tomorrow
+                hidden: false
+            - script.execute:
+                id: weather_icon_update
+                icon: !lambda |-
+                  return id(forecast_icon_tomorrow).state;
+
+      - lvgl.page.show: pageD
+      - script.execute: script_page_carousel
 
