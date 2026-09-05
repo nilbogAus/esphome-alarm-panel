@@ -95,49 +95,37 @@ sensor:
     name: "Forecast Today Rain Amount Max"
     id: forecast_rain_amount_max_today
     entity_id: sensor.wahroonga_rain_amount_max_0
-    on_value:    
-      - lvgl.label.update:
-          id: lbl_weather_text_rain
-          text:
-            format: "%.0f to %.0fmm"
-            args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]          
   - platform: homeassistant
     name: "Forecast Today Rain Amount Min"
     id: forecast_rain_amount_min_today
     entity_id: sensor.wahroonga_rain_amount_min_0       
-    on_value:
-      - lvgl.label.update:
-          id: lbl_weather_text_rain
-          text:
-            format: "%.0f to %.0fmm"
-            args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]          
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Amount Max"
+    id: forecast_rain_amount_max_tomorrow
+    entity_id: sensor.wahroonga_rain_amount_max_1
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Amount Min"
+    id: forecast_rain_amount_min_tomorrow
+    entity_id: sensor.wahroonga_rain_amount_min_1
+
 
 text_sensor:
   - platform: homeassistant
     id: forecast_text_today
     entity_id: sensor.wahroonga_extended_text_0
-    # on_value:
-    #   - lvgl.label.update:
-    #       id: lbl_weather_longtext
-    #       text: !lambda "return (x);"       
   - platform: homeassistant
     id: forecast_text_tomorrow
     entity_id: sensor.wahroonga_extended_text_1
-    # on_value:
-    #   - lvgl.label.update:
-    #       id: lbl_weather_longtext
-    #       text: !lambda "return (x);"    
 
   - platform: homeassistant
     name: "Forecast Today Rain Chance"
     id: forecast_rain_chance_today
     entity_id: sensor.wahroonga_rain_chance_0
-    on_value:
-      - lvgl.label.update:
-          id: lbl_rain
-          text:
-            format: "%s%s chance of rain"
-            args: [ 'id(forecast_rain_chance_today).state.c_str()', '"%"' ]  
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Chance"
+    id: forecast_rain_chance_tomorrow
+    entity_id: sensor.wahroonga_rain_chance_1
+
   - platform: homeassistant
     name: "Forecast Today label"
     id: forecast_label_today
@@ -237,7 +225,16 @@ script:
             - lvgl.label.update:
                 id: lbl_weather_longtext
                 text: !lambda "return (id(forecast_text_today).state);" 
-   
+            - lvgl.label.update:
+                id: lbl_rain
+                text:
+                  format: "%s%s chance of rain"
+                  args: [ 'id(forecast_rain_chance_today).state.c_str()', '"%"' ]        
+            - lvgl.label.update:
+                id: lbl_weather_text_rain
+                text:
+                  format: "%.0f to %.0fmm"
+                  args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]                           
 
       # display tomorrows weather
       - if:
@@ -257,7 +254,18 @@ script:
             - lvgl.label.update:
                 id: lbl_weather_longtext
                 text: !lambda "return (id(forecast_text_tomorrow).state);" 
-                
+            - lvgl.label.update:
+                id: lbl_rain
+                text:
+                  format: "%s%s chance of rain"
+                  args: [ 'id(forecast_rain_chance_tomorrow).state.c_str()', '"%"' ]     
+            - lvgl.label.update:
+                id: lbl_weather_text_rain
+                text:
+                  format: "%.0f to %.0fmm"
+                  args: [ 'id(forecast_rain_amount_min_tomorrow).state','id(forecast_rain_amount_max_tomorrow).state' ]
+
+
       - lvgl.page.show: pageD
 
 
