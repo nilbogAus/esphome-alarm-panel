@@ -2,12 +2,12 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - delay: 10s    #wait for sensors etc to be ready 
+        - delay: 15s    #wait for sensors etc to be ready 
         - while:
             condition:
                 - wifi.connected:
             then:
-                #- delay: 5 min              
+                - delay: 5 min              
                 - while:
                     condition:
                         - text_sensor.state:
@@ -19,7 +19,7 @@ script:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 1;'
                             then:
-                                - delay: 1.10s   
+                                - delay: 10s   
                         - if:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 3;'
@@ -30,21 +30,19 @@ script:
                                 lambda: 'return id(uptime_sensor).state < 7;'
                             then:
                                 - delay: 3s  
-                        - delay: 1.3s  
+                        - delay: 3s  
                         - lvgl.page.show: pageB
-                        - delay: 1.10s
+                        - delay: 10s
                         - lvgl.page.show: pageC
-                        - delay: 1.2s
+                        - delay: 2s
                         - globals.set:
                             id: g_ForcastDay
                             value: '0'
-                        - lvgl.page.show: pageD
                         - script.execute: script_pageD_weather
-                        - delay: 1.8s  
+                        - delay: 8s  
                         - globals.set:
                             id: g_ForcastDay
                             value: '1'
-                        - lvgl.page.show: pageD
                         - script.execute: script_pageD_weather
                         - delay: 4s                          
         - lvgl.page.show: pageA           
