@@ -32,7 +32,7 @@ binary_sensor:
                 value: '0'            
  
       - script.execute: script_pageD_weather
-
+      - script.execute: script_page_carousel
 
 sensor:
   # Temperature
@@ -244,5 +244,5 @@ script:
                   return id(forecast_icon_tomorrow).state;
 
       - lvgl.page.show: pageD
-      - script.execute: script_page_carousel
+
 
