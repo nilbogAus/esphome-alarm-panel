@@ -352,7 +352,11 @@ script:
             - script.execute:
                 id: script_hide_weather_labels             
             - lvgl.label.update:
-                id: lbl_weather_day_monday
+                id: 
+                  - lambda: |-
+                      const char* days[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday", "tuesday"};
+                      int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1);
+                      return ("lbl_weather_day_" + std::string(days[day_of_week]));
                 hidden: false                                                          
             - script.execute:
                 id: weather_icon_update
