@@ -81,10 +81,17 @@ sensor:
 
 #forcast 
   - platform: homeassistant
-    name: "Forecast Today Temp Min"
+    name: "Forecast Today Temp"
     id: forecast_temp_today
     entity_id: sensor.wahroonga_now_temp_later
-
+  - platform: homeassistant
+    name: "Forecast Tomorrow Temp Min"
+    id: forecast_temp_tomorrow_min
+    entity_id: sensor.wahroonga_temp_min_1
+  - platform: homeassistant
+    name: "Forecast Tomorrow Temp Max"
+    id: forecast_temp_tomorrow_max
+    entity_id: sensor.wahroonga_temp_max_1
 
   - platform: homeassistant
     name: "Forecast Today Rain Amount Max"
@@ -124,9 +131,7 @@ text_sensor:
   - platform: homeassistant
     name: "Forecast Today label"
     id: forecast_label_today
-    entity_id: sensor.wahroonga_now_later_label
-
-    
+    entity_id: sensor.wahroonga_now_later_label 
 
   - platform: homeassistant
     name: "Forecast Today Icon"
@@ -265,10 +270,14 @@ script:
             - lvgl.label.update:
                 id: lbl_weather_text_rain
                 text:
-                  format: "%.0f to %.0fmm."
+                  format: "%.0f to %.0fmm"
                   args: [ 'id(forecast_rain_amount_min_tomorrow).state','id(forecast_rain_amount_max_tomorrow).state' ]
-
-
+            - lvgl.label.update:
+                id: lbl_weather_text_temp
+                text:
+                  format: "%.0f to %.0f°C"
+                  args: [ 'id(forecast_temp_tomorrow_min).state','id(forecast_temp_tomorrow_max).state' ]
+forecast_temp_tomorrow_min
       - lvgl.page.show: pageD
 
 
