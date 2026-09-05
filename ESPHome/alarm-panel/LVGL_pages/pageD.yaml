@@ -202,7 +202,85 @@ lvgl:
                             text_align: CENTER     
                             align_to:         
                                 id: wg_Weather
-                                align: TOP_MID                                   
+                                align: TOP_MID         
+                        - label:
+                            id: lbl_weather_day_monday
+                            text: "Monday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID     
+                        - label:
+                            id: lbl_weather_day_tuesday
+                            text: "Tuesday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                        - label:
+                            id: lbl_weather_day_wednesday
+                            text: "Wednesday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                        - label:
+                            id: lbl_weather_day_thursday
+                            text: "Thursday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                        - label:
+                            id: lbl_weather_day_friday
+                            text: "Friday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                        - label:
+                            id: lbl_weather_day_saturday
+                            text: "Saturday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                        - label:
+                            id: lbl_weather_day_sunday
+                            text: "Sunday"
+                            hidden: true
+                            pad_all: 5 
+                            border_width: 0
+                            text_color: col_blue
+                            text_align: CENTER     
+                            align_to:         
+                                id: wg_Weather
+                                align: TOP_MID                                                                                               
+                                                                                            
                         - label:
                             id: lbl_weather_icon
                             text_font: icons_200

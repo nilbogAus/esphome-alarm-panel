@@ -1,4 +1,11 @@
 #Weather Page
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    timezone: "Australia/Sydney"
+    # Overrides the default 15 minutes.
+    update_interval: 24h 
+
 globals:
   - id: g_ForcastDay
     type: int
@@ -203,6 +210,36 @@ script:
                     ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
                     return ("\U000F0F2F");
             }             
+  
+  - id: script_hide_weather_labels
+    then:
+      - lvgl.label.update:
+          id: lbl_weather_day_today
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_tomorrow
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_monday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_tuesday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_wednesday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_thursday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_friday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_saturday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_sunday
+          hidden: true
 
   - id: script_pageD_weather
     then:
@@ -213,12 +250,11 @@ script:
           condition:
             lambda: 'return id(g_ForcastDay) == 0;'
           then:
+            - script.execute:
+                id: script_hide_weather_labels          
             - lvgl.label.update:
                 id: lbl_weather_day_today
                 hidden: false
-            - lvgl.label.update:
-                id: lbl_weather_day_tomorrow
-                hidden: true
             - script.execute:
                 id: weather_icon_update
                 icon: !lambda |-
@@ -249,9 +285,8 @@ script:
           condition:
             lambda: 'return id(g_ForcastDay) == 1;'
           then:
-            - lvgl.label.update:
-                id: lbl_weather_day_today
-                hidden: true          
+            - script.execute:
+                id: script_hide_weather_labels             
             - lvgl.label.update:
                 id: lbl_weather_day_tomorrow
                 hidden: false                                                          
