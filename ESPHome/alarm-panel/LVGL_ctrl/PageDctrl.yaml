@@ -209,7 +209,6 @@ script:
             }             
 
   - id: script_pageD_weather
-    mode: restart
     then:
       # display todays weather
       - if:
