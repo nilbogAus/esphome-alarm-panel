@@ -246,7 +246,7 @@ script:
                 hidden: true          
             - lvgl.label.update:
                 id: lbl_weather_day_tomorrow
-                hidden: false
+                hidden: false                                                          
             - script.execute:
                 id: weather_icon_update
                 icon: !lambda |-
@@ -262,7 +262,7 @@ script:
             - lvgl.label.update:
                 id: lbl_weather_text_rain
                 text:
-                  format: "%.0f to %.0fmm"
+                  format: "%.0f to %.0fmm."
                   args: [ 'id(forecast_rain_amount_min_tomorrow).state','id(forecast_rain_amount_max_tomorrow).state' ]
 
 
