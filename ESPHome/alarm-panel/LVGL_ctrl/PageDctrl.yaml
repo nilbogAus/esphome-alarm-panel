@@ -83,7 +83,7 @@ sensor:
   - platform: homeassistant
     name: "Forecast Today Temp"
     id: forecast_temp_today
-    entity_id: sensor.wahroonga_now_temp_later
+    entity_id: sensor.wahroonga_now_temp_now
   - platform: homeassistant
     name: "Forecast Tomorrow Temp Min"
     id: forecast_temp_tomorrow_min
@@ -131,7 +131,7 @@ text_sensor:
   - platform: homeassistant
     name: "Forecast Today label"
     id: forecast_label_today
-    entity_id: sensor.wahroonga_now_later_label 
+    entity_id: sensor.wahroonga_now_now_label 
 
   - platform: homeassistant
     name: "Forecast Today Icon"
