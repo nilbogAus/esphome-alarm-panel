@@ -344,20 +344,16 @@ script:
           condition:
             lambda: 'return id(g_ForcastDay) == 2;'
           then:
-            - lambda: |-
-                const char* days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday"};
-                int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1);
-                ESP_LOGD("weather", "The day of the week integer is: %d", day_of_week);
-                ESP_LOGD("weather", "Today is: %s", days[day_of_week]);                
+    
             - script.execute:
                 id: script_hide_weather_labels             
-            - lvgl.label.update:
-                id: 
-                  - lambda: |-
-                      const char* days[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday", "tuesday"};
-                      int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1);
-                      return ("lbl_weather_day_" + std::string(days[day_of_week]));
-                hidden: false                                                          
+            - lambda: |-
+                const char* days[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday", "tuesday"}
+                int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1);
+                ESP_LOGD("weather", "The day of the week integer is: %d", day_of_week);
+                ESP_LOGD("weather", "Today is: %s", days[day_of_week]);        
+                lv_obj_t* my_label = id("lbl_weather_day_" + std::string(days[day_of_week])).get_obj();   
+                lv_obj_clear_flag(my_label, LV_OBJ_FLAG_HIDDEN);                                                          
             - script.execute:
                 id: weather_icon_update
                 icon: !lambda |-
