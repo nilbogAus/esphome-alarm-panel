@@ -120,8 +120,6 @@ text_sensor:
     #   - lvgl.label.update:
     #       id: lbl_weather_longtext
     #       text: !lambda "return (x);"       
-
-text_sensor:
   - platform: homeassistant
     id: forecast_text_tomorrow
     entity_id: sensor.wahroonga_extended_text_1
