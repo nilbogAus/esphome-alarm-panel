@@ -348,7 +348,7 @@ script:
             - script.execute:
                 id: script_hide_weather_labels             
             - lvgl.label.update:
-                id: lbl_weather_day_Monday
+                id: lbl_weather_day_monday
                 hidden: false                                                          
             - script.execute:
                 id: weather_icon_update
@@ -373,7 +373,7 @@ script:
                   format: "%.0f to %.0f°C"
                   args: [ 'id(forecast_temp_2_min).state','id(forecast_temp_2_max).state' ]
 
-                  
+
       - lvgl.page.show: pageD
 
 
