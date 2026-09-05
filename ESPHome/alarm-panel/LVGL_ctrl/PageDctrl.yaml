@@ -350,7 +350,7 @@ script:
 
             - if:
                 condition:
-                  lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9;'
+                  lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9);'
                 then:
                   - lvgl.label.update:
                       id: lbl_weather_day_monday
