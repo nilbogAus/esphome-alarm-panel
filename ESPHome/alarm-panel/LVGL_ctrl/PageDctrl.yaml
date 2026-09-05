@@ -345,7 +345,9 @@ script:
             lambda: 'return id(g_ForcastDay) == 2;'
           then:
             - lambda: |-
-                ESP_LOGD("main", "The day of the week integer is: %d", id(homeassistant_time).now().day_of_week+2   );
+                const char* days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday"};
+                ESP_LOGD("weather", "The day of the week integer is: %d", (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1));
+                ESP_LOGD("weather", "Today is: %s", days[(id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1))];                
             - script.execute:
                 id: script_hide_weather_labels             
             - lvgl.label.update:
