@@ -116,10 +116,19 @@ text_sensor:
   - platform: homeassistant
     id: forecast_text_today
     entity_id: sensor.wahroonga_extended_text_0
-    on_value:
-      - lvgl.label.update:
-          id: lbl_weather_longtext
-          text: !lambda "return (x);"       
+    # on_value:
+    #   - lvgl.label.update:
+    #       id: lbl_weather_longtext
+    #       text: !lambda "return (x);"       
+
+text_sensor:
+  - platform: homeassistant
+    id: forecast_text_tomorrow
+    entity_id: sensor.wahroonga_extended_text_1
+    # on_value:
+    #   - lvgl.label.update:
+    #       id: lbl_weather_longtext
+    #       text: !lambda "return (x);"    
 
   - platform: homeassistant
     name: "Forecast Today Rain Chance"
@@ -226,6 +235,11 @@ script:
                 id: weather_icon_update
                 icon: !lambda |-
                   return id(forecast_icon_today).state; 
+                  text_sensor:
+            - lvgl.label.update:
+                id: lbl_weather_longtext
+                text: !lambda "return (id(forecast_text_today).state);" 
+   
 
       # display tomorrows weather
       - if:
@@ -242,7 +256,10 @@ script:
                 id: weather_icon_update
                 icon: !lambda |-
                   return id(forecast_icon_tomorrow).state;
-
+            - lvgl.label.update:
+                id: lbl_weather_longtext
+                text: !lambda "return (id(forecast_text_tomorrow).state);" 
+                
       - lvgl.page.show: pageD
 
 
