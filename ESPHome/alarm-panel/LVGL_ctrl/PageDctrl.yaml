@@ -346,14 +346,18 @@ script:
           then:
     
             - script.execute:
-                id: script_hide_weather_labels             
+                id: script_hide_weather_labels 
+
+            - if:
+                condition:
+                  lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9;'
+                then:
+                  - lvgl.label.update:
+                      id: lbl_weather_day_monday
+                      hidden: false                
             - lambda: |-
-                const char* days[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday", "tuesday"};
-                int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) - 1);
+                int day_of_week = (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) );
                 ESP_LOGD("weather", "The day of the week integer is: %d", day_of_week);
-                ESP_LOGD("weather", "Today is: %s", days[day_of_week]);        
-                lv_obj_t* my_label = id("lbl_weather_day_" + std::string(days[day_of_week])).get_obj();   
-                lv_obj_clear_flag(my_label, LV_OBJ_FLAG_HIDDEN);                                                          
             - script.execute:
                 id: weather_icon_update
                 icon: !lambda |-
