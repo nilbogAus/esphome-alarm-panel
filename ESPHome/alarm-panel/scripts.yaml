@@ -19,7 +19,7 @@ script:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 1;'
                             then:
-                                - delay: 10s   
+                                - delay: 1.10s   
                         - if:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 3;'
@@ -30,17 +30,17 @@ script:
                                 lambda: 'return id(uptime_sensor).state < 7;'
                             then:
                                 - delay: 3s  
-                        - delay: 3s  
+                        - delay: 1.3s  
                         - lvgl.page.show: pageB
-                        - delay: 10s
+                        - delay: 1.10s
                         - lvgl.page.show: pageC
-                        - delay: 2s
+                        - delay: 1.2s
                         - globals.set:
                             id: g_ForcastDay
                             value: '0'
                         - lvgl.page.show: pageD
                         - script.execute: script_pageD_weather
-                        - delay: 8s  
+                        - delay: 1.8s  
                         - globals.set:
                             id: g_ForcastDay
                             value: '1'
