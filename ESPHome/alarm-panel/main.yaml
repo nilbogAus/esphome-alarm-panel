@@ -6,11 +6,6 @@ globals:
     max_restore_data_length: 5
     initial_value: ''
 
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time    
-
 output:
   - id: backlight_output
     platform: ledc
