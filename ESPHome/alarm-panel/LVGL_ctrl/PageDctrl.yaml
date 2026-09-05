@@ -30,8 +30,7 @@ binary_sensor:
             - globals.set:
                 id: g_ForcastDay
                 value: '0'            
-      - lambda: |-
-          ESP_LOGI("pageD", "The weather integer value is: %d", id(g_ForcastDay));     
+ 
       - script.execute: script_pageD_weather
 
 
@@ -210,6 +209,8 @@ script:
 
   - id: script_pageD_weather
     then:
+      - lambda: |-
+        ESP_LOGI("pageD", "Running script_pageD_weather, The weather integer value is: %d", id(g_ForcastDay));    
       # display todays weather
       - if:
           condition:
