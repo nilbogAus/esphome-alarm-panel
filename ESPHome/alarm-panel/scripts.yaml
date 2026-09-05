@@ -2,12 +2,12 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - delay: 30s    #wait for sensors etc to be ready 
+        - delay: 10s    #wait for sensors etc to be ready 
         - while:
             condition:
                 - wifi.connected:
             then:
-                - delay: 5 min              
+                #- delay: 5 min              
                 - while:
                     condition:
                         - text_sensor.state:
