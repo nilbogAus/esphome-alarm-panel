@@ -277,7 +277,7 @@ script:
                 text:
                   format: "%.0f to %.0f°C"
                   args: [ 'id(forecast_temp_tomorrow_min).state','id(forecast_temp_tomorrow_max).state' ]
-forecast_temp_tomorrow_min
+
       - lvgl.page.show: pageD
 
 
