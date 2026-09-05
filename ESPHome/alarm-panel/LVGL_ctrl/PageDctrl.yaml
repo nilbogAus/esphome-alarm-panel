@@ -286,7 +286,6 @@ script:
                 id: weather_icon_update
                 icon: !lambda |-
                   return id(forecast_icon_today).state; 
-                  text_sensor:
             - lvgl.label.update:
                 id: lbl_weather_longtext
                 text: !lambda "return (id(forecast_text_today).state);" 
@@ -345,6 +344,10 @@ script:
           condition:
             lambda: 'return id(g_ForcastDay) == 2;'
           then:
+            - lambda: |-
+
+                id(homeassistant_time).now().day_of_week          
+                ESP_LOGD("main", "The day of the week integer is: %d", day);
             - script.execute:
                 id: script_hide_weather_labels             
             - lvgl.label.update:
