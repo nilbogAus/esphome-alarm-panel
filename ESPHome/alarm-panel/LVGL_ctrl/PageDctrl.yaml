@@ -484,63 +484,63 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 3);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 2);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_monday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 4);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 3);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_tuesday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 5);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 4);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_wednesday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 5);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_thursday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_friday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_saturday
                 hidden: false    
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_sunday
                 hidden: false    
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_monday
                 hidden: false                
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 11);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_tuesday
