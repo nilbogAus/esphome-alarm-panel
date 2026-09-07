@@ -28,7 +28,7 @@ binary_sensor:
                 id(g_ForcastDay)++;
             - if:
                 condition:
-                  lambda: return(id(g_ForcastDay) > 3);   # max number of forcast pages
+                  lambda: return(id(g_ForcastDay) > 4);   # max number of forcast pages
                 then:
                   - globals.set:
                       id: g_ForcastDay
@@ -115,6 +115,14 @@ sensor:
     name: "Forecast 3 Temp Max"
     id: forecast_temp_3_max
     entity_id: sensor.wahroonga_temp_max_3
+  - platform: homeassistant
+    name: "Forecast 4 Temp Min"
+    id: forecast_temp_4_min
+    entity_id: sensor.wahroonga_temp_min_4
+  - platform: homeassistant
+    name: "Forecast 4 Temp Max"
+    id: forecast_temp_4_max
+    entity_id: sensor.wahroonga_temp_max_4    
 
   - platform: homeassistant
     name: "Forecast Today Rain Amount Max"
@@ -148,6 +156,14 @@ sensor:
     name: "Forecast 3 Rain Amount Min"
     id: forecast_rain_amount_min_3
     entity_id: sensor.wahroonga_rain_amount_min_3
+  - platform: homeassistant
+    name: "Forecast 4 Rain Amount Max"
+    id: forecast_rain_amount_max_4
+    entity_id: sensor.wahroonga_rain_amount_max_4
+  - platform: homeassistant
+    name: "Forecast 4 Rain Amount Min"
+    id: forecast_rain_amount_min_4
+    entity_id: sensor.wahroonga_rain_amount_min_4
 
 text_sensor:
   - platform: homeassistant
@@ -162,6 +178,9 @@ text_sensor:
   - platform: homeassistant
     id: forecast_text_3
     entity_id: sensor.wahroonga_extended_text_3
+  - platform: homeassistant
+    id: forecast_text_4
+    entity_id: sensor.wahroonga_extended_text_4
 
   - platform: homeassistant
     name: "Forecast Today Rain Chance"
@@ -179,6 +198,10 @@ text_sensor:
     name: "Forecast 3 Rain Chance"
     id: forecast_rain_chance_3
     entity_id: sensor.wahroonga_rain_chance_3
+  - platform: homeassistant
+    name: "Forecast 4 Rain Chance"
+    id: forecast_rain_chance_4
+    entity_id: sensor.wahroonga_rain_chance_4
 
   - platform: homeassistant
     name: "Forecast Today label"
@@ -201,6 +224,10 @@ text_sensor:
     name: "Forecast 3 Icon"
     id: forecast_icon_3
     entity_id: sensor.wahroonga_mdi_icon_3
+  - platform: homeassistant
+    name: "Forecast 4 Icon"
+    id: forecast_icon_4
+    entity_id: sensor.wahroonga_mdi_icon_4
 
 script:
   - id: weather_icon_update
@@ -421,6 +448,35 @@ script:
                   format: "%.0f to %.0f°C"
                   args: [ 'id(forecast_temp_3_min).state','id(forecast_temp_3_max).state' ]
 
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 4;'
+          then:
+            - script.execute:
+                id: weather_label_show
+            - script.execute:
+                id: weather_icon_update
+                icon: !lambda |-
+                  return id(forecast_icon_4).state;
+            - lvgl.label.update:
+                id: lbl_weather_longtext
+                text: !lambda "return (id(forecast_text_4).state);" 
+            - lvgl.label.update:
+                id: lbl_rain
+                text:
+                  format: "%s%s chance of rain"
+                  args: [ 'id(forecast_rain_chance_4).state.c_str()', '"%"' ]     
+            - lvgl.label.update:
+                id: lbl_weather_text_rain
+                text:
+                  format: "%.0f to %.0fmm"
+                  args: [ 'id(forecast_rain_amount_min_4).state','id(forecast_rain_amount_max_4).state' ]
+            - lvgl.label.update:
+                id: lbl_weather_text_temp
+                text:
+                  format: "%.0f to %.0f°C"
+                  args: [ 'id(forecast_temp_4_min).state','id(forecast_temp_4_max).state' ]
+
       - lvgl.page.show: pageD
 
 
@@ -449,42 +505,42 @@ script:
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 5);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_thursday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_friday
                 hidden: false  
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_saturday
                 hidden: false    
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_sunday
                 hidden: false    
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_monday
                 hidden: false                
       - if:
           condition:
-            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10);'
+            lambda: 'return (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 11);'
           then:
             - lvgl.label.update:
                 id: lbl_weather_day_tuesday
