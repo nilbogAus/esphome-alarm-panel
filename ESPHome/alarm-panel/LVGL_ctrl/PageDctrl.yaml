@@ -28,7 +28,7 @@ binary_sensor:
                 id(g_ForcastDay)++;
             - if:
                 condition:
-                  lambda: return(id(g_ForcastDay) > 2);   # max number of forcast pages
+                  lambda: return(id(g_ForcastDay) > 3);   # max number of forcast pages
                 then:
                   - globals.set:
                       id: g_ForcastDay
@@ -107,6 +107,14 @@ sensor:
     name: "Forecast 2 Temp Max"
     id: forecast_temp_2_max
     entity_id: sensor.wahroonga_temp_max_2
+  - platform: homeassistant
+    name: "Forecast 3 Temp Min"
+    id: forecast_temp_3_min
+    entity_id: sensor.wahroonga_temp_min_3
+  - platform: homeassistant
+    name: "Forecast 3 Temp Max"
+    id: forecast_temp_3_max
+    entity_id: sensor.wahroonga_temp_max_3
 
   - platform: homeassistant
     name: "Forecast Today Rain Amount Max"
@@ -132,7 +140,14 @@ sensor:
     name: "Forecast 2 Rain Amount Min"
     id: forecast_rain_amount_min_2
     entity_id: sensor.wahroonga_rain_amount_min_2
-
+  - platform: homeassistant
+    name: "Forecast 3 Rain Amount Max"
+    id: forecast_rain_amount_max_3
+    entity_id: sensor.wahroonga_rain_amount_max_3
+  - platform: homeassistant
+    name: "Forecast 3 Rain Amount Min"
+    id: forecast_rain_amount_min_3
+    entity_id: sensor.wahroonga_rain_amount_min_3
 
 text_sensor:
   - platform: homeassistant
@@ -144,6 +159,9 @@ text_sensor:
   - platform: homeassistant
     id: forecast_text_2
     entity_id: sensor.wahroonga_extended_text_2
+  - platform: homeassistant
+    id: forecast_text_3
+    entity_id: sensor.wahroonga_extended_text_3
 
   - platform: homeassistant
     name: "Forecast Today Rain Chance"
@@ -157,6 +175,10 @@ text_sensor:
     name: "Forecast 2 Rain Chance"
     id: forecast_rain_chance_2
     entity_id: sensor.wahroonga_rain_chance_2
+  - platform: homeassistant
+    name: "Forecast 3 Rain Chance"
+    id: forecast_rain_chance_3
+    entity_id: sensor.wahroonga_rain_chance_3
 
   - platform: homeassistant
     name: "Forecast Today label"
@@ -175,6 +197,10 @@ text_sensor:
     name: "Forecast 2 Icon"
     id: forecast_icon_2
     entity_id: sensor.wahroonga_mdi_icon_2
+  - platform: homeassistant
+    name: "Forecast 3 Icon"
+    id: forecast_icon_3
+    entity_id: sensor.wahroonga_mdi_icon_3
 
 script:
   - id: weather_icon_update
@@ -273,12 +299,12 @@ script:
       - lambda: |-
           ESP_LOGI("pageD", "Running script_pageD_weather, The weather integer value is: %d", id(g_ForcastDay));    
       # display todays weather
+      - script.execute:
+          id: script_hide_weather_labels          
       - if:
           condition:
             lambda: 'return id(g_ForcastDay) == 0;'
           then:
-            - script.execute:
-                id: script_hide_weather_labels          
             - lvgl.label.update:
                 id: lbl_weather_day_today
                 hidden: false
@@ -305,14 +331,11 @@ script:
                   format: "%s %.0f°C"
                   args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state' ]      
 
-
       # display tomorrows weather
       - if:
           condition:
             lambda: 'return id(g_ForcastDay) == 1;'
           then:
-            - script.execute:
-                id: script_hide_weather_labels             
             - lvgl.label.update:
                 id: lbl_weather_day_tomorrow
                 hidden: false                                                          
@@ -345,8 +368,6 @@ script:
             lambda: 'return id(g_ForcastDay) == 2;'
           then:
             - script.execute:
-                id: script_hide_weather_labels 
-            - script.execute:
                 id: weather_label_show
             - script.execute:
                 id: weather_icon_update
@@ -371,6 +392,34 @@ script:
                   format: "%.0f to %.0f°C"
                   args: [ 'id(forecast_temp_2_min).state','id(forecast_temp_2_max).state' ]
 
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 3;'
+          then:
+            - script.execute:
+                id: weather_label_show
+            - script.execute:
+                id: weather_icon_update
+                icon: !lambda |-
+                  return id(forecast_icon_3).state;
+            - lvgl.label.update:
+                id: lbl_weather_longtext
+                text: !lambda "return (id(forecast_text_3).state);" 
+            - lvgl.label.update:
+                id: lbl_rain
+                text:
+                  format: "%s%s chance of rain"
+                  args: [ 'id(forecast_rain_chance_3).state.c_str()', '"%"' ]     
+            - lvgl.label.update:
+                id: lbl_weather_text_rain
+                text:
+                  format: "%.0f to %.0fmm"
+                  args: [ 'id(forecast_rain_amount_min_3).state','id(forecast_rain_amount_max_3).state' ]
+            - lvgl.label.update:
+                id: lbl_weather_text_temp
+                text:
+                  format: "%.0f to %.0f°C"
+                  args: [ 'id(forecast_temp_3_min).state','id(forecast_temp_3_max).state' ]
 
       - lvgl.page.show: pageD
 
