@@ -394,15 +394,16 @@ script:
                       // Normalize values (9 maps to 2, 10 to 3, etc.)
                       if (d > 8) d -= 7; 
 
-                      switch(d) {
-                        case 2: lvgl_label_update(id(lbl_weather_day_monday), false); break;
-                        case 3: lvgl_label_update(id(lbl_weather_day_tuesday), false); break;
-                        case 4: lvgl_label_update(id(lbl_weather_day_wednesday), false); break;
-                        case 5: lvgl_label_update(id(lbl_weather_day_thursday), false); break;
-                        case 6: lvgl_label_update(id(lbl_weather_day_friday), false); break;
-                        case 7: lvgl_label_update(id(lbl_weather_day_saturday), false); break;
-                        case 8: lvgl_label_update(id(lbl_weather_day_sunday), false); break;
-                      }
+                      // Clear the HIDDEN flag from the chosen label widget to make it visible
+                        switch(d) {
+                          case 2: id(lbl_weather_day_monday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 3: id(lbl_weather_day_tuesday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 4: id(lbl_weather_day_wednesday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 5: id(lbl_weather_day_thursday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 6: id(lbl_weather_day_friday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 7: id(lbl_weather_day_saturday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                          case 8: id(lbl_weather_day_sunday).clear_flag(lvgl::ObjFlag::HIDDEN); break;
+                        }
                   # today +2  weather
                   - if:
                       condition:
