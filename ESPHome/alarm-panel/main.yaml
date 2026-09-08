@@ -6,11 +6,6 @@ globals:
     max_restore_data_length: 5
     initial_value: ''
 
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time    
-
 output:
   - id: backlight_output
     platform: ledc
@@ -91,35 +86,6 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
-
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadA
-    key: A
-    on_press:
-      - lvgl.page.show: pageA
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadB
-    key: B
-    on_press:
-    - lvgl.page.show: pageB
-    - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadC
-    key: C
-    on_press:
-      - lvgl.page.show: pageC
-      - script.execute: script_page_carousel
-  - platform: matrix_keypad
-    keypad_id: keypad
-    id: keypadD
-    key: D
-    on_press:
-      - lvgl.page.show: pageD
-      - script.execute: script_page_carousel
 
 
 touchscreen:

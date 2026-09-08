@@ -1,7 +1,48 @@
 #Weather Page
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    timezone: "Australia/Sydney"
+    # Overrides the default 15 minutes.
+    update_interval: 24h 
+
+globals:
+  - id: g_ForcastDay
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+binary_sensor:
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadD
+    key: D
+    on_press:
+      # manage day counter for forcast pages
+      then:
+      - if:
+          condition:
+            - lvgl.page.is_showing: pageD
+          then:
+            - lambda: |-
+                id(g_ForcastDay)++;
+            - if:
+                condition:
+                  lambda: return(id(g_ForcastDay) > 4);   # max number of forcast pages
+                then:
+                  - globals.set:
+                      id: g_ForcastDay
+                      value: '0'   
+          else:
+            - globals.set:
+                id: g_ForcastDay
+                value: '0'            
+ 
+      - script.execute: script_pageD_weather
+      - script.execute: script_page_carousel
 
 sensor:
-  # Tempreature
+  # Temperature
   - platform: homeassistant
     name: "Inside Temp"
     id: inside_temp
@@ -22,7 +63,6 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(outside_temp).get_state()']    
-
   - platform: homeassistant
     name: "Right Extra Temp"
     id: Extra_temp_right
@@ -46,74 +86,162 @@ sensor:
             args: ['id(Extra_temp_left).get_state()']   
       - lvgl.widget.show: wg_Extra_temps_Left
 
+#forcast 
   - platform: homeassistant
-    name: "Forecast Today Temp Min"
+    name: "Forecast Today Temp"
     id: forecast_temp_today
     entity_id: sensor.wahroonga_now_temp_now
-    on_value:   
-      - lvgl.label.update:
-          id: lbl_weather_text_temp
-          text:
-            format: "%s %.0f°C"
-            args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state' ]      
-
+  - platform: homeassistant
+    name: "Forecast Tomorrow Temp Min"
+    id: forecast_temp_tomorrow_min
+    entity_id: sensor.wahroonga_temp_min_1
+  - platform: homeassistant
+    name: "Forecast Tomorrow Temp Max"
+    id: forecast_temp_tomorrow_max
+    entity_id: sensor.wahroonga_temp_max_1
+  - platform: homeassistant
+    name: "Forecast 2 Temp Min"
+    id: forecast_temp_2_min
+    entity_id: sensor.wahroonga_temp_min_2
+  - platform: homeassistant
+    name: "Forecast 2 Temp Max"
+    id: forecast_temp_2_max
+    entity_id: sensor.wahroonga_temp_max_2
+  - platform: homeassistant
+    name: "Forecast 3 Temp Min"
+    id: forecast_temp_3_min
+    entity_id: sensor.wahroonga_temp_min_3
+  - platform: homeassistant
+    name: "Forecast 3 Temp Max"
+    id: forecast_temp_3_max
+    entity_id: sensor.wahroonga_temp_max_3
+  - platform: homeassistant
+    name: "Forecast 4 Temp Min"
+    id: forecast_temp_4_min
+    entity_id: sensor.wahroonga_temp_min_4
+  - platform: homeassistant
+    name: "Forecast 4 Temp Max"
+    id: forecast_temp_4_max
+    entity_id: sensor.wahroonga_temp_max_4    
 
   - platform: homeassistant
     name: "Forecast Today Rain Amount Max"
     id: forecast_rain_amount_max_today
     entity_id: sensor.wahroonga_rain_amount_max_0
-    on_value:    
-      - lvgl.label.update:
-          id: lbl_weather_text_rain
-          text:
-            format: "%.0f to %.0fmm"
-            args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]          
   - platform: homeassistant
     name: "Forecast Today Rain Amount Min"
     id: forecast_rain_amount_min_today
     entity_id: sensor.wahroonga_rain_amount_min_0       
-    on_value:
-      - lvgl.label.update:
-          id: lbl_weather_text_rain
-          text:
-            format: "%.0f to %.0fmm"
-            args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]          
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Amount Max"
+    id: forecast_rain_amount_max_tomorrow
+    entity_id: sensor.wahroonga_rain_amount_max_1
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Amount Min"
+    id: forecast_rain_amount_min_tomorrow
+    entity_id: sensor.wahroonga_rain_amount_min_1
+  - platform: homeassistant
+    name: "Forecast 2 Rain Amount Max"
+    id: forecast_rain_amount_max_2
+    entity_id: sensor.wahroonga_rain_amount_max_2
+  - platform: homeassistant
+    name: "Forecast 2 Rain Amount Min"
+    id: forecast_rain_amount_min_2
+    entity_id: sensor.wahroonga_rain_amount_min_2
+  - platform: homeassistant
+    name: "Forecast 3 Rain Amount Max"
+    id: forecast_rain_amount_max_3
+    entity_id: sensor.wahroonga_rain_amount_max_3
+  - platform: homeassistant
+    name: "Forecast 3 Rain Amount Min"
+    id: forecast_rain_amount_min_3
+    entity_id: sensor.wahroonga_rain_amount_min_3
+  - platform: homeassistant
+    name: "Forecast 4 Rain Amount Max"
+    id: forecast_rain_amount_max_4
+    entity_id: sensor.wahroonga_rain_amount_max_4
+  - platform: homeassistant
+    name: "Forecast 4 Rain Amount Min"
+    id: forecast_rain_amount_min_4
+    entity_id: sensor.wahroonga_rain_amount_min_4
 
 text_sensor:
   - platform: homeassistant
     id: forecast_text_today
     entity_id: sensor.wahroonga_extended_text_0
-    on_value:
-      - lvgl.label.update:
-          id: lbl_weather_longtext
-          text: !lambda "return (x);"       
+  - platform: homeassistant
+    id: forecast_text_tomorrow
+    entity_id: sensor.wahroonga_extended_text_1
+  - platform: homeassistant
+    id: forecast_text_2
+    entity_id: sensor.wahroonga_extended_text_2
+  - platform: homeassistant
+    id: forecast_text_3
+    entity_id: sensor.wahroonga_extended_text_3
+  - platform: homeassistant
+    id: forecast_text_4
+    entity_id: sensor.wahroonga_extended_text_4
 
   - platform: homeassistant
     name: "Forecast Today Rain Chance"
     id: forecast_rain_chance_today
     entity_id: sensor.wahroonga_rain_chance_0
-    on_value:
-      - lvgl.label.update:
-          id: lbl_rain
-          text:
-            format: "%s%s chance of rain"
-            args: [ 'id(forecast_rain_chance_today).state.c_str()', '"%"' ]  
+  - platform: homeassistant
+    name: "Forecast Tomorrow Rain Chance"
+    id: forecast_rain_chance_tomorrow
+    entity_id: sensor.wahroonga_rain_chance_1
+  - platform: homeassistant
+    name: "Forecast 2 Rain Chance"
+    id: forecast_rain_chance_2
+    entity_id: sensor.wahroonga_rain_chance_2
+  - platform: homeassistant
+    name: "Forecast 3 Rain Chance"
+    id: forecast_rain_chance_3
+    entity_id: sensor.wahroonga_rain_chance_3
+  - platform: homeassistant
+    name: "Forecast 4 Rain Chance"
+    id: forecast_rain_chance_4
+    entity_id: sensor.wahroonga_rain_chance_4
+
   - platform: homeassistant
     name: "Forecast Today label"
     id: forecast_label_today
-    entity_id: sensor.wahroonga_now_now_label
+    entity_id: sensor.wahroonga_now_now_label 
 
   - platform: homeassistant
     name: "Forecast Today Icon"
     id: forecast_icon_today
     entity_id: sensor.wahroonga_mdi_icon_0
-    on_value:
+  - platform: homeassistant
+    name: "Forecast Tomorrow Icon"
+    id: forecast_icon_tomorrow
+    entity_id: sensor.wahroonga_mdi_icon_1
+  - platform: homeassistant
+    name: "Forecast 2 Icon"
+    id: forecast_icon_2
+    entity_id: sensor.wahroonga_mdi_icon_2
+  - platform: homeassistant
+    name: "Forecast 3 Icon"
+    id: forecast_icon_3
+    entity_id: sensor.wahroonga_mdi_icon_3
+  - platform: homeassistant
+    name: "Forecast 4 Icon"
+    id: forecast_icon_4
+    entity_id: sensor.wahroonga_mdi_icon_4
+
+script:
+  - id: weather_icon_update
+    parameters: 
+        icon: string
+    then:
+      - lambda: |-
+          ESP_LOGD("lambda", "Weather icon update called with parameter: %s", icon.c_str());
       - lvgl.label.update:
           id: lbl_weather_icon
           text: !lambda |-
             std::hash<std::string> hasher;
 
-            switch (hasher(id(forecast_icon_today).state.c_str()))
+            switch (hasher(icon.c_str()))
             {
                 case 1242744452: // mdi:weather-pouring
                     return ("\U000F0596");// pouring
@@ -162,4 +290,245 @@ text_sensor:
                     ESP_LOGD("lambda", "Unknown weather type: string %s hash %u",id(forecast_icon_today).state.c_str(), hasher(id(forecast_icon_today).state));
                     return ("\U000F0F2F");
             }             
+  
+  - id: script_hide_weather_labels
+    then:
+      - lvgl.label.update:
+          id: lbl_weather_day_today
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_tomorrow
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_monday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_tuesday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_wednesday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_thursday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_friday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_saturday
+          hidden: true
+      - lvgl.label.update:
+          id: lbl_weather_day_sunday
+          hidden: true
+
+  - id: script_pageD_weather
+    then:
+      - lambda: |-
+          ESP_LOGI("pageD", "Running script_pageD_weather, The weather integer value is: %d", id(g_ForcastDay));    
+      # display todays weather
+      - script.execute:
+          id: script_hide_weather_labels          
+      - if:
+          condition:
+            lambda: 'return id(g_ForcastDay) == 0;'
+          then:
+            - lvgl.label.update:
+                id: lbl_weather_day_today
+                hidden: false
+            - script.execute:
+                id: weather_icon_update
+                icon: !lambda |-
+                  return id(forecast_icon_today).state; 
+            - lvgl.label.update:
+                id: lbl_weather_longtext
+                text: !lambda "return (id(forecast_text_today).state);" 
+            - lvgl.label.update:
+                id: lbl_rain
+                text:
+                  format: "%s%s chance of rain"
+                  args: [ 'id(forecast_rain_chance_today).state.c_str()', '"%"' ]        
+            - lvgl.label.update:
+                id: lbl_weather_text_rain
+                text:
+                  format: "%.0f to %.0fmm"
+                  args: [ 'id(forecast_rain_amount_min_today).state','id(forecast_rain_amount_max_today).state' ]                            
+            - lvgl.label.update:
+                id: lbl_weather_text_temp
+                text:
+                  format: "%s %.0f°C"
+                  args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state' ]      
+          else:
+            # display tomorrows weather
+            - if:
+                condition:
+                  lambda: 'return id(g_ForcastDay) == 1;'
+                then:
+                  - lvgl.label.update:
+                      id: lbl_weather_day_tomorrow
+                      hidden: false                                                          
+                  - script.execute:
+                      id: weather_icon_update
+                      icon: !lambda |-
+                        return id(forecast_icon_tomorrow).state;
+                  - lvgl.label.update:
+                      id: lbl_weather_longtext
+                      text: !lambda "return (id(forecast_text_tomorrow).state);" 
+                  - lvgl.label.update:
+                      id: lbl_rain
+                      text:
+                        format: "%s%s chance of rain"
+                        args: [ 'id(forecast_rain_chance_tomorrow).state.c_str()', '"%"' ]     
+                  - lvgl.label.update:
+                      id: lbl_weather_text_rain
+                      text:
+                        format: "%.0f to %.0fmm"
+                        args: [ 'id(forecast_rain_amount_min_tomorrow).state','id(forecast_rain_amount_max_tomorrow).state' ]
+                  - lvgl.label.update:
+                      id: lbl_weather_text_temp
+                      text:
+                        format: "%.0f to %.0f°C"
+                        args: [ 'id(forecast_temp_tomorrow_min).state','id(forecast_temp_tomorrow_max).state' ]
+                else:
+                  - script.execute:
+                      id: weather_label_show
+                  # today +2  weather
+                  - if:
+                      condition:
+                        lambda: 'return id(g_ForcastDay) == 2;'
+                      then:
+                        - script.execute:
+                            id: weather_icon_update
+                            icon: !lambda |-
+                              return id(forecast_icon_2).state;
+                        - lvgl.label.update:
+                            id: lbl_weather_longtext
+                            text: !lambda "return (id(forecast_text_2).state);" 
+                        - lvgl.label.update:
+                            id: lbl_rain
+                            text:
+                              format: "%s%s chance of rain"
+                              args: [ 'id(forecast_rain_chance_2).state.c_str()', '"%"' ]     
+                        - lvgl.label.update:
+                            id: lbl_weather_text_rain
+                            text:
+                              format: "%.0f to %.0fmm"
+                              args: [ 'id(forecast_rain_amount_min_2).state','id(forecast_rain_amount_max_2).state' ]
+                        - lvgl.label.update:
+                            id: lbl_weather_text_temp
+                            text:
+                              format: "%.0f to %.0f°C"
+                              args: [ 'id(forecast_temp_2_min).state','id(forecast_temp_2_max).state' ]
+
+                  - if:
+                      condition:
+                        lambda: 'return id(g_ForcastDay) == 3;'
+                      then:
+                        - script.execute:
+                            id: weather_icon_update
+                            icon: !lambda |-
+                              return id(forecast_icon_3).state;
+                        - lvgl.label.update:
+                            id: lbl_weather_longtext
+                            text: !lambda "return (id(forecast_text_3).state);" 
+                        - lvgl.label.update:
+                            id: lbl_rain
+                            text:
+                              format: "%s%s chance of rain"
+                              args: [ 'id(forecast_rain_chance_3).state.c_str()', '"%"' ]     
+                        - lvgl.label.update:
+                            id: lbl_weather_text_rain
+                            text:
+                              format: "%.0f to %.0fmm"
+                              args: [ 'id(forecast_rain_amount_min_3).state','id(forecast_rain_amount_max_3).state' ]
+                        - lvgl.label.update:
+                            id: lbl_weather_text_temp
+                            text:
+                              format: "%.0f to %.0f°C"
+                              args: [ 'id(forecast_temp_3_min).state','id(forecast_temp_3_max).state' ]
+
+                  - if:
+                      condition:
+                        lambda: 'return id(g_ForcastDay) == 4;'
+                      then:
+                        - script.execute:
+                            id: weather_label_show
+                        - script.execute:
+                            id: weather_icon_update
+                            icon: !lambda |-
+                              return id(forecast_icon_4).state;
+                        - lvgl.label.update:
+                            id: lbl_weather_longtext
+                            text: !lambda "return (id(forecast_text_4).state);" 
+                        - lvgl.label.update:
+                            id: lbl_rain
+                            text:
+                              format: "%s%s chance of rain"
+                              args: [ 'id(forecast_rain_chance_4).state.c_str()', '"%"' ]     
+                        - lvgl.label.update:
+                            id: lbl_weather_text_rain
+                            text:
+                              format: "%.0f to %.0fmm"
+                              args: [ 'id(forecast_rain_amount_min_4).state','id(forecast_rain_amount_max_4).state' ]
+                        - lvgl.label.update:
+                            id: lbl_weather_text_temp
+                            text:
+                              format: "%.0f to %.0f°C"
+                              args: [ 'id(forecast_temp_4_min).state','id(forecast_temp_4_max).state' ]
+
+      - lvgl.page.show: pageD
+
+
+  - id: weather_label_show
+    then:
+      - if:
+          condition:
+            lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 2) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9));'
+          then:
+            - lvgl.widget.show: lbl_weather_day_monday
+          else:
+            # --- TUESDAY (Level 2) ---
+            - if:
+                condition:
+                  lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 3) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10));'
+                then:
+                  - lvgl.widget.show: lbl_weather_day_tuesday
+                else:
+                  # --- WEDNESDAY (Level 3) ---
+                  - if:
+                      condition:
+                        lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 4) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 11));'
+                      then:
+                        - lvgl.widget.show: lbl_weather_day_wednesday
+                      else:
+                        # --- THURSDAY (Level 4) ---
+                        - if:
+                            condition:
+                              lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 5) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 12));'
+                            then:
+                              - lvgl.widget.show: lbl_weather_day_thursday
+                            else:
+                              # --- FRIDAY (Level 5) ---
+                              - if:
+                                  condition:
+                                    lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 13));'
+                                  then:
+                                    - lvgl.widget.show: lbl_weather_day_friday
+                                  else:
+                                    # --- SATURDAY (Level 6) ---
+                                    - if:
+                                        condition:
+                                          lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 14));'
+                                        then:
+                                          - lvgl.widget.show: lbl_weather_day_saturday
+                                        else:
+                                          # --- SUNDAY (Level 7) ---
+                                          - if:
+                                              condition:
+                                                lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 15));'
+                                              then:
+                                                - lvgl.widget.show: lbl_weather_day_sunday
+
+ 
+
+
 

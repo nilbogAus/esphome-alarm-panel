@@ -2,7 +2,7 @@ script:
   - id: script_page_carousel
     mode: restart
     then:
-        - delay: 30s    #wait for sensors etc to be ready 
+        - delay: 15s    #wait for sensors etc to be ready 
         - while:
             condition:
                 - wifi.connected:
@@ -19,7 +19,7 @@ script:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 1;'
                             then:
-                                - delay: 10s   
+                                - delay: 8s   
                         - if:
                             condition:
                                 lambda: 'return id(uptime_sensor).state < 3;'
@@ -32,9 +32,17 @@ script:
                                 - delay: 3s  
                         - delay: 3s  
                         - lvgl.page.show: pageB
-                        - delay: 10s
+                        - delay: 8s
                         - lvgl.page.show: pageC
                         - delay: 2s
-                        - lvgl.page.show: pageD
+                        - globals.set:
+                            id: g_ForcastDay
+                            value: '0'
+                        - script.execute: script_pageD_weather
                         - delay: 8s  
+                        - globals.set:
+                            id: g_ForcastDay
+                            value: '1'
+                        - script.execute: script_pageD_weather
+                        - delay: 4s                          
         - lvgl.page.show: pageA           

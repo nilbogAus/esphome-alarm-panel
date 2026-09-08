@@ -222,6 +222,15 @@ globals:
 binary_sensor: 
   - platform: matrix_keypad
     keypad_id: keypad
+    id: keypadC
+    key: C
+    on_press:
+      - lvgl.page.show: pageC
+      - script.execute: script_page_carousel
+
+      
+  - platform: matrix_keypad
+    keypad_id: keypad
     id: keypad1
     key: 1
     on_press:

@@ -1,4 +1,13 @@
 # Alarm Page
+binary_sensor: 
+  - platform: matrix_keypad
+    keypad_id: keypad
+    id: keypadA
+    key: A
+    on_press:
+      - lvgl.page.show: pageA
+      - script.execute: script_page_carousel
+
 
 text_sensor:
   - platform: homeassistant
