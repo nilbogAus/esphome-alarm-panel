@@ -389,21 +389,8 @@ script:
                         format: "%.0f to %.0f°C"
                         args: [ 'id(forecast_temp_tomorrow_min).state','id(forecast_temp_tomorrow_max).state' ]
                 else:
-                  - lambda: |-
-                      int d = id(homeassistant_time).now().day_of_week + id(g_ForcastDay);
-                      // Normalize values (9 maps to 2, 10 to 3, etc.)
-                      if (d > 8) d -= 7; 
-
-                      // Use ESPHome's set_hidden method on the widget object references
-                      switch(d) {
-                        case 2: id(lbl_weather_day_monday)->obj->set_hidden(false); break;
-                        case 3: id(lbl_weather_day_tuesday)->obj->set_hidden(false); break;
-                        case 4: id(lbl_weather_day_wednesday)->obj->set_hidden(false); break;
-                        case 5: id(lbl_weather_day_thursday)->obj->set_hidden(false); break;
-                        case 6: id(lbl_weather_day_friday)->obj->set_hidden(false); break;
-                        case 7: id(lbl_weather_day_saturday)->obj->set_hidden(false); break;
-                        case 8: id(lbl_weather_day_sunday)->obj->set_hidden(false); break;
-                      }
+                  - script.execute:
+                      id: weather_label_show
                   # today +2  weather
                   - if:
                       condition:
@@ -464,6 +451,8 @@ script:
                         lambda: 'return id(g_ForcastDay) == 4;'
                       then:
                         - script.execute:
+                            id: weather_label_show
+                        - script.execute:
                             id: weather_icon_update
                             icon: !lambda |-
                               return id(forecast_icon_4).state;
@@ -487,6 +476,59 @@ script:
                               args: [ 'id(forecast_temp_4_min).state','id(forecast_temp_4_max).state' ]
 
       - lvgl.page.show: pageD
+
+
+  - id: weather_label_show
+    then:
+      - if:
+          condition:
+            lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 2) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 9));'
+          then:
+            - lvgl.widget.show: lbl_weather_day_monday
+          else:
+            # --- TUESDAY (Level 2) ---
+            - if:
+                condition:
+                  lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 3) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 10));'
+                then:
+                  - lvgl.widget.show: lbl_weather_day_tuesday
+                else:
+                  # --- WEDNESDAY (Level 3) ---
+                  - if:
+                      condition:
+                        lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 4) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 11));'
+                      then:
+                        - lvgl.widget.show: lbl_weather_day_wednesday
+                      else:
+                        # --- THURSDAY (Level 4) ---
+                        - if:
+                            condition:
+                              lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 5) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 12));'
+                            then:
+                              - lvgl.widget.show: lbl_weather_day_thursday
+                            else:
+                              # --- FRIDAY (Level 5) ---
+                              - if:
+                                  condition:
+                                    lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 6) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 13));'
+                                  then:
+                                    - lvgl.widget.show: lbl_weather_day_friday
+                                  else:
+                                    # --- SATURDAY (Level 6) ---
+                                    - if:
+                                        condition:
+                                          lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 14));'
+                                        then:
+                                          - lvgl.widget.show: lbl_weather_day_saturday
+                                      else:
+                                        # --- SUNDAY (Level 7) ---
+                                        - if:
+                                            condition:
+                                              lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 15));'
+                                            then:
+                                              - lvgl.widget.show: lbl_weather_day_sunday
+
+ 
 
 
 
