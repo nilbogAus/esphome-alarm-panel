@@ -520,13 +520,13 @@ script:
                                           lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 7) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 14));'
                                         then:
                                           - lvgl.widget.show: lbl_weather_day_saturday
-                                      else:
-                                        # --- SUNDAY (Level 7) ---
-                                        - if:
-                                            condition:
-                                              lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 15));'
-                                            then:
-                                              - lvgl.widget.show: lbl_weather_day_sunday
+                                        else:
+                                          # --- SUNDAY (Level 7) ---
+                                          - if:
+                                              condition:
+                                                lambda: 'return ((id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 8) || (id(homeassistant_time).now().day_of_week + id(g_ForcastDay) == 15));'
+                                              then:
+                                                - lvgl.widget.show: lbl_weather_day_sunday
 
  
 
