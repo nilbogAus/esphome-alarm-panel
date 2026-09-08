@@ -396,13 +396,13 @@ script:
 
                       // Use ESPHome's set_hidden method on the widget object references
                       switch(d) {
-                        case 2: id(lbl_weather_day_monday).set_hidden(false); break;
-                        case 3: id(lbl_weather_day_tuesday).set_hidden(false); break;
-                        case 4: id(lbl_weather_day_wednesday).set_hidden(false); break;
-                        case 5: id(lbl_weather_day_thursday).set_hidden(false); break;
-                        case 6: id(lbl_weather_day_friday).set_hidden(false); break;
-                        case 7: id(lbl_weather_day_saturday).set_hidden(false); break;
-                        case 8: id(lbl_weather_day_sunday).set_hidden(false); break;
+                        case 2: id(lbl_weather_day_monday)->obj->set_hidden(false); break;
+                        case 3: id(lbl_weather_day_tuesday)->obj->set_hidden(false); break;
+                        case 4: id(lbl_weather_day_wednesday)->obj->set_hidden(false); break;
+                        case 5: id(lbl_weather_day_thursday)->obj->set_hidden(false); break;
+                        case 6: id(lbl_weather_day_friday)->obj->set_hidden(false); break;
+                        case 7: id(lbl_weather_day_saturday)->obj->set_hidden(false); break;
+                        case 8: id(lbl_weather_day_sunday)->obj->set_hidden(false); break;
                       }
                   # today +2  weather
                   - if:
