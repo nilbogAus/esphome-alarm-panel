@@ -224,8 +224,26 @@ binary_sensor:
     keypad_id: keypad
     id: keypadC
     key: C
-    on_press:
-      - lvgl.page.show: pageC
+    on_press: 
+      - if:
+          condition:
+            - lvgl.page.is_showing: pageC
+          then:
+            - lvgl.obj.update:
+                id: lvgl_thermostat_obj
+                hidden: false
+            - lvgl.obj.update:
+                id: lvgl_keypad
+                hidden: true                
+            - lvgl.page.show:   
+          else:
+            - lvgl.obj.update:
+                id: lvgl_thermostat_obj
+                hidden: true
+            - lvgl.obj.update:
+                id: lvgl_keypad
+                hidden: false  
+            - lvgl.page.show: pageC         
       - script.execute: script_page_carousel
 
       
