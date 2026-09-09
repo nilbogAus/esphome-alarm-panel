@@ -86,6 +86,8 @@ binary_sensor:
       ignore_strapping_warning: true
     name: "Onboard button"
     id: onboard_button
+    on_press:
+      - light.toggle: Backlight
 
 
 touchscreen:
