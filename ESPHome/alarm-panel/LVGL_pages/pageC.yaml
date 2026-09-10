@@ -6,10 +6,10 @@ lvgl:
       bg_color: col_black
       widgets:
         - obj:
-            id: lvgl_thermostat_obj
+            id: lvgl_keypad_obj
             width: 100%
             height: 100%
-            hidden: true
+            hidden: false
             widgets:      
               - buttonmatrix:
                   id: lvgl_keypad
