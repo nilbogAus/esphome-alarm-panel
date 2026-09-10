@@ -127,7 +127,7 @@ lvgl:
                   align: TOP_MID
                   border_width: 0    
                   scrollbar_mode: "OFF"   
-                  bg_opa: 50
+                  bg_opa: 50%
                   blur_backdrop: true
                   widgets:  
                     - arc:
