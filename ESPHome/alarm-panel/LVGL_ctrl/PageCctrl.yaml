@@ -235,7 +235,7 @@ binary_sensor:
             - lvgl.obj.update:
                 id: lvgl_keypad
                 hidden: true                
-            - lvgl.page.show:   
+            - lvgl.page.show: pageC 
           else:
             - lvgl.obj.update:
                 id: lvgl_thermostat_obj
