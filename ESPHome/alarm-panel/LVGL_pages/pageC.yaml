@@ -124,7 +124,6 @@ lvgl:
                 width: 100%
                 height: 50%              
                 align: TOP_MID
-                height: SIZE_CONTENT
                 border_width: 0    
                 scrollbar_mode: "OFF"   
                 widgets:  
@@ -180,7 +179,6 @@ lvgl:
                 width: 100%
                 height: 50%              
                 align: BOTTOM_MID
-                height: SIZE_CONTENT
                 border_width: 0    
                 scrollbar_mode: "OFF"   
                 widgets:  
