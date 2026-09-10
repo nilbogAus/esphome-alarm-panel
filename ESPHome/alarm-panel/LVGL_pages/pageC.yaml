@@ -121,7 +121,7 @@ lvgl:
               - arc:
                   id: ch_setpoint_arc
                   align: CENTER
-                  y: 10
+                  y: 210
                   adjustable: true
                   value: 50
                   min_value: 50
@@ -166,5 +166,23 @@ lvgl:
                   pad_bottom: 2
                   pad_left: 8
                   pad_right: 8
+
+              - arc:
+                  id: ch_setpoint_arc
+                  align: CENTER
+                  y: -210
+                  adjustable: true
+                  value: 50
+                  min_value: 50
+                  max_value: 300
+                  width: 210
+                  height: 210
+                  arc_width: 16
+                  arc_color: 0x292929
+                  indicator:
+                    arc_color: 0xFF6F22
+                    arc_width: 16
+                  knob:
+                    bg_color: 0xFFFFFF
 
             
