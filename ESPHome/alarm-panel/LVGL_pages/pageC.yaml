@@ -11,8 +11,10 @@ lvgl:
             height: 100%
             hidden: false
             bg_color: col_black
-            outline_width: 0
+            outline_width: 1
+            outline_color : red
             border_width: 0
+            pad_all: 0
             widgets:      
               - buttonmatrix:
                   id: lvgl_keypad
