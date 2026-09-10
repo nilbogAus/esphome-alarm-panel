@@ -168,7 +168,7 @@ lvgl:
                   pad_right: 8
 
               - arc:
-                  id: ch_setpoint_arc
+                  id: ch_setpoint_arc2
                   align: CENTER
                   y: -210
                   adjustable: true
