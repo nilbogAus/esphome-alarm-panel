@@ -3,13 +3,14 @@
 lvgl:
   pages:
     - id: pageC
-      bg_color: col_black
+      
       widgets:
         - obj:
             id: lvgl_keypad_obj
             width: 100%
             height: 100%
             hidden: false
+            bg_color: col_black
             widgets:      
               - buttonmatrix:
                   id: lvgl_keypad
