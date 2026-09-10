@@ -117,72 +117,119 @@ lvgl:
             outline_width: 0
             border_width: 0
             pad_all: 0
+            scrollbar_mode: "OFF"     
+         
             widgets:
-              - arc:
-                  id: ch_setpoint_arc
-                  align: CENTER
-                  y: 210
-                  adjustable: true
-                  value: 50
-                  min_value: 50
-                  max_value: 300
-                  width: 210
-                  height: 210
-                  arc_width: 16
-                  arc_color: 0x292929
-                  indicator:
-                    arc_color: 0xFF6F22
-                    arc_width: 16
-                  knob:
-                    bg_color: 0xFFFFFF
-              - label:
-                  id: ch_action_label
-                  align: CENTER
-                  y: -40
-                  text_font: montserrat_14
-                  text: "--"
-              - label:
-                  id: ch_setpoint_label
-                  align: CENTER
-                  text: "--.-°"
-                  y: 0
-                  text_font: montserrat_48
-              - label:
-                  id: ch_temperature_label
-                  align: CENTER
-                  text: "--.-°"
-                  text_font: montserrat_24
-                  text_color: 0xFF6F22
-                  y: 50               
-              - label:
-                  id: ch_mode_label
-                  align: CENTER
-                  y: 90
-                  text_font: montserrat_14
-                  text: "OFF"
-                  border_color: 0xFFFFFF
-                  border_width: 1
-                  pad_top: 2
-                  pad_bottom: 2
-                  pad_left: 8
-                  pad_right: 8
-
-              - arc:
-                  id: ch_setpoint_arc2
-                  align: CENTER
-                  y: -210
-                  adjustable: true
-                  value: 50
-                  min_value: 50
-                  max_value: 300
-                  width: 210
-                  height: 210
-                  arc_width: 16
-                  arc_color: 0x292929
-                  indicator:
-                    arc_color: 0xFF6F22
-                    arc_width: 16
-                  knob:
-                    bg_color: 0xFFFFFF
-
+              - obj:
+                width: 100%
+                height: 50%              
+                align: TOP_MID
+                height: SIZE_CONTENT
+                border_width: 0    
+                scrollbar_mode: "OFF"   
+                widgets:  
+                  - arc:
+                      id: ch_setpoint_arc
+                      align: CENTER
+                      y: 10
+                      adjustable: true
+                      value: 50
+                      min_value: 50
+                      max_value: 300
+                      width: 210
+                      height: 210
+                      arc_width: 16
+                      arc_color: 0x292929
+                      indicator:
+                        arc_color: 0xFF6F22
+                        arc_width: 16
+                      knob:
+                        bg_color: 0xFFFFFF
+                  - label:
+                      id: ch_action_label
+                      align: CENTER
+                      y: -40
+                      text_font: montserrat_14
+                      text: "--"
+                  - label:
+                      id: ch_setpoint_label
+                      align: CENTER
+                      text: "--.-°"
+                      y: 0
+                      text_font: montserrat_48
+                  - label:
+                      id: ch_temperature_label
+                      align: CENTER
+                      text: "--.-°"
+                      text_font: montserrat_24
+                      text_color: 0xFF6F22
+                      y: 50               
+                  - label:
+                      id: ch_mode_label
+                      align: CENTER
+                      y: 90
+                      text_font: montserrat_14
+                      text: "OFF"
+                      border_color: 0xFFFFFF
+                      border_width: 1
+                      pad_top: 2
+                      pad_bottom: 2
+                      pad_left: 8
+                      pad_right: 8
+              - obj:
+                width: 100%
+                height: 50%              
+                align: BOTTOM_MID
+                height: SIZE_CONTENT
+                border_width: 0    
+                scrollbar_mode: "OFF"   
+                widgets:  
+                  - arc:
+                      id: ch_setpoint_arc
+                      align: CENTER
+                      y: 10
+                      adjustable: true
+                      value: 50
+                      min_value: 50
+                      max_value: 300
+                      width: 210
+                      height: 210
+                      arc_width: 16
+                      arc_color: 0x292929
+                      indicator:
+                        arc_color: 0xFF6F22
+                        arc_width: 16
+                      knob:
+                        bg_color: 0xFFFFFF
+                  - label:
+                      id: ch_action_label
+                      align: CENTER
+                      y: -40
+                      text_font: montserrat_14
+                      text: "--"
+                  - label:
+                      id: ch_setpoint_label
+                      align: CENTER
+                      text: "--.-°"
+                      y: 0
+                      text_font: montserrat_48
+                  - label:
+                      id: ch_temperature_label
+                      align: CENTER
+                      text: "--.-°"
+                      text_font: montserrat_24
+                      text_color: 0xFF6F22
+                      y: 50               
+                  - label:
+                      id: ch_mode_label
+                      align: CENTER
+                      y: 90
+                      text_font: montserrat_14
+                      text: "OFF"
+                      border_color: 0xFFFFFF
+                      border_width: 1
+                      pad_top: 2
+                      pad_bottom: 2
+                      pad_left: 8
+                      pad_right: 8
             
