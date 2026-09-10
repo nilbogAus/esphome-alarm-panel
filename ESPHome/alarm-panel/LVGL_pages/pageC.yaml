@@ -13,6 +13,7 @@ lvgl:
             bg_color: col_black
             outline_width: 0
             border_width: 0
+            pad_all: 0
             widgets:      
               - buttonmatrix:
                   id: lvgl_keypad
@@ -110,6 +111,12 @@ lvgl:
             width: 100%
             height: 100%
             hidden: true
+            bg_color: col_red
+            bg_grad_color: col_blue
+            bg_grad_dir: ver                
+            outline_width: 0
+            border_width: 0
+            pad_all: 0
             widgets:
               - arc:
                   id: ch_setpoint_arc
