@@ -3,7 +3,7 @@
 lvgl:
   pages:
     - id: pageC
-      
+      bg_color: col_black
       widgets:
         - obj:
             id: lvgl_keypad_obj
