@@ -121,6 +121,7 @@ lvgl:
          
             widgets:
               - obj:
+                  id: lvgl_thermostat_top_obj
                   width: 100%
                   height: 50%              
                   align: TOP_MID
@@ -176,6 +177,7 @@ lvgl:
                         pad_left: 8
                         pad_right: 8
               - obj:
+                id: lvgl_thermostat_bottom_obj
                 width: 100%
                 height: 50%              
                 align: BOTTOM_MID
