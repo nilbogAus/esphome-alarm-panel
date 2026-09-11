@@ -164,7 +164,7 @@ text_sensor:
     id: bedroom_thermostat_hvac_action
     on_value:
       - lvgl.label.update:
-          id: ch_mode_label_top
+          id: ch_action_label_top
           text: !lambda "return (x);"  
              
 
