@@ -165,7 +165,7 @@ text_sensor:
     on_value:
       - lvgl.label.update:
           id: ch_setpoint_label_top
-          text: text: !lambda "return (x);"  
+          text: !lambda "return (x);"  
              
 
 script:
