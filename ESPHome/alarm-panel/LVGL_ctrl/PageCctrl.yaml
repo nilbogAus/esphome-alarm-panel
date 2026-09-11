@@ -166,6 +166,19 @@ text_sensor:
       - lvgl.label.update:
           id: ch_action_label_top
           text: !lambda "return (x);"  
+      - if:
+          condition:
+            lambda: 'return (x == "heating");'
+          then:
+            - lvgl.arc.update:
+                id: ch_setpoint_arc_top
+                indicator:
+                  opacity: 0%
+          else:
+            - lvgl.arc.update:
+                id: ch_setpoint_arc_top
+                indicator:
+                  opacity: 50%
   - platform: homeassistant
     entity_id: climate.master_bedroom_thermostat     
     id: bedroom_thermostat_hvac
@@ -182,14 +195,10 @@ text_sensor:
                 indicator:
                   arc_color: 0xFF6F22
           else:
-            - if:
-                condition:
-                  lambda: 'return (x == "off");'
-                then:
-                  - lvgl.arc.update:
-                      id: ch_setpoint_arc_top
-                      indicator:
-                        arc_color: 0x292929
+            - lvgl.arc.update:
+                id: ch_setpoint_arc_top
+                indicator:
+                  arc_color: 0x292929
              
 
 script:
