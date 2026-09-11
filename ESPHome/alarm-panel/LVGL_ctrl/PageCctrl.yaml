@@ -178,7 +178,7 @@ text_sensor:
             - lvgl.arc.update:
                 id: ch_setpoint_arc_top
                 indicator:
-                  opa: 70%
+                  opa: 80%
   - platform: homeassistant
     entity_id: climate.master_bedroom_thermostat     
     id: bedroom_thermostat_hvac
