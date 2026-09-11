@@ -161,7 +161,7 @@ text_sensor:
     entity_id: climate.master_bedroom_thermostat     
     attribute: hvac_action
     id: bedroom_thermostat_hvac_action
-    on_value:
+    #on_value:
       # - lvgl.label.update:
       #     id: ch_setpoint_label_top
       #     text: 
