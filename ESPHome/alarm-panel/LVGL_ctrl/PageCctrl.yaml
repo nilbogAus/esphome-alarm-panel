@@ -186,7 +186,7 @@ text_sensor:
       - to_upper    
     on_value:
       - lvgl.label.update:
-          id: ch_mode_label_top
+          id: ch_mode_button_top
           text: !lambda "return (x);"  
       - if:
           condition:

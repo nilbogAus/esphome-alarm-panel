@@ -166,9 +166,10 @@ lvgl:
                         text_color: 0xFF6F22
                         y: 50               
                         text_font: roboto_sml
-                    - label:
-                        id: ch_mode_label_top
+                    - button:
+                        id: ch_mode_button_top
                         align: CENTER
+                        checkable : true
                         y: 90
                         text: "OFF"
                         border_color: 0xFFFFFF
