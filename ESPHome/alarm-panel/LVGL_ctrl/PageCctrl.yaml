@@ -155,18 +155,18 @@ sensor:
           text: 
             format: "%.1f°C"
             args: ['id(bedroom_thermostat_target_temperature).get_state()']         \
-            
+
 text_sensor:
   - platform: homeassistant
     entity_id: climate.master_bedroom_thermostat     
     attribute: hvac_action
     id: bedroom_thermostat_hvac_action
     on_value:
-      - lvgl.label.update:
-          id: ch_setpoint_label_top
-          text: 
-            format: "%s"
-            args: ['id(bedroom_thermostat_hvac_action).get_state()']      
+      # - lvgl.label.update:
+      #     id: ch_setpoint_label_top
+      #     text: 
+      #       format: "%s"
+      #       args: ['id(bedroom_thermostat_hvac_action).get_state()']      
               
 
 script:
