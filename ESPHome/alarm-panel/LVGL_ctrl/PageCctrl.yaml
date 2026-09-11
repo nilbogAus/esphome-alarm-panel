@@ -173,6 +173,23 @@ text_sensor:
       - lvgl.label.update:
           id: ch_mode_label_top
           text: !lambda "return (x);"  
+      - if:
+          condition:
+            lambda: 'return (x == "heat");'
+          then:
+            - lvgl.arc.update:
+                id: ch_setpoint_arc_top
+                indicator:
+                  arc_color: 0xFF6F22
+          else:
+            - if:
+                condition:
+                  lambda: 'return (x == "off");'
+                then:
+                  - lvgl.arc.update:
+                      id: ch_setpoint_arc_top
+                      indicator:
+                        arc_color: 0x292929`
              
 
 script:
