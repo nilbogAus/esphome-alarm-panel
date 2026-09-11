@@ -131,7 +131,7 @@ lvgl:
                   blur_backdrop: true
                   widgets:  
                     - arc:
-                        id: ch_setpoint_arc
+                        id: ch_setpoint_arc_top
                         align: CENTER
                         y: 10
                         adjustable: true
@@ -148,26 +148,26 @@ lvgl:
                         knob:
                           bg_color: 0xFFFFFF
                     - label:
-                        id: ch_action_label
+                        id: ch_action_label_top
                         align: CENTER
                         y: -40
                         text: "--"
                         text_font: roboto_sml
                     - label:
-                        id: ch_setpoint_label
+                        id: ch_setpoint_label_top
                         align: CENTER
                         text: "--.-°"
                         y: 0
                         text_font: roboto_lrg
                     - label:
-                        id: ch_temperature_label
+                        id: ch_temperature_label_top
                         align: CENTER
                         text: "--.-°"
                         text_color: 0xFF6F22
                         y: 50               
                         text_font: roboto_sml
                     - label:
-                        id: ch_mode_label
+                        id: ch_mode_label_top
                         align: CENTER
                         y: 90
                         text: "OFF"

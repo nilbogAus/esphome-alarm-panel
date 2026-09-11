@@ -116,6 +116,7 @@ switch:
 
 
 sensor:
+  #buttonmatrix
   - platform: homeassistant
     entity_id: cover.study     
     attribute: current_tilt_position
@@ -133,6 +134,17 @@ sensor:
     attribute: current_tilt_position
     id: blind_tane  
 
+  #thermostat sensors
+  - platform: homeassistant
+    entity_id: climate.master_bedroom_thermostat     
+    attribute: current_temperature
+    id: bedroom_thermostat_current_temperature
+    on_value:
+      - lvgl.label.update:
+          id: ch_temperature_label_top
+          text: 
+            format: "%.1f°C"
+            args: ['id(bedroom_thermostat_current_temperature).get_state()']
 
 script:
   - id: script_pageC_blinds
