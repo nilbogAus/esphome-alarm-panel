@@ -165,7 +165,7 @@ text_sensor:
     on_value:
       - lvgl.label.update:
           id: ch_action_label_top
-          text: !lambda "return (x);"  
+          text: !lambda "return (transform(x.begin(), x.end(), x.begin(), ::toupper));"  
       - if:
           condition:
             lambda: 'return (x == "heating");'
@@ -178,7 +178,7 @@ text_sensor:
             - lvgl.arc.update:
                 id: ch_setpoint_arc_top
                 indicator:
-                  opa: 80%
+                  opa: 85%
   - platform: homeassistant
     entity_id: climate.master_bedroom_thermostat     
     id: bedroom_thermostat_hvac
