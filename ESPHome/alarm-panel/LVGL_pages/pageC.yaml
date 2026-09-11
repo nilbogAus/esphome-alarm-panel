@@ -178,7 +178,7 @@ lvgl:
                         pad_bottom: 2
                         pad_left: 8
                         pad_right: 8
-                        text_font: roboto_sml
+                        text_font: roboto
               - obj:
                   id: lvgl_thermostat_bottom_obj
                   width: 100%
