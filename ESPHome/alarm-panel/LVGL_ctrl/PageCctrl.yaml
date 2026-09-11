@@ -182,15 +182,15 @@ text_sensor:
   - platform: homeassistant
     entity_id: climate.master_bedroom_thermostat     
     id: bedroom_thermostat_hvac
+    filters:
+      - to_upper    
     on_value:
       - lvgl.label.update:
           id: ch_mode_label_top
           text: !lambda "return (x);"  
-          filters:
-            - to_upper
       - if:
           condition:
-            lambda: 'return (x == "heat");'
+            lambda: 'return (x == "HEAT");'
           then:
             - lvgl.arc.update:
                 id: ch_setpoint_arc_top
