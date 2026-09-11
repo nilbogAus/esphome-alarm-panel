@@ -189,7 +189,7 @@ text_sensor:
                   - lvgl.arc.update:
                       id: ch_setpoint_arc_top
                       indicator:
-                        arc_color: 0x292929`
+                        arc_color: 0x292929
              
 
 script:
