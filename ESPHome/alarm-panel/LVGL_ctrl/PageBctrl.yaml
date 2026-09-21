@@ -12,11 +12,11 @@ globals:
   - id: g_powerprice
     type: float
     restore_value: no
-    initial_value: '0.3628'
+    initial_value: '0.18018'
   - id: g_solarprice
     type: float
     restore_value: no
-    initial_value: '0.04'    
+    initial_value: '0.03'    
 
 sensor:
   - platform: homeassistant
