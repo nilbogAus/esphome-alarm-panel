@@ -363,7 +363,7 @@ script:
             - lvgl.label.update:
                 id: lbl_weather_text_temp
                 text:
-                  format: "%s %.0f°C, %s %.0f°C"
+                  format: "%s %.0f°C,\n%s %.0f°C"
                   args: [ 'id(forecast_label_today).state.c_str()','id(forecast_temp_today).state', 'id(forecast_label_today_later).state.c_str()','id(forecast_temp_today_later).state' ]      
           else:
             # display tomorrows weather
