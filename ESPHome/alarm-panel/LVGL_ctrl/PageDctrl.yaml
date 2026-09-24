@@ -94,7 +94,7 @@ sensor:
   - platform: homeassistant
     name: "Forecast Today Later Temp"
     id: forecast_temp_today_later
-    entity_id: sensor.wahroonga_now_later_temp
+    entity_id: sensor.wahroonga_now_temp_later
   - platform: homeassistant
     name: "Forecast Tomorrow Temp Min"
     id: forecast_temp_tomorrow_min
